@@ -25,7 +25,7 @@ Response Body (succes) :
 }
 ```
 
-Response Body (failed) :
+Response Body (failed) : \n
 *Account Not Found*
 ```
 {
@@ -53,6 +53,99 @@ Response Body (failed) :
 }
 ```
 
+*Password Kosong*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Your Data Not Valid",
+    "data": "Password is required"
+}
+```
+
+**REGISTER**
+
+Endpoint : POST /register
+
+Request Body :
+
+```
+{
+    "email":"d.raihan2003@gmail.com",
+    "password":"dapa123",
+    "retyped-password":"dapa123",
+    "username":"dradapdap"
+}
+```
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Registration successful",
+    "data": {
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMzMzRkNmIwLTZmN2ItNDAzMi1hZDY5LWRkMzE4MWJmMzNjMSIsInVzZXJuYW1lIjoiZHJhZGFwZGFwIiwiZW1haWwiOiJkLnJhaWhhbjIwMDNAZ21haWwuY29tIiwicm9sZSI6IjMxNTFlN2QwLTRhODEtNDA0Mi1iZTg3LTc3MGE2ZTU4NjVjYiIsImlhdCI6MTcxOTg5MTQwMCwiZXhwIjoxNzE5ODkyMDAwfQ.GEH5penoTlUhC64AuR6RVCysRG7KNqi62N4GNJz0Eek",
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMzMzRkNmIwLTZmN2ItNDAzMi1hZDY5LWRkMzE4MWJmMzNjMSIsInVzZXJuYW1lIjoiZHJhZGFwZGFwIiwiZW1haWwiOiJkLnJhaWhhbjIwMDNAZ21haWwuY29tIiwicm9sZSI6IjMxNTFlN2QwLTRhODEtNDA0Mi1iZTg3LTc3MGE2ZTU4NjVjYiIsImlhdCI6MTcxOTg5MTQwMCwiZXhwIjoxNzE5OTc3ODAwfQ.enZRmRmWj62FXv56o6XKvNeyHu1-SBEMav4XruOEADU"
+    }
+}
+```
+
+Response Body (failed) : \n
+*Email Account Already Exist*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Email already exists"
+}
+```
+*EMAIL NOT VALID*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Your Data Not Valid",
+    "data": "Must be a valid email"
+}
+```
+
+*Username Kosong*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Your Data Not Valid",
+    "data": "username is required"
+}
+```
+*Username Kurang Dari 6 dan Lebih Dari 30 Karakter*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Your Data Not Valid",
+    "data": "Username must be between 6 and 30 characters"
+}
+```
+
+*Password Karakter Kurang Dari 6*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Your Data Not Valid",
+    "data": "Password must be at least 6 characters"
+}
+```
+*Password And Re-Typed Password Not Match*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Your Data Not Valid",
+    "data": "Passwords do not match"
+}
+```
 *Password Kosong*
 ```
 {
