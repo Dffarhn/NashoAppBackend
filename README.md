@@ -25,7 +25,8 @@ Response Body (succes) :
 }
 ```
 
-Response Body (failed) : \n
+Response Body (failed) : 
+
 *Account Not Found*
 ```
 {
@@ -43,7 +44,7 @@ Response Body (failed) : \n
     "message": "Incorrect password"
 }
 ```
-*EMAIL NOT VALID*
+*Email Not Valid*
 ```
 {
     "status": "error",
@@ -90,7 +91,8 @@ Response Body (succes) :
 }
 ```
 
-Response Body (failed) : \n
+Response Body (failed) : 
+
 *Email Account Already Exist*
 ```
 {
@@ -99,7 +101,7 @@ Response Body (failed) : \n
     "message": "Email already exists"
 }
 ```
-*EMAIL NOT VALID*
+*Email Not Valid*
 ```
 {
     "status": "error",
@@ -155,6 +157,48 @@ Response Body (failed) : \n
     "data": "Password is required"
 }
 ```
+**Get New Access Token**
+
+Endpoint : POST /token
+
+Request Body :
+
+```
+{
+"refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY0ZjhjY2ViLWEyNjQtNDU0Ny1iODk0LWM4M2E3ZGQ1NWJhNyIsInVzZXJuYW1lIjoiZGFwYXBwcHBwcCIsImVtYWlsIjoiZC5yYWloYW4yMDA0QGdtYWlsLmNvbSIsInJvbGUiOiIzMTUxZTdkMC00YTgxLTQwNDItYmU4Ny03NzBhNmU1ODY1Y2IiLCJpYXQiOjE3MTk4ODk5MzQsImV4cCI6MTcxOTk3NjMzNH0.iPxFrSBQViZVy0NuN22DLcp8b1fnYy6p1lmg-Ike_9M"
+}
+```
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Refresh successful",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY0ZjhjY2ViLWEyNjQtNDU0Ny1iODk0LWM4M2E3ZGQ1NWJhNyIsInVzZXJuYW1lIjoiZGFwYXBwcHBwcCIsImVtYWlsIjoiZC5yYWloYW4yMDA0QGdtYWlsLmNvbSIsImlhdCI6MTcxOTg5MDAwNiwiZXhwIjoxNzE5ODkwNjA2fQ.VpaWRHpKdL5XsRJQd6iz8W_zligaXhcl8bobHYmDJe8"
+}
+```
+
+Response Body (failed) : 
+
+*RefreshToken Invalid Signature*
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Invalid Signature",
+    "data": "Direct To Login"
+}
+```
+
+*Refresh Token Is Missing*
+```
+{
+    "status": "error",
+    "statusCode": 401,
+    "message": "Refresh token is missing."
+}
+```
+
 
 **Get Semua Data Product Knowledge**
 

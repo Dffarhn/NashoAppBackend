@@ -73,18 +73,24 @@ const Refresh_Access_Token = async (req, res) => {
     if (!refreshToken) {
       throw new CustomError(401,"Refresh token is missing.")
     }
+     // Verify the access token
+    jwt.verify(refreshToken, process.env.SECRET_KEY_TOKEN, (err, decoded) => {
+      if (err) {
+        throw new CustomError(403, "Invalid Signature", "Direct To Login");
+      }
+      // Token is valid, attach decoded user information to the request object
+      const payload = { id: decoded.id, username: decoded.username, email: decoded.email };
+  
+      // Generate a new access token
+      const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN, {
+        expiresIn: "10m",
+      });
+  
+      return res.status(200).send({ msg: "Refresh successful", token: accessToken });
 
-    // Verify the refresh token
-    const decoded = jwt.verify(refreshToken, process.env.SECRET_KEY_REFRESH_TOKEN);
-    
-    const payload = { id: decoded.id, username: decoded.username, email: decoded.email };
-
-    // Generate a new access token
-    const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN, {
-      expiresIn: "10m",
     });
 
-    return res.status(200).send({ msg: "Refresh successful", token: accessToken });
+    
   } catch (error) {
     console.error("Error in Refresh_Access_Token:", error);
     handleCustomErrorRoute(res, error);
