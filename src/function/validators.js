@@ -1,4 +1,4 @@
-const { body, param, check } = require("express-validator");
+const { body, param, check, query } = require("express-validator");
 
 const validateEmail = () => {
   return body("email").isEmail().withMessage("Must be a valid email").trim().notEmpty().withMessage("Email is required");
@@ -24,7 +24,7 @@ const validateRetypedPassword = () => {
 };
 
 const validateStringInput = (field) => {
-  return body(field).trim().notEmpty().withMessage(`${field} is required`);
+  return body(field).trim().notEmpty().withMessage(`${field} is required`)
 };
 
 const validateStringInputUpdate = (field) => {
@@ -42,6 +42,15 @@ const validateIntegerInput = (field) => {
   return body(field).isInt().withMessage(`${field} must be an integer`).toInt(); // Converts the input to an integer if it is a valid integer
 };
 
+const validateUUIDQuery = (field) =>{
+  return query(field).isUUID().withMessage(`${field} must be a valid UUID`);
+}
+
+
+
+
+
+
 const AddMateriValidation = () => {
   return [validateStringInput("judul"), validateStringInput("isi"), validateStringInput("linkVideo"), validateUUIDBody("kategori"), validateIntegerInput("bab")];
 };
@@ -52,13 +61,18 @@ const loginValidation = () => {
   return [validateEmail(), validatePassword()];
 };
 
-
 const AddAccessMateriUserValidation = () => {
   return [validateUUIDParams("id")];
 };
-
+const DeleteMateriValidation = () => {
+  return [validateUUIDParams("id")];
+};
 const UpdateMateriValidation = () => {
   return [validateStringInputUpdate("judul"), validateStringInputUpdate("isi"), validateStringInputUpdate("linkVideo"), validateUUIDParams("id")];
 };
 
-module.exports = { registerValidation, loginValidation, AddMateriValidation, AddAccessMateriUserValidation, UpdateMateriValidation };
+const GetAllMateriValidation = () => {
+  return [validateUUIDQuery("kategori")]
+}
+
+module.exports = { registerValidation, loginValidation, AddMateriValidation, AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation,GetAllMateriValidation };

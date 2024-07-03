@@ -1,5 +1,5 @@
 const { handleCustomErrorRoute } = require("../function/ErrorFunction");
-const { addMateriToDB, getAllKategoriMateri, GetAllMateriToDB, GetSpesificMateriToDB, AddNewMateriAccessToDB, UpdateMateriToDB } = require("../models/materiModel");
+const { addMateriToDB, getAllKategoriMateri, GetAllMateriToDB, GetSpesificMateriToDB, AddNewMateriAccessToDB, UpdateMateriToDB, DeleteMateriToDB } = require("../models/materiModel");
 const CustomError = require("../utils/customError");
 
 //ADMIN
@@ -37,6 +37,24 @@ const UpdateMateriAdmin = async(req,res)=>{
     
   }
 }
+
+const DeleteMateriAdmin = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedRows = await DeleteMateriToDB(id);
+
+    if (deletedRows > 0) {
+      res.status(200).json({ message: `Successfully deleted ${deletedRows} row(s).` });
+    } else {
+      throw new CustomError(404,"No Data Deleted")
+    }
+    
+  } catch (error) {
+    handleCustomErrorRoute(res, error);
+  }
+};
+
 
 
 
@@ -104,4 +122,4 @@ const AddNewMateriAccessUser = async (req, res) => {
   }
 };
 
-module.exports = { AddMateriAdmin, getKategoriMateri, GetAllMateri, GetSpesificMateri, AddNewMateriAccessUser,UpdateMateriAdmin };
+module.exports = { AddMateriAdmin, getKategoriMateri, GetAllMateri, GetSpesificMateri, AddNewMateriAccessUser,UpdateMateriAdmin,DeleteMateriAdmin };

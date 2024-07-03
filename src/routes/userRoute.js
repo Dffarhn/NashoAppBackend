@@ -44,13 +44,13 @@ const LoginUser = async (req, res) => {
       const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN, { expiresIn: "10m" });
       const refreshToken = jwt.sign(payload, process.env.SECRET_KEY_REFRESH_TOKEN, { expiresIn: "1d" });
 
-      // res.cookie("RefreshT", refreshToken, {
-      //   httpOnly: true,
-      //   // sameSite: "none",
-      //   // secure: true,
-      //   maxAge: 24 * 60 * 60 * 1000
+      res.cookie("RefreshT", refreshToken, {
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+        maxAge: 24 * 60 * 60 * 1000
         
-      // });
+      });
 
       const passData = {
         accessToken : accessToken,
@@ -68,13 +68,13 @@ const LoginUser = async (req, res) => {
 
 const Refresh_Access_Token = async (req, res) => {
   try {
-    const {refreshToken} = req.body;
+    const refreshToken = req.cookies.RefreshT
 
     if (!refreshToken) {
       throw new CustomError(401,"Refresh token is missing.")
     }
      // Verify the access token
-    jwt.verify(refreshToken, process.env.SECRET_KEY_TOKEN, (err, decoded) => {
+    jwt.verify(refreshToken, process.env.SECRET_KEY_REFRESH_TOKEN, (err, decoded) => {
       if (err) {
         throw new CustomError(403, "Invalid Signature", "Direct To Login");
       }

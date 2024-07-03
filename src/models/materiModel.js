@@ -36,6 +36,28 @@ async function UpdateMateriToDB(data,id) {
     handleCustomErrorModel(error);
   }
 }
+
+
+
+async function DeleteMateriToDB(id) {
+  try {
+    const queryValues = [id];
+    const queryText = `
+    DELETE FROM public.materi
+    WHERE id = $1;
+    `;
+
+    const result = await pool.query(queryText, queryValues);
+
+    // Optionally log the result or return a value
+    // console.log(`Deleted rows: ${result.rowCount}`);
+    return result.rowCount; // Return the number of deleted rows
+
+  } catch (error) {
+    handleCustomErrorModel(error);
+  }
+}
+
 //USER
 async function getAllKategoriMateri() {
   try {
@@ -125,4 +147,4 @@ async function AddNewMateriAccessToDB(userId, id) {
   }
 }
 
-module.exports = { addMateriToDB, getAllKategoriMateri, GetAllMateriToDB, GetSpesificMateriToDB, AddNewMateriAccessToDB, UpdateMateriToDB  };
+module.exports = { addMateriToDB, getAllKategoriMateri, GetAllMateriToDB, GetSpesificMateriToDB, AddNewMateriAccessToDB, UpdateMateriToDB, DeleteMateriToDB  };
