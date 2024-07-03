@@ -6,7 +6,7 @@ const handleValidationErrors = (req, res, next) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    throw new CustomError(400, "Your Data Not Valid", errors.array()[0].msg);
+    throw new CustomError(400,errors.array()[0].msg, "Your Data Not Valid");
   }
   next();
 };

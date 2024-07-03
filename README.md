@@ -49,8 +49,8 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Your Data Not Valid",
-    "data": "Must be a valid email"
+    "message": "Must be a valid email",
+    "data": "Your Data Not Valid"
 }
 ```
 
@@ -59,8 +59,8 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Your Data Not Valid",
-    "data": "Password is required"
+    "message": "Password is required",
+    "data": "Your Data Not Valid"
 }
 ```
 
@@ -106,8 +106,8 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Your Data Not Valid",
-    "data": "Must be a valid email"
+    "message": "Must be a valid email",
+    "data": "Your Data Not Valid"
 }
 ```
 
@@ -116,8 +116,8 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Your Data Not Valid",
-    "data": "username is required"
+    "message": "username is required",
+    "data": "Your Data Not Valid"
 }
 ```
 *Username Kurang Dari 6 dan Lebih Dari 30 Karakter*
@@ -125,8 +125,8 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Your Data Not Valid",
-    "data": "Username must be between 6 and 30 characters"
+    "message": "Username must be between 6 and 30 characters",
+    "data": "Your Data Not Valid"
 }
 ```
 
@@ -135,8 +135,8 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Your Data Not Valid",
-    "data": "Password must be at least 6 characters"
+    "message": "Password must be at least 6 characters",
+    "data": "Your Data Not Valid"
 }
 ```
 *Password And Re-Typed Password Not Match*
@@ -144,8 +144,8 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Your Data Not Valid",
-    "data": "Passwords do not match"
+    "message": "Passwords do not match",
+    "data": "Your Data Not Valid"
 }
 ```
 *Password Kosong*
@@ -153,8 +153,8 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Your Data Not Valid",
-    "data": "Password is required"
+    "message": "Password is required",
+    "data": "Your Data Not Valid"
 }
 ```
 **Get New Access Token**
