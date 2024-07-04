@@ -10,8 +10,7 @@ dotenv.config()
 const app = express();
 const PORT = process.env.PORT || 3002
 const corsOptions = {
-  origin: 'https://fly-beloved-yak.ngrok-free.app', // Replace with your specific origin
-  credentials: true,
+  origin: '*',
   optionsSuccessStatus: 204,
   allowedHeaders: ['Content-Type', 'Authorization', 'Set-Cookie']
 };

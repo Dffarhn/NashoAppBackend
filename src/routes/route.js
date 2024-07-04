@@ -5,6 +5,7 @@ const { handleValidationErrors } = require("../middleware/validatormid");
 const { RegisterUser, LoginUser, Refresh_Access_Token } = require("./userRoute");
 const { AddMateriAdmin, getKategoriMateri, GetAllMateri, GetSpesificMateri, AddNewMateriAccessUser, UpdateMateriAdmin, DeleteMateriAdmin } = require("./MateriRoute");
 const { Auth_Access, Auth_Access_Admin } = require("../middleware/VerifyToken");
+const { AddSoalQuiz, AddSoalUjian } = require("./SoalRoute");
 const route = Router();
 
 route.get("/", (req, res) => {
@@ -23,10 +24,10 @@ route.delete("/admin/delete/:id", DeleteMateriValidation(), handleValidationErro
 //Materi Add Soal And Jawaban
 
 //Quiz
-route.post("/admin/quiz/soal/:id_materi", Auth_Access_Admin);
+route.post("/admin/quiz/soal/:id_materi", Auth_Access_Admin,AddSoalQuiz);
 
 //Ujian
-route.post("/admin/ujian/soal/:id_materi", Auth_Access_Admin);
+route.post("/admin/ujian/soal/:id_materi", Auth_Access_Admin,AddSoalUjian);
 
 //Materi User
 route.get("/kategoriMateri", Auth_Access, getKategoriMateri);
