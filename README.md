@@ -154,3 +154,91 @@ Response Body (failed) :
     "data": "Your Data Not Valid"
 }
 ```
+
+
+**Get Quiz From Materi**
+
+Endpoint : GET /quiz/:id_materi
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: (id_materi) (uuid)
+
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Query Successfully",
+    "data": [
+        {
+            "soal_id": "0aac1758-2d32-4d65-a1ef-a743a3a0e074",
+            "soal": "apakah ini berhasil3",
+            "pilihan": [
+                {
+                    "id": "d7e0e70d-c008-43b2-8304-1aba05a02b75",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "9e90e256-384e-46ec-84c8-d7ae8c237dba",
+                    "jawaban": "no"
+                }
+            ]
+        },
+        {
+            "soal_id": "bc71d7e8-2425-4940-ae76-dd7c76273ed1",
+            "soal": "apakah ini berhasil",
+            "pilihan": [
+                {
+                    "id": "0a001fa0-76cd-447f-abb7-1bb6b2cd542c",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "ddaa9a64-93dc-444f-b588-f144cab3d14f",
+                    "jawaban": "tidak"
+                }
+            ]
+        },
+        {
+            "soal_id": "ea2e23c8-b430-4541-b960-b40de909e6d7",
+            "soal": "apakah ini berhasil2",
+            "pilihan": [
+                {
+                    "id": "a4129e6e-d19c-4837-a08d-faaeeba45d38",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "73abd396-ba3b-474a-88d4-d13542a9290c",
+                    "jawaban": "tidak"
+                }
+            ]
+        }
+    ]
+}
+```
+
+Response Body (failed) :
+
+*Not Valid UUID*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_materi must be a valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+
+*Wrong id_materi*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Quiz Not Found",
+    "data": "Check Your Id Materi"
+}
+
+```
+
