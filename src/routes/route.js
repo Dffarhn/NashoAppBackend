@@ -1,11 +1,12 @@
 const { Router } = require("express");
-const cors = require("cors");
-const { registerValidation, loginValidation, AddMateriValidation, AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation, GetAllMateriValidation } = require("../function/validators");
+const { registerValidation, loginValidation, AddMateriValidation, AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation, GetAllMateriValidation, GetAllQUizMateriValidation } = require("../function/validators");
 const { handleValidationErrors } = require("../middleware/validatormid");
 const { RegisterUser, LoginUser, Refresh_Access_Token } = require("./userRoute");
 const { AddMateriAdmin, getKategoriMateri, GetAllMateri, GetSpesificMateri, AddNewMateriAccessUser, UpdateMateriAdmin, DeleteMateriAdmin } = require("./MateriRoute");
 const { Auth_Access, Auth_Access_Admin } = require("../middleware/VerifyToken");
 const { AddSoalQuiz, AddSoalUjian } = require("./SoalRoute");
+const { GetAllQuizMateri } = require("./quizRoute");
+const { CekJawabanUser } = require("./JawabanRoute");
 const route = Router();
 
 route.get("/", (req, res) => {
@@ -23,17 +24,26 @@ route.delete("/admin/delete/:id", DeleteMateriValidation(), handleValidationErro
 
 //Materi Add Soal And Jawaban
 
-//Quiz
+//Quiz Admin
 route.post("/admin/quiz/soal/:id_materi", Auth_Access_Admin,AddSoalQuiz);
+
+//Quiz User
+route.get("/quiz/:id_materi",GetAllQUizMateriValidation(),handleValidationErrors,Auth_Access,GetAllQuizMateri)
+route.post("/quiz/cek/:id_mengambil_materi",Auth_Access, CekJawabanUser)
 
 //Ujian
 route.post("/admin/ujian/soal/:id_materi", Auth_Access_Admin,AddSoalUjian);
 
 //Materi User
 route.get("/kategoriMateri", Auth_Access, getKategoriMateri);
+
+
 route.get("/materis", GetAllMateriValidation(), handleValidationErrors, Auth_Access, GetAllMateri);
 route.get("/materi/:id", Auth_Access, GetSpesificMateri);
 
+
+
+//User Access The Materi
 route.post("/selectMateri/:id", AddAccessMateriUserValidation(), handleValidationErrors, Auth_Access, AddNewMateriAccessUser);
 
 module.exports = { route };

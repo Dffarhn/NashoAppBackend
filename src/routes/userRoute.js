@@ -11,7 +11,7 @@ const RegisterUser = async (req, res) => {
 
     if (newUser) {
       const payload = { id: newUser.id, username: newUser.username, email: newUser.email, role: newUser.role };
-      const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN, { expiresIn: "10m" });
+      const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN, { expiresIn: "1d" });
       const refreshToken = jwt.sign(payload, process.env.SECRET_KEY_REFRESH_TOKEN, { expiresIn: "1d" });
 
       // res.cookie("RefreshT", refreshToken, {
@@ -22,8 +22,7 @@ const RegisterUser = async (req, res) => {
       // });
 
       const passData = {
-        accessToken : accessToken,
-        refreshToken : refreshToken
+        accessToken : accessToken
        };
       res.status(201).json({ msg: "Registration successful", data: passData });
     } else {
@@ -41,20 +40,19 @@ const LoginUser = async (req, res) => {
 
     if (searchingUser) {
       const payload = { id: searchingUser.id, username: searchingUser.username, email: searchingUser.email, role: searchingUser.role };
-      const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN, { expiresIn: "10m" });
+      const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN, { expiresIn: "1d" });
       const refreshToken = jwt.sign(payload, process.env.SECRET_KEY_REFRESH_TOKEN, { expiresIn: "1d" });
 
-      res.cookie("RefreshT", refreshToken, {
-        httpOnly: true,
-        sameSite: "none",
-        secure: true,
-        maxAge: 24 * 60 * 60 * 1000
+      // res.cookie("RefreshT", refreshToken, {
+      //   httpOnly: true,
+      //   sameSite: "none",
+      //   secure: true,
+      //   maxAge: 24 * 60 * 60 * 1000
         
-      });
+      // });
 
       const passData = {
-        accessToken : accessToken,
-        refreshToken : refreshToken
+        accessToken : accessToken
        };
       res.status(200).json({ msg: "Login successful", data: passData });
     } else {

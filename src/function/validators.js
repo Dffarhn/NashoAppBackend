@@ -75,4 +75,8 @@ const GetAllMateriValidation = () => {
   return [validateUUIDQuery("kategori")]
 }
 
-module.exports = { registerValidation, loginValidation, AddMateriValidation, AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation,GetAllMateriValidation };
+const GetAllQUizMateriValidation = () => {
+  return [validateUUIDParams("id_materi")];
+};
+module.exports = { registerValidation, loginValidation, AddMateriValidation, 
+  AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation,GetAllMateriValidation, GetAllQUizMateriValidation };
