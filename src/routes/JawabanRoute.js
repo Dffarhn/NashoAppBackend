@@ -15,10 +15,6 @@ const CekJawabanUser = async (req, res) => {
       hasil: CekJawabanUserData
     }
 
-    if (CekJawabanUserData) {
-      res.status(200).json({ msg: "Jawaban Berhasil DiPeriksa", data: payload });
-    }
-
     res.status(200).json({ msg: "Jawaban Berhasil DiPeriksa", data: payload });
   } catch (error) {
     handleCustomErrorRoute(res, error);

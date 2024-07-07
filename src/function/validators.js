@@ -78,5 +78,8 @@ const GetAllMateriValidation = () => {
 const GetAllQUizMateriValidation = () => {
   return [validateUUIDParams("id_materi")];
 };
+const PostAnswerQuizMateriValidation = () => {
+  return [validateUUIDParams("id_mengambil_quiz"),validateUUIDBody("id_soal"),validateUUIDBody("id_jawaban")];
+};
 module.exports = { registerValidation, loginValidation, AddMateriValidation, 
-  AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation,GetAllMateriValidation, GetAllQUizMateriValidation };
+  AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation,GetAllMateriValidation, GetAllQUizMateriValidation,PostAnswerQuizMateriValidation };

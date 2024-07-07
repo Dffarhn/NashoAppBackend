@@ -70,7 +70,7 @@ async function getAllKategoriMateri() {
 
     return result.rows;
   } catch (error) {
-    handleCustomErrorModel(res, error);
+    handleCustomErrorModel(error);
   }
 }
 async function GetAllMateriToDB(kategori, UserId) {
@@ -122,7 +122,7 @@ async function GetSpesificMateriToDB(id) {
 
     return rows;
   } catch (error) {
-    handleCustomErrorModel(res, error);
+    handleCustomErrorModel(error);
   }
 }
 
@@ -143,7 +143,7 @@ async function AddNewMateriAccessToDB(userId, id) {
 
     return rows;
   } catch (error) {
-    handleCustomErrorModel(res, error);
+    handleCustomErrorModel(error);
   }
 }
 

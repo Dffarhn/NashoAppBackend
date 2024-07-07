@@ -16,7 +16,7 @@ const AddSoalQuiz = async (req,res) =>{
             throw new CustomError(500,"Failed To Call Database","Ulangi")
         }
 
-        res.status(201).json({msg:"Soal Added To Database"})
+        res.status(201).json({msg:"Soal Added To Database", data: AddSoalQuizData})
         
     } catch (error) {
         handleCustomErrorRoute(res,error)
@@ -36,7 +36,7 @@ const AddSoalUjian = async (req,res) =>{
             throw new CustomError(500,"Failed To Call Database","Ulangi")
         }
 
-        res.status(201).json({msg:"Soal Added To Database"})
+        res.status(201).json({msg:"Soal Added To Database", data: AddSoalUjianData})
         
     } catch (error) {
         handleCustomErrorRoute(res,error)

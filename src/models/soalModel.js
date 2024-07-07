@@ -2,13 +2,38 @@ const pool = require("../../db_connect");
 const { handleCustomErrorModel } = require("../function/ErrorFunction");
 const CustomError = require("../utils/customError");
 
+async function checkOrInsertKumpulanSoal(client, id_materi, kategori_soal) {
+  try {
+    // Check if a kumpulansoal with the given id_materi and kategori_soal already exists
+    const checkQueryText = `
+      SELECT id FROM kumpulansoal WHERE id_materi = $1 AND kategori_soal = $2;
+    `;
+    const checkQueryValues = [id_materi, kategori_soal];
+    const { rows: existingKS } = await client.query(checkQueryText, checkQueryValues);
+
+    if (existingKS.length > 0) {
+      return existingKS[0].id;
+    } else {
+      const insertQueryText = `
+        INSERT INTO kumpulansoal(id_materi, kategori_soal)
+        VALUES ($1, $2)
+        RETURNING id;
+      `;
+      const insertQueryValues = [id_materi, kategori_soal];
+      const { rows: newKS } = await client.query(insertQueryText, insertQueryValues);
+      return newKS[0].id;
+    }
+  } catch (error) {
+    throw new CustomError(500, 'Error checking or inserting kumpulansoal');
+  }
+}
+
 async function AddSoalToMateriToDB(data, tipe) {
   const client = await pool.connect(); // Acquire a client from the pool
   try {
     await client.query('BEGIN'); // Start a transaction
 
     const { soal, jawaban_benar, pilihan, id_materi } = data;
-    let kumpulan_soal = null;
     let kategori_soal;
 
     if (tipe === "ujian") {
@@ -17,14 +42,7 @@ async function AddSoalToMateriToDB(data, tipe) {
       kategori_soal = "99b24286-5636-47bf-ab47-400159452265";
     }
 
-    const queryValuesKS = [id_materi, kategori_soal];
-    const queryTextKS = `
-      INSERT INTO kumpulansoal(id_materi, kategori_soal)
-      VALUES ($1, $2)
-      RETURNING id;
-    `;
-    const { rows: rowsKS } = await client.query(queryTextKS, queryValuesKS);
-    kumpulan_soal = rowsKS[0].id;
+    const kumpulan_soal = await checkOrInsertKumpulanSoal(client, id_materi, kategori_soal);
 
     const queryTextJawaban = `
       INSERT INTO jawabansoal (jawaban)
@@ -32,10 +50,7 @@ async function AddSoalToMateriToDB(data, tipe) {
       RETURNING id;
     `;
 
-    console.log(queryTextJawaban)
     const resultJawaban = await client.query(queryTextJawaban, pilihan);
-
-    // console.log(resultJawaban)
 
     const jawabanBenarToDB = resultJawaban.rows[jawaban_benar].id;
 
@@ -45,10 +60,9 @@ async function AddSoalToMateriToDB(data, tipe) {
       VALUES ($1, $2, $3)
       RETURNING pilihan_jawaban;
     `;
-    const resultsoal = await client.query(queryTextSoal, queryValueSoal);
+    const resultSoal = await client.query(queryTextSoal, queryValueSoal);
 
-    const id_soal = resultsoal.rows[0].pilihan_jawaban;
-    console.log(id_soal)
+    const id_soal = resultSoal.rows[0].pilihan_jawaban;
 
     const queryValuePilihan = resultJawaban.rows.map(item => [id_soal, item.id]);
     const flatQueryValuesPilihan = queryValuePilihan.flat();
@@ -73,13 +87,4 @@ async function AddSoalToMateriToDB(data, tipe) {
   }
 }
 
-
 module.exports = { AddSoalToMateriToDB };
-
-
-//SELECT soal.*, pilihansoal.*, jawabansoal.*
-// FROM materi
-// JOIN kumpulansoal ON kumpulansoal.id_materi = materi.id
-// JOIN soal ON kumpulansoal.id = soal.id_kumpulan_soal
-// JOIN pilihansoal ON soal.pilihan_jawaban = pilihansoal.id_soal
-// JOIN jawabansoal ON pilihansoal.id_jawaban = jawabansoal.id
