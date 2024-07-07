@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { registerValidation, loginValidation, AddMateriValidation, AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation, GetAllMateriValidation, GetAllQUizMateriValidation, PostAnswerQuizMateriValidation } = require("../function/validators");
+const { registerValidation, loginValidation, AddMateriValidation, AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation, GetAllMateriValidation, GetAllQUizMateriValidation, PostAnswerQuizMateriValidation, GetNilaiQuizMateriValidation } = require("../function/validators");
 const { handleValidationErrors } = require("../middleware/validatormid");
 const { RegisterUser, LoginUser, Refresh_Access_Token } = require("./userRoute");
 const { AddMateriAdmin, getKategoriMateri, GetAllMateri, GetSpesificMateri, AddNewMateriAccessUser, UpdateMateriAdmin, DeleteMateriAdmin } = require("./MateriRoute");
@@ -31,7 +31,7 @@ route.post("/admin/quiz/soal/:id_materi", Auth_Access_Admin,AddSoalQuiz);
 route.get("/quiz/:id_materi",GetAllQUizMateriValidation(),handleValidationErrors,Auth_Access,GetAllQuizMateri)
 route.post("/quiz/:id_materi",Auth_Access,AddQuizUserTake)
 route.post("/quiz/cek/:id_mengambil_quiz",PostAnswerQuizMateriValidation(),handleValidationErrors,Auth_Access, CekJawabanUser)
-route.get("/quiz/nilai/:id_mengambil_quiz",Auth_Access,GetNilaiQuiz)
+route.get("/quiz/nilai/:id_mengambil_quiz",GetNilaiQuizMateriValidation(),handleValidationErrors,Auth_Access,GetNilaiQuiz)
 
 //Ujian
 route.post("/admin/ujian/soal/:id_materi", Auth_Access_Admin,AddSoalUjian);
@@ -46,6 +46,6 @@ route.get("/materi/:id", Auth_Access, GetSpesificMateri);
 
 
 //User Access The Materi
-route.post("/selectMateri/:id", AddAccessMateriUserValidation(), handleValidationErrors, Auth_Access, AddNewMateriAccessUser);
+route.post("/selectMateri/:id_materi", AddAccessMateriUserValidation(), handleValidationErrors, Auth_Access, AddNewMateriAccessUser);
 
 module.exports = { route };

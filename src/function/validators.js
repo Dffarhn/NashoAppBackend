@@ -24,7 +24,7 @@ const validateRetypedPassword = () => {
 };
 
 const validateStringInput = (field) => {
-  return body(field).trim().notEmpty().withMessage(`${field} is required`)
+  return body(field).trim().notEmpty().withMessage(`${field} is required`);
 };
 
 const validateStringInputUpdate = (field) => {
@@ -42,14 +42,9 @@ const validateIntegerInput = (field) => {
   return body(field).isInt().withMessage(`${field} must be an integer`).toInt(); // Converts the input to an integer if it is a valid integer
 };
 
-const validateUUIDQuery = (field) =>{
+const validateUUIDQuery = (field) => {
   return query(field).isUUID().withMessage(`${field} must be a valid UUID`);
-}
-
-
-
-
-
+};
 
 const AddMateriValidation = () => {
   return [validateStringInput("judul"), validateStringInput("isi"), validateStringInput("linkVideo"), validateUUIDBody("kategori"), validateIntegerInput("bab")];
@@ -62,7 +57,7 @@ const loginValidation = () => {
 };
 
 const AddAccessMateriUserValidation = () => {
-  return [validateUUIDParams("id")];
+  return [validateUUIDParams("id_materi")];
 };
 const DeleteMateriValidation = () => {
   return [validateUUIDParams("id")];
@@ -72,14 +67,28 @@ const UpdateMateriValidation = () => {
 };
 
 const GetAllMateriValidation = () => {
-  return [validateUUIDQuery("kategori")]
-}
+  return [validateUUIDQuery("kategori")];
+};
 
 const GetAllQUizMateriValidation = () => {
   return [validateUUIDParams("id_materi")];
 };
 const PostAnswerQuizMateriValidation = () => {
-  return [validateUUIDParams("id_mengambil_quiz"),validateUUIDBody("id_soal"),validateUUIDBody("id_jawaban")];
+  return [validateUUIDParams("id_mengambil_quiz"), validateUUIDBody("id_soal"), validateUUIDBody("id_jawaban")];
 };
-module.exports = { registerValidation, loginValidation, AddMateriValidation, 
-  AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation,GetAllMateriValidation, GetAllQUizMateriValidation,PostAnswerQuizMateriValidation };
+
+const GetNilaiQuizMateriValidation = () => {
+  return [validateUUIDParams("id_mengambil_quiz")];
+};
+module.exports = {
+  registerValidation,
+  loginValidation,
+  AddMateriValidation,
+  AddAccessMateriUserValidation,
+  UpdateMateriValidation,
+  DeleteMateriValidation,
+  GetAllMateriValidation,
+  GetAllQUizMateriValidation,
+  PostAnswerQuizMateriValidation,
+  GetNilaiQuizMateriValidation
+};

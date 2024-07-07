@@ -155,6 +155,65 @@ Response Body (failed) :
 }
 ```
 
+**Materi**
+
+**User Access Materi**
+
+Endpoint : POST /quiz/cek/:id_materi
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: (id_materi) (uuid)
+
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Successfully Add User Access",
+    "data": [
+        {
+            "id": "bafec599-8581-4eda-8118-534a2b2de81c"
+        }
+    ]
+}
+```
+Response Body (failed) :
+
+*Wrong id_materi*
+```
+{
+    "status": "error",
+    "statusCode": 500,
+    "message": "Internal Server Error",
+    "data": {
+        "length": 295,
+        "name": "error",
+        "severity": "ERROR",
+        "code": "23503",
+        "detail": "Key (materi)=(d2bf909e-9f05-45bf-a55b-f2b8b6d47e4f) is not present in table \"materi\".",
+        "schema": "public",
+        "table": "mengambil_materi",
+        "constraint": "materi_to_access",
+        "file": "ri_triggers.c",
+        "line": "2619",
+        "routine": "ri_ReportViolation"
+    }
+}
+```
+*Not Valid id_materi*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_materi must be a valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+
+
+
+**QUIZ**
 
 **Get Quiz From Materi**
 
@@ -242,3 +301,154 @@ Response Body (failed) :
 
 ```
 
+
+**Get Nilai Quiz User**
+
+Endpoint : GET /quiz/nilai/:id_mengambil_quiz
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: (id_mengambil_quiz) (uuid)
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Query Successfully",
+    "data": {
+        "nilai": 67
+    }
+}
+```
+
+Response Body (failed) :
+
+*Not Valid UUID*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_mengambil_quiz must be a valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+
+*Wrong id_mengambil_quiz*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "History Not Found",
+    "data": "Check Your id materi"
+}
+
+```
+
+**JAWABAN**
+
+Endpoint : POST /quiz/cek/:id_mengambil_quiz
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Body :
+
+```
+{
+    "id_soal":"cad44221-6199-4f05-91d8-e24824f0bb5d",
+    "id_jawaban":"513bd973-3f5f-4730-b8f5-f0c980e9c1b3"
+}
+```
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Jawaban Berhasil DiPeriksa",
+    "data": {
+        "hasil": false
+    }
+}
+```
+
+Response Body (failed) : 
+
+*Not Valid UUID (id_mengambil_quiz)*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_mengambil_quiz must be a valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+*Wrong id_mengambil_quiz*
+```
+{
+    "status": "error",
+    "statusCode": 500,
+    "message": "Internal Server Error",
+    "data": {
+        "length": 316,
+        "name": "error",
+        "severity": "ERROR",
+        "code": "23503",
+        "detail": "Key (quiz_diambil)=(ed93f954-6d40-40a9-b315-121b9bd4e662) is not present in table \"mengambilquiz\".",
+        "schema": "public",
+        "table": "jawabanquizuser",
+        "constraint": "quiz_to_mengambilquiz",
+        "file": "ri_triggers.c",
+        "line": "2619",
+        "routine": "ri_ReportViolation"
+    }
+}
+```
+*Wrong id_soal*
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Soal not found"
+}
+```
+*Not Valid UUID (id_soal)*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_soal must be a valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+
+*Not Valid UUID (id_jawaban)*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_jawaban must be a valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+*Wrong id_jawaban*
+```
+{
+    "status": "error",
+    "statusCode": 500,
+    "message": "Internal Server Error",
+    "data": {
+        "length": 316,
+        "name": "error",
+        "severity": "ERROR",
+        "code": "23503",
+        "detail": "Key (jawaban_user)=(513bd973-3f5f-4730-b8f5-f0c980e9c1b8) is not present in table \"jawabansoal\".",
+        "schema": "public",
+        "table": "jawabanquizuser",
+        "constraint": "jawabanuser_to_jawaban",
+        "file": "ri_triggers.c",
+        "line": "2619",
+        "routine": "ri_ReportViolation"
+    }
+}
+```

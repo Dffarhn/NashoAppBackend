@@ -110,9 +110,9 @@ const GetSpesificMateri = async (req, res) => {
 const AddNewMateriAccessUser = async (req, res) => {
   try {
     const userId = req.user.id;
-    const { id } = req.params;
+    const { id_materi } = req.params;
 
-    const AddNewMateriAccessUserData = await AddNewMateriAccessToDB(userId, id);
+    const AddNewMateriAccessUserData = await AddNewMateriAccessToDB(userId, id_materi);
     if (!AddNewMateriAccessUserData || AddNewMateriAccessUserData.length === 0) {
       throw new CustomError(500, "Failed To Add New User Access");
     }
