@@ -1,5 +1,5 @@
 const { handleCustomErrorRoute } = require("../function/ErrorFunction")
-const { AddSoalToMateriToDB } = require("../models/soalModel")
+const { AddSoalQuizToMateriToDB, AddSoalUjianToMateriToDB } = require("../models/soalModel")
 const CustomError = require("../utils/customError")
 
 const AddSoalQuiz = async (req,res) =>{
@@ -9,7 +9,7 @@ const AddSoalQuiz = async (req,res) =>{
 
         data.id_materi = id_materi
 
-        const AddSoalQuizData = await AddSoalToMateriToDB(data,"quiz")
+        const AddSoalQuizData = await AddSoalQuizToMateriToDB(data)
 
 
         if (!AddSoalQuizData) {
@@ -25,11 +25,8 @@ const AddSoalQuiz = async (req,res) =>{
 const AddSoalUjian = async (req,res) =>{
     try {
         const data = req.body
-        const {id_materi} = req.params
-
-        data.id_materi = id_materi
-
-        const AddSoalUjianData = await AddSoalToMateriToDB(data,"ujian")
+        
+        const AddSoalUjianData = await AddSoalUjianToMateriToDB(data)
 
 
         if (!AddSoalUjianData) {

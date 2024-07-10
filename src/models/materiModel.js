@@ -5,17 +5,17 @@ const CustomError = require("../utils/customError");
 //ADMIN
 async function addMateriToDB(data) {
   try {
-    const { judul, isi, linkVideo, kategori, bab } = data;
+    const { judul, isi, linkVideo, kategori, phase } = data;
     const tanggalDibuat = new Date();
 
     const queryText = `
             INSERT INTO public.materi(
-                bab, judul, isi, linkvideo, kategori, created_at
+                phase, judul, isi, linkvideo, kategori, created_at
             )
             VALUES ($1, $2, $3, $4, $5, $6)
             RETURNING id;
         `;
-    const queryValues = [bab, judul, isi, linkVideo, kategori, tanggalDibuat];
+    const queryValues = [phase, judul, isi, linkVideo, kategori, tanggalDibuat];
 
     const result = await pool.query(queryText, queryValues);
 
@@ -75,13 +75,8 @@ async function getAllKategoriMateri() {
 }
 async function GetAllMateriToDB(kategori, UserId) {
   try {
-    let customQuery = "";
-    let queryValues = [UserId];
+    let queryValues = [UserId,kategori];
 
-    if (kategori) {
-      customQuery = `WHERE kategori = $2`;
-      queryValues.push(kategori);
-    }
 
     const queryText = `
     SELECT 
@@ -95,14 +90,14 @@ async function GetAllMateriToDB(kategori, UserId) {
         materi.id = mengambil_materi.materi
     AND 
         mengambil_materi.usernasho = $1
-    ${customQuery}`;
+    WHERE 
+        kategori = $2`;
     const { rows } = await pool.query(queryText, queryValues);
 
     if (!rows) {
       throw new CustomError(404, "No materials found");
     }
 
-    console.log(rows);
 
     return rows;
   } catch (error) {

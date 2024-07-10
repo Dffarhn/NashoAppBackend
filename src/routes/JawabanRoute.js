@@ -1,5 +1,5 @@
 const { handleCustomErrorRoute } = require("../function/ErrorFunction");
-const { CekJawabanUserToDB } = require("../models/jawabanModel");
+const { CekJawabanUserToDB, CekJawabanUjianUserToDB } = require("../models/jawabanModel");
 
 const CekJawabanUser = async (req, res) => {
   try {
@@ -20,5 +20,24 @@ const CekJawabanUser = async (req, res) => {
     handleCustomErrorRoute(res, error);
   }
 };
+const CekJawabanUserUjian = async (req, res) => {
+  try {
+    const data = req.body;
 
-module.exports = { CekJawabanUser };
+    const { id_mengambil_ujian } = req.params;
+
+    data.id_mengambil_ujian = id_mengambil_ujian;
+
+    const CekJawabanUserData = await CekJawabanUjianUserToDB(data);
+
+    const payload = {
+      hasil: CekJawabanUserData
+    }
+
+    res.status(200).json({ msg: "Jawaban Berhasil DiPeriksa", data: payload });
+  } catch (error) {
+    handleCustomErrorRoute(res, error);
+  }
+};
+
+module.exports = { CekJawabanUser,CekJawabanUserUjian };

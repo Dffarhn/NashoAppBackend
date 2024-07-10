@@ -19,15 +19,15 @@ async function GetAllQuizMateriToDB(id_materi) {
         FROM 
             materi
         JOIN 
-            kumpulansoal ON kumpulansoal.id_materi = materi.id
+            kumpulansoalquiz ON kumpulansoalquiz.id_materi = materi.id
         JOIN 
-            soal ON kumpulansoal.id = soal.id_kumpulan_soal
+            soal ON kumpulansoalquiz.id = soal.id_kumpulan_soal
         JOIN 
             pilihansoal ON soal.pilihan_jawaban = pilihansoal.id_soal
         JOIN 
             jawabansoal ON pilihansoal.id_jawaban = jawabansoal.id
         WHERE 
-            kumpulansoal.id_materi = $1
+            kumpulansoalquiz.id_materi = $1
         GROUP BY 
             soal.id, soal.soal;
 
@@ -50,7 +50,7 @@ async function AddTakeQuizUserToDB(data) {
     const { id_materi, id_user } = data;
 
     const queryTextKS = `
-            SELECT id from kumpulansoal WHERE id_materi = $1;
+            SELECT id from kumpulansoalquiz WHERE id_materi = $1;
         `;
     const queryValuesKS = [id_materi];
 
