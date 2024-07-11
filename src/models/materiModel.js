@@ -5,17 +5,17 @@ const CustomError = require("../utils/customError");
 //ADMIN
 async function addMateriToDB(data) {
   try {
-    const { judul, isi, linkVideo, kategori, phase } = data;
+    const { judul, isi, linkVideo, kategori, phase, tingkat } = data;
     const tanggalDibuat = new Date();
 
     const queryText = `
             INSERT INTO public.materi(
-                phase, judul, isi, linkvideo, kategori, created_at
+                phase, judul, isi, linkvideo, kategori, created_at,tingkat
             )
-            VALUES ($1, $2, $3, $4, $5, $6)
+            VALUES ($1, $2, $3, $4, $5, $6,$7)
             RETURNING id;
         `;
-    const queryValues = [phase, judul, isi, linkVideo, kategori, tanggalDibuat];
+    const queryValues = [phase, judul, isi, linkVideo, kategori, tanggalDibuat, tingkat];
 
     const result = await pool.query(queryText, queryValues);
 
@@ -29,15 +29,12 @@ async function addMateriToDB(data) {
   }
 }
 
-async function UpdateMateriToDB(data,id) {
+async function UpdateMateriToDB(data, id) {
   try {
-    
   } catch (error) {
     handleCustomErrorModel(error);
   }
 }
-
-
 
 async function DeleteMateriToDB(id) {
   try {
@@ -52,7 +49,6 @@ async function DeleteMateriToDB(id) {
     // Optionally log the result or return a value
     // console.log(`Deleted rows: ${result.rowCount}`);
     return result.rowCount; // Return the number of deleted rows
-
   } catch (error) {
     handleCustomErrorModel(error);
   }
@@ -75,29 +71,63 @@ async function getAllKategoriMateri() {
 }
 async function GetAllMateriToDB(kategori, UserId) {
   try {
-    let queryValues = [UserId,kategori];
-
+    let queryValues = [UserId, kategori];
 
     const queryText = `
     SELECT 
-    materi.*, 
-    mengambil_materi.id AS sudah_mengambil
+        phase.id AS phase,
+        json_agg(
+            json_build_object(
+                'id', ordered_materi.id,
+                'judul', ordered_materi.judul,
+                'sudah_mengambil', ordered_materi.sudah_mengambil,
+                'tingkat', ordered_materi.tingkat,
+                'quiz', (
+                    SELECT json_agg(
+                        json_build_object(
+                            'nilai', mengambilquiz.nilai,
+                            'lulus', mengambilquiz.status
+                        )
+                    )
+                    FROM mengambilquiz
+                    JOIN kumpulansoalquiz ON mengambilquiz.quiz = kumpulansoalquiz.id
+                    WHERE kumpulansoalquiz.id_materi = ordered_materi.id
+                )
+            )
+        ) AS Materi,
+        kumpulansoalujian.id AS ujian
     FROM 
-        materi
-    LEFT JOIN 
-        mengambil_materi
-    ON 
-        materi.id = mengambil_materi.materi
-    AND 
-        mengambil_materi.usernasho = $1
-    WHERE 
-        kategori = $2`;
+        phase
+    LEFT JOIN (
+        SELECT
+            materi.id,
+            materi.judul,
+            materi.tingkat,
+            materi.phase,
+            mengambil_materi.id AS sudah_mengambil
+        FROM 
+            materi
+        LEFT JOIN 
+            mengambil_materi ON materi.id = mengambil_materi.materi AND mengambil_materi.usernasho = $1
+        WHERE
+            materi.kategori = $2
+        ORDER BY
+            materi.tingkat ASC
+    ) AS ordered_materi ON ordered_materi.phase = phase.id
+    LEFT JOIN
+        kumpulansoalujian ON kumpulansoalujian.phase = phase.id
+    GROUP BY
+        phase.id, kumpulansoalujian.id
+    ORDER BY
+        phase.id ASC;
+
+
+    `;
     const { rows } = await pool.query(queryText, queryValues);
 
     if (!rows) {
       throw new CustomError(404, "No materials found");
     }
-
 
     return rows;
   } catch (error) {
@@ -142,4 +172,4 @@ async function AddNewMateriAccessToDB(userId, id) {
   }
 }
 
-module.exports = { addMateriToDB, getAllKategoriMateri, GetAllMateriToDB, GetSpesificMateriToDB, AddNewMateriAccessToDB, UpdateMateriToDB, DeleteMateriToDB  };
+module.exports = { addMateriToDB, getAllKategoriMateri, GetAllMateriToDB, GetSpesificMateriToDB, AddNewMateriAccessToDB, UpdateMateriToDB, DeleteMateriToDB };

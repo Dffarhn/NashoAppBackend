@@ -77,10 +77,19 @@ const GetAllMateri = async (req, res) => {
     let GetAllMateriData = await GetAllMateriToDB(kategori,userId);
 
     //Set Access For User
-    GetAllMateriData = GetAllMateriData.map(item => ({
-      ...item,
-      sudah_mengambil: item.sudah_mengambil !== null
-    }));
+    GetAllMateriData = GetAllMateriData.map(phase => ({
+      ...phase,
+      materi: phase.materi.map(materi => ({
+          ...materi,
+          sudah_mengambil: materi.sudah_mengambil !== null,
+          quiz: materi.quiz === null 
+              ? null 
+              : materi.quiz.map(q => ({
+                  ...q,
+                  lulus: q.lulus === "tidak lulus" ? false : q.lulus
+              }))
+      }))
+  }));
 
     if (!GetAllMateriData || GetAllMateriData.length === 0) {
       throw new CustomError(404, "No materials found");

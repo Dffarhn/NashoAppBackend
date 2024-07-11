@@ -104,7 +104,29 @@ async function GetNilaiQuizToDB(data) {
     const maxPoints = 100;
     const points = (trueCount / totalQuestions) * maxPoints;
 
-    return Math.ceil(points);
+    let status = 'tidak lulus'
+
+    if (Math.ceil(points) > 75) {
+      status = 'lulus'
+
+    }
+
+    const queryTextAddNilai = `
+      UPDATE public.mengambilquiz
+      SET nilai=$1, status=$2
+      WHERE id=$3;
+    `
+
+    const queryValuesAddNilai = [Math.ceil(points),status,id_mengambil_quiz]
+
+    const AddNilaiToDB = await pool.query(queryTextAddNilai,queryValuesAddNilai)
+
+    const payload = {
+      nilai: Math.ceil(points),
+      status: status
+    }
+
+    return payload;
   } catch (error) {
     handleCustomErrorModel(error);
   }

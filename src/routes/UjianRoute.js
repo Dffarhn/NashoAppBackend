@@ -5,11 +5,11 @@ const CustomError = require("../utils/customError");
 const GetUjianByPhase = async (req, res) => {
   try {
     const { id } = req.params;
-    const { kategori_materi } = req.body;
+    const { kategori } = req.query;
 
     const data = {
       phase: id,
-      kategori_materi: kategori_materi,
+      kategori_materi: kategori,
     };
 
     const GetUjianByPhaseData = await GetUjianByPhaseToDB(data);

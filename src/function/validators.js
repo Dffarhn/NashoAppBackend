@@ -80,7 +80,7 @@ const validateJawabanBenar = (field, pilihanField) => {
     });
 };
 const AddMateriValidation = () => {
-  return [validateStringInput("judul"), validateStringInput("isi"), validateStringInput("linkVideo"), validateUUIDBody("kategori"), validateIntegerInput("phase")];
+  return [validateStringInput("judul"), validateStringInput("isi"), validateStringInput("linkVideo"), validateUUIDBody("kategori"), validateIntegerInput("phase"), validateIntegerInput("tingkat")];
 };
 const registerValidation = () => {
   return [validateEmail(), validatePassword(), validateRetypedPassword(), validateStringInput("username").isLength({ min: 6, max: 30 }).withMessage("Username must be between 6 and 30 characters")];
@@ -132,9 +132,7 @@ const AdminAddQuizValidation = () => {
   return [
     validateStringInput("soal"),
     validatePilihanArray("pilihan"),
-    validateJawabanBenar("jawaban_benar", "pilihan"),
-    validateIntegerInput("phase"),
-    validateUUIDBody("kategori_materi")
+    validateJawabanBenar("jawaban_benar", "pilihan")
   ];
 };
 module.exports = {

@@ -5,8 +5,6 @@ async function GetUjianByPhaseToDB(data) {
   try {
     const { phase, kategori_materi } = data;
 
-    console.log(data);
-
     const queryText = `
             SELECT 
             soal.id AS soal_id,
