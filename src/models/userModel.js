@@ -11,7 +11,7 @@ async function AddUserTODB(data) {
     // Check if email already exists in the database
     const existingUser = await check_emailToDB(email);
     if (existingUser.length > 0) {
-      throw new CustomError(400, "Email already exists");
+      throw new CustomError(400, "Email ini sudah terdaftar");
     }
 
     const role = "3151e7d0-4a81-4042-be87-770a6e5865cb";
@@ -66,10 +66,10 @@ async function LoginUserToDB(data) {
       if (checksamepassword) {
         return rows[0]; // Return the user object (with role if applicable)
       } else {
-        throw new CustomError(400, "Incorrect password");
+        throw new CustomError(400, "Password Salah");
       }
     } else {
-      throw new CustomError(404, "No account found with that email");
+      throw new CustomError(404, "Tidak ada akun yang ditemukan");
     }
   } catch (error) {
     handleCustomErrorModel(error);

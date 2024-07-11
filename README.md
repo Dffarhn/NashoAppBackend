@@ -24,13 +24,22 @@ Response Body (succes) :
 ```
 
 Response Body (failed) : 
+*Email Not Valid*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Email harus valid",
+    "data": "Your Data Not Valid"
+}
+```
 
 *Account Not Found*
 ```
 {
     "status": "error",
     "statusCode": 404,
-    "message": "No account found with that email"
+    "message": "Tidak ada akun yang ditemukan"
 }
 ```
 
@@ -39,16 +48,7 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Incorrect password"
-}
-```
-*Email Not Valid*
-```
-{
-    "status": "error",
-    "statusCode": 400,
-    "message": "Must be a valid email",
-    "data": "Your Data Not Valid"
+    "message": "Password Salah"
 }
 ```
 
@@ -57,7 +57,16 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Password is required",
+    "message": "Password dibutuhkan",
+    "data": "Your Data Not Valid"
+}
+```
+*Password Kurang dari 6 karakter*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Password harus lebih dari 6 karakter",
     "data": "Your Data Not Valid"
 }
 ```
@@ -95,7 +104,7 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Email already exists"
+    "message": "Email ini sudah terdaftar"
 }
 ```
 *Email Not Valid*
@@ -103,7 +112,7 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Must be a valid email",
+    "message": "Email harus valid",
     "data": "Your Data Not Valid"
 }
 ```
@@ -113,7 +122,7 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "username is required",
+    "message": "username dibutuhkan",
     "data": "Your Data Not Valid"
 }
 ```
@@ -132,7 +141,7 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Password must be at least 6 characters",
+    "message": "Username harus punya 6-30 karakter",
     "data": "Your Data Not Valid"
 }
 ```
@@ -141,7 +150,7 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Passwords do not match",
+    "message": "Passwords tidak sama",
     "data": "Your Data Not Valid"
 }
 ```
@@ -150,7 +159,7 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Password is required",
+    "message": "Password dibutuhkan",
     "data": "Your Data Not Valid"
 }
 ```
@@ -284,7 +293,7 @@ Response Body (failed) :
 {
     "status": "error",
     "statusCode": 400,
-    "message": "id_materi must be a valid UUID",
+    "message": "id_materi harus valid UUID",
     "data": "Your Data Not Valid"
 }
 ```

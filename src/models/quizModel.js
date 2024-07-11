@@ -120,10 +120,14 @@ async function GetNilaiQuizToDB(data) {
     const queryValuesAddNilai = [Math.ceil(points),status,id_mengambil_quiz]
 
     const AddNilaiToDB = await pool.query(queryTextAddNilai,queryValuesAddNilai)
+    let status_kelulusan = false
+    if (status == 'lulus') {
+      status_kelulusan = true
+    }
 
     const payload = {
       nilai: Math.ceil(points),
-      status: status
+      lulus: status_kelulusan
     }
 
     return payload;

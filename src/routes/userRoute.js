@@ -56,7 +56,7 @@ const LoginUser = async (req, res) => {
        };
       res.status(200).json({ msg: "Login successful", data: passData });
     } else {
-      throw new CustomError(404, "User Not Found", { reason: "User not found in the database" });
+      throw new CustomError(404, "User tidak ditemukan", { reason: "User not found in the database" });
     }
   } catch (error) {
     handleCustomErrorRoute(res, error);
