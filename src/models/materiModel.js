@@ -85,17 +85,47 @@ async function GetAllMateriToDB(kategori, UserId) {
                 'quiz', (
                     SELECT json_agg(
                         json_build_object(
-                            'nilai', mengambilquiz.nilai,
-                            'lulus', mengambilquiz.status
+                            'nilai', subqueryquiz.nilai,
+                            'lulus', subqueryquiz.status
                         )
                     )
-                    FROM mengambilquiz
-                    JOIN kumpulansoalquiz ON mengambilquiz.quiz = kumpulansoalquiz.id
-                    WHERE kumpulansoalquiz.id_materi = ordered_materi.id
+                    FROM(
+                      SELECT *
+                      FROM mengambilquiz
+                      JOIN kumpulansoalquiz ON mengambilquiz.quiz = kumpulansoalquiz.id
+                      WHERE kumpulansoalquiz.id_materi = ordered_materi.id
+                      ORDER BY mengambilquiz.created_at DESC
+                      LIMIT 1
+                    ) AS subqueryquiz
                 )
             )
         ) AS Materi,
-        kumpulansoalujian.id AS ujian
+        (
+            SELECT json_agg(
+                json_build_object(
+                    'id', ujian_phase.id,
+                    'riwayat', (
+                        SELECT json_agg(
+                            json_build_object(
+                                'nilai', subqueryujian.nilai,
+                                'lulus', subqueryujian.status
+                            )
+                        )
+                        FROM (
+                            SELECT mengambilujian.nilai, mengambilujian.status
+                            FROM mengambilujian
+                            WHERE mengambilujian.ujian = ujian_phase.id AND mengambilujian.usernasho = $1
+                            ORDER BY mengambilujian.created_at DESC
+                            LIMIT 1
+                        ) AS subqueryujian
+                        
+                    )
+                )
+            )
+            FROM kumpulansoalujian AS ujian_phase
+            WHERE ujian_phase.phase = phase.id AND ujian_phase.kategori_materi = $2
+        ) AS ujian
+
     FROM 
         phase
     LEFT JOIN (
@@ -114,15 +144,12 @@ async function GetAllMateriToDB(kategori, UserId) {
         ORDER BY
             materi.tingkat ASC
     ) AS ordered_materi ON ordered_materi.phase = phase.id
-    LEFT JOIN
-        kumpulansoalujian ON kumpulansoalujian.phase = phase.id
     GROUP BY
-        phase.id, kumpulansoalujian.id
+        phase.id
     ORDER BY
         phase.id ASC;
-
-
     `;
+    
     const { rows } = await pool.query(queryText, queryValues);
 
     if (!rows) {

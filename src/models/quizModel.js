@@ -106,7 +106,7 @@ async function GetNilaiQuizToDB(data) {
 
     let status = 'tidak lulus'
 
-    if (Math.ceil(points) > 75) {
+    if (Math.ceil(points) > 70) {
       status = 'lulus'
 
     }
