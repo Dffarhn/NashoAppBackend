@@ -11,7 +11,7 @@ const RegisterUser = async (req, res) => {
 
     if (newUser) {
       const payload = { id: newUser.id, username: newUser.username, email: newUser.email, role: newUser.role };
-      const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN, { expiresIn: "1d" });
+      const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN);
       const refreshToken = jwt.sign(payload, process.env.SECRET_KEY_REFRESH_TOKEN, { expiresIn: "1d" });
 
       // res.cookie("RefreshT", refreshToken, {
@@ -40,7 +40,7 @@ const LoginUser = async (req, res) => {
 
     if (searchingUser) {
       const payload = { id: searchingUser.id, username: searchingUser.username, email: searchingUser.email, role: searchingUser.role };
-      const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN, { expiresIn: "1d" });
+      const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN);
       const refreshToken = jwt.sign(payload, process.env.SECRET_KEY_REFRESH_TOKEN, { expiresIn: "1d" });
 
       // res.cookie("RefreshT", refreshToken, {

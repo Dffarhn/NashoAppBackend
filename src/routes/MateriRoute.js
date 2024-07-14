@@ -26,7 +26,7 @@ const UpdateMateriAdmin = async (req, res) => {
 
     const UpdateMateriData = await UpdateMateriToDB(data, id);
 
-    if (!UpdateMateriData) {
+    if (UpdateMateriData.rowCount == 0) {
       throw new CustomError(500, "Failed to Update materi to database");
     }
 

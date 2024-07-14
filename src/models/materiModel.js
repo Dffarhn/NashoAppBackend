@@ -31,6 +31,20 @@ async function addMateriToDB(data) {
 
 async function UpdateMateriToDB(data, id) {
   try {
+    const { judul, isi, linkVideo} = data;
+    
+    const queryText = `
+
+      UPDATE public.materi
+      SET judul=$2, isi=$3, linkvideo=$4
+      WHERE id = $1;
+    
+    `
+
+    const queryValues = [id,judul,isi,linkVideo];
+
+    const UpdateMateriDB = await pool.query(queryText,queryValues)
+    return UpdateMateriDB
   } catch (error) {
     handleCustomErrorModel(error);
   }
