@@ -27,10 +27,11 @@ const AddUjianUserTake = async (req, res) => {
   try {
     const userId = req.user.id;
     const { id } = req.params;
-    const { kategori_materi } = req.body;
+    const { kategori_materi,phase } = req.body;
 
     const data = {
-      phase: id,
+      id: id,
+      phase: phase,
       id_user: userId,
       kategori_materi: kategori_materi,
     };

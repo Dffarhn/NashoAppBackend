@@ -1,5 +1,6 @@
 const pool = require("../../db_connect");
 const { handleCustomErrorModel } = require("../function/ErrorFunction");
+const CustomError = require("../utils/customError");
 
 async function GetUjianByPhaseToDB(data) {
   try {
@@ -43,22 +44,57 @@ async function GetUjianByPhaseToDB(data) {
   }
 }
 
+async function CheckTheTakenUjian(data) {
+  try {
+    const { phase,kategori_materi, id_user } = data;
+
+    const queryTextMQ = `
+      SELECT materi.tingkat, materi.phase
+      FROM mengambilquiz
+      LEFT JOIN kumpulansoalquiz ON kumpulansoalquiz.id = mengambilquiz.quiz
+      LEFT JOIN materi ON kumpulansoalquiz.id_materi = materi.id
+      WHERE mengambilquiz.usernasho = $1 AND mengambilquiz.status = 'lulus'
+      ORDER BY mengambilquiz.created_at DESC, materi.tingkat ASC
+      LIMIT 1
+    `;
+
+    const queryValuesMQ = [id_user];
+    const usermaxujian = await pool.query(queryTextMQ, queryValuesMQ);
+
+    let userMaxTingkat = { phase: 1, tingkat: 1 };
+
+    if (usermaxujian.rows.length > 0) {
+      userMaxTingkat = usermaxujian.rows[0];
+    }
+
+    const queryTextQuizDiambil = `
+      SELECT MAX(tingkat) AS max_tingkat, phase
+      FROM materi
+      WHERE phase = $1 AND kategori = $2
+      GROUP BY phase;
+
+    `;
+    const queryValuesQuizDiambil = [phase,kategori_materi];
+    const QuizDiambil = await pool.query(queryTextQuizDiambil, queryValuesQuizDiambil);
+
+    if (userMaxTingkat.phase >= QuizDiambil.rows[0].phase) {
+      return userMaxTingkat.tingkat >= QuizDiambil.rows[0].max_tingkat;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    handleCustomErrorModel(error);
+  }
+}
+
 async function AddTakeUjianUserToDB(data) {
   try {
-    const { kategori_materi,phase, id_user } = data;
+    const { id, id_user } = data;
+    const check = await CheckTheTakenUjian(data); // Await the promise
 
-    const queryTextKS = `
-                SELECT 
-                    kumpulansoalujian.id 
-                FROM 
-                    kumpulansoalujian
-                WHERE 
-                    kumpulansoalujian.phase = $1 AND kumpulansoalujian.kategori_materi = $2
-          `;
-    const queryValuesKS = [phase, kategori_materi];
-
-    const KumpulanSoalDB = await pool.query(queryTextKS, queryValuesKS);
-
+    if (!check) {
+      throw new CustomError(401, "You are not authorized to access the exam");
+    }
     const queryText = `
           INSERT INTO public.mengambilujian(
               usernasho, ujian)
@@ -66,7 +102,7 @@ async function AddTakeUjianUserToDB(data) {
               RETURNING id;
           `;
 
-    const queryValues = [id_user, KumpulanSoalDB.rows[0].id]; // Correct order of parameters
+    const queryValues = [id_user, id]; // Correct order of parameters
 
     const { rows } = await pool.query(queryText, queryValues);
     return rows;

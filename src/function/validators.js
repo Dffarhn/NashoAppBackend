@@ -39,10 +39,10 @@ const validateUUIDParams = (field) => {
 };
 
 const validateIntegerInput = (field) => {
-  return body(field).isInt().withMessage(`${field} harusn integer`).toInt(); // Converts the input to an integer if it is a valid integer
+  return body(field).isInt().withMessage(`${field} harus integer`).toInt(); // Converts the input to an integer if it is a valid integer
 };
 const validateIntegerParams = (field) => {
-  return param(field).isInt().withMessage(`${field} harusn integer`).toInt(); // Converts the input to an integer if it is a valid integer
+  return param(field).isInt().withMessage(`${field} harus integer`).toInt(); // Converts the input to an integer if it is a valid integer
 };
 
 const validateUUIDQuery = (field) => {
@@ -124,7 +124,7 @@ const UserTakeQuizValidation = () => {
   return [validateUUIDParams("id_materi")]
 }
 const UserTakeUjianValidation = () => {
-  return [validateIntegerParams("id"),validateUUIDBody("kategori_materi")]
+  return [validateUUIDParams("id"),validateUUIDBody("kategori_materi"),validateIntegerInput('phase')]
 }
 
 // Example usage in your validation function
