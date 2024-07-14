@@ -461,3 +461,76 @@ Response Body (failed) :
     }
 }
 ```
+
+
+**ADMIN**
+
+**UPDATE MATERI**
+
+Endpoint : PATCH /admin/materi/:id_materi
+
+Request Params : id_materi (uuid)
+
+Request Body :
+
+```
+{
+    "judul": "tesupdate",
+    "isi": "rokok",
+    "linkVideo": "linkVideo"
+}
+```
+
+Response Body (succes) :
+```
+{
+    "msg": "Successfully Update materi"
+}
+```
+
+Response Body (failed) : 
+*id_materi Not Found on database*
+```
+{
+    "status": "error",
+    "statusCode": 500,
+    "message": "Failed to Update materi to database"
+}
+```
+*id_materi Not Valid*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id harus valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+*judul Not Valid*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "judul dibutuhkan",
+    "data": "Your Data Not Valid"
+}
+```
+*isi Not Valid*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "isi dibutuhkan",
+    "data": "Your Data Not Valid"
+}
+```
+
+*LinkVideo Not Found*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "linkVideo dibutuhkan",
+    "data": "Your Data Not Valid"
+}
+```
