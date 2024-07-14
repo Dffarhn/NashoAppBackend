@@ -166,9 +166,171 @@ Response Body (failed) :
 
 **Materi**
 
+**Get All Materi**
+
+Endpoint : GET /materis
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Query: (kategori) (uuid) WAJIB!
+
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Successfully retrieved materi",
+    "data": [
+        {
+            "phase": 1,
+            "materi": [
+                {
+                    "id": "d2bf909e-9f05-45bf-a55b-f2b8b6d47e3f",
+                    "judul": "tesupdate",
+                    "sudah_mengambil": true,
+                    "tingkat": 1,
+                    "quiz": [
+                        {
+                            "nilai": 100,
+                            "lulus": true
+                        }
+                    ]
+                },
+                {
+                    "id": "9a88cc44-8d18-4464-9664-2281c236ace8",
+                    "judul": "tes456",
+                    "sudah_mengambil": true,
+                    "tingkat": 2,
+                    "quiz": null
+                },
+                {
+                    "id": "68fb6898-5563-466a-ab33-8afbbb47103c",
+                    "judul": "tes789",
+                    "sudah_mengambil": false,
+                    "tingkat": 3,
+                    "quiz": null
+                }
+            ],
+            "ujian": [
+                {
+                    "id": "697b4576-18b3-45e9-9dc7-ba05f7b20090",
+                    "riwayat": null
+                }
+            ],
+            "locked": false
+        },
+        {
+            "phase": 2,
+            "materi": [
+                {
+                    "id": "2fc63e29-be4a-401f-b89a-aa423c4d8a36",
+                    "judul": "ini materi 2\n",
+                    "sudah_mengambil": false,
+                    "tingkat": 1,
+                    "quiz": null
+                },
+                {
+                    "id": "9941495a-2536-4144-b566-a95c527abe58",
+                    "judul": "tes789",
+                    "sudah_mengambil": false,
+                    "tingkat": 2,
+                    "quiz": null
+                }
+            ],
+            "ujian": [
+                {
+                    "id": "c8ce88e1-0432-47fa-b032-8851aeb4608a",
+                    "riwayat": null
+                }
+            ],
+            "locked": true
+        }
+    ]
+}
+```
+
+Response Body (failed) :
+
+*Not Valid Request Query kategori UUID*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "kategori harus valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+
+
+**Get All Materi**
+
+Endpoint : GET /materi/:id_materi
+
+Authorization Type Bearer Token : "Access Token"
+
+Request params: (id_materi) (uuid) WAJIB!
+
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Successfully retrieved materi",
+    "data": [
+        {
+            "id": "d2bf909e-9f05-45bf-a55b-f2b8b6d47e3f",
+            "phase": 1,
+            "judul": "tesupdate",
+            "isi": "rokok",
+            "linkvideo": "linkVideo",
+            "kategori": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
+            "created_at": "2024-07-01T13:21:34.556Z",
+            "tingkat": 1
+        }
+    ]
+}
+```
+
+Response Body (failed) :
+
+*Not Valid Request Query id_materi UUID*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_materi harus valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+
+
 **User Access Materi**
 
-Endpoint : POST /quiz/cek/:id_materi
+Endpoint : POST /selectMateri/:id_materi
 
 Authorization Type Bearer Token : "Access Token"
 
@@ -219,10 +381,84 @@ Response Body (failed) :
     "data": "Your Data Not Valid"
 }
 ```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
 
 
 
 **QUIZ**
+
+**User Take Quiz**
+
+Endpoint : POST /quiz/:id_materi
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: (id_materi) (uuid)
+
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Query Successfully",
+    "data": {
+        "id_mengambil_quiz": [
+            {
+                "id": "db8e5cd9-5b56-4aaf-aeb5-407b4b15b4a7"
+            }
+        ]
+    }
+}
+```
+Response Body (failed) :
+
+*Not Authorize to take this quiz*
+```
+{
+    "status": "error",
+    "statusCode": 401,
+    "message": "Get The Previously Quiz First"
+}
+```
+*Quiz for that materi not make it yet*
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Quiz not found for the given materi"
+}
+```
+*Not Valid id_materi*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_materi must be a valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+
 
 **Get Quiz From Materi**
 
@@ -309,6 +545,17 @@ Response Body (failed) :
 }
 
 ```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
 
 
 **Get Nilai Quiz User**
@@ -351,6 +598,17 @@ Response Body (failed) :
     "statusCode": 404,
     "message": "History Not Found",
     "data": "Check Your id materi"
+}
+
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
 }
 
 ```
@@ -461,6 +719,17 @@ Response Body (failed) :
     }
 }
 ```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
 
 
 **ADMIN**
@@ -533,4 +802,15 @@ Response Body (failed) :
     "message": "linkVideo dibutuhkan",
     "data": "Your Data Not Valid"
 }
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
 ```
