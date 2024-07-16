@@ -63,10 +63,14 @@ async function CheckTheTakenQuiz(data) {
     const usermaxujian = await pool.query(queryTextMQ, queryValuesMQ);
 
     let userMaxTingkat = { phase: 1, tingkat: 1 };
+    console.log(usermaxujian.rows.length)
 
     if (usermaxujian.rows.length > 0) {
+      console.log("masuk")
       userMaxTingkat = usermaxujian.rows[0];
     }
+
+    console.log(userMaxTingkat)
 
     const queryTextQuizDiambil = `
       SELECT tingkat, phase
@@ -76,8 +80,10 @@ async function CheckTheTakenQuiz(data) {
     const queryValuesQuizDiambil = [id_materi];
     const QuizDiambil = await pool.query(queryTextQuizDiambil, queryValuesQuizDiambil);
 
-    if (userMaxTingkat.phase >= QuizDiambil.rows[0].phase) {
-      return userMaxTingkat.tingkat >= QuizDiambil.rows[0].tingkat;
+    console.log(QuizDiambil.rows)
+
+    if (userMaxTingkat.phase >= QuizDiambil.rows[0].phase-1) {
+      return userMaxTingkat.tingkat >= QuizDiambil.rows[0].tingkat-1;
     } else {
       return false;
     }

@@ -128,13 +128,20 @@ const UserTakeUjianValidation = () => {
 }
 
 // Example usage in your validation function
-const AdminAddQuizValidation = () => {
+const AdminAddUjianValidation = () => {
   return [
     validateStringInput("soal"),
     validatePilihanArray("pilihan"),
     validateJawabanBenar("jawaban_benar", "pilihan"),
     validateIntegerInput("phase"),
     validateUUIDBody("kategori_materi")
+  ];
+};
+const AdminAddQuizValidation = () => {
+  return [
+    validateStringInput("soal"),
+    validatePilihanArray("pilihan"),
+    validateJawabanBenar("jawaban_benar", "pilihan")
   ];
 };
 module.exports = {
@@ -152,5 +159,6 @@ module.exports = {
   UserTakeUjianValidation,
   AdminAddQuizValidation,
   PostAnswerUjianMateriValidation,
-  GetNilaiUjianValidation
+  GetNilaiUjianValidation,
+  AdminAddUjianValidation
 };
