@@ -1,5 +1,5 @@
-# API DOCUMENTATION
-
+# **API Documentation**
+**Created By: Dffarhn**
 
 # USER
 
@@ -336,7 +336,7 @@ Response Body (failed) :
 
 ### User Access Materi
 
-Endpoint : POST /selectMateri/:id_materi
+Endpoint : POST /kategoriMateri/:id_materi
 
 Authorization Type Bearer Token : "Access Token"
 
@@ -398,6 +398,45 @@ Response Body (failed) :
 }
 
 ```
+
+###  Get Kategori Materi
+
+Endpoint : GET /kategoriMateri
+
+Authorization Type Bearer Token : "Access Token"
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Successfully retrieved kategori materi",
+    "data": [
+        {
+            "id": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
+            "jenis": "Nahwu"
+        },
+        {
+            "id": "630fc24e-6efb-43a9-a997-b32d19a04606",
+            "jenis": "Sharaf"
+        }
+    ]
+}
+```
+
+Response Body (failed) :
+
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+
 
 
 
@@ -1268,3 +1307,119 @@ Response Body (failed) :
 }
 
 ```
+
+## Ujian
+
+### Add Soal Ujian untuk phase
+
+Endpoint : POST /admin/ujian/soal
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Body :
+
+```
+{
+    "soal":"Siapakah Presiden Nomor 1",
+    "pilihan":["Soekarno","Soerharto","BJ Habibie","Megawati"],
+    "jawaban_benar":1,
+    "phase":1,
+    "kategori_materi":"3053b811-0544-4cea-b951-1b5f0b9ab36f"
+}
+```
+
+Response Body (succes) :
+```
+{
+    "msg": "Soal Added To Database",
+    "data": "697b4576-18b3-45e9-9dc7-ba05f7b20090"
+}
+```
+
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+*Wrong Authorization Token 2*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Forbidden Access",
+    "data": "You Are Not Admin"
+}
+
+```
+
+*Jawaban benar tidak ada pilihan out of range*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "jawaban_benar must be within the range of 0 to 3",
+    "data": "Your Data Not Valid"
+}
+
+```
+*Jawaban benar tidak integer*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "jawaban_benar harus lebih atau sama dengan 0",
+    "data": "Your Data Not Valid"
+}
+```
+*Soal tidak terisi*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "soal dibutuhkan",
+    "data": "Your Data Not Valid"
+}
+```
+*pilihan tidak terisi*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "pilihan harus memiliki 2 opsi",
+    "data": "Your Data Not Valid"
+}
+```
+*phase tidak terisi*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "phase harus integer",
+    "data": "Your Data Not Valid"
+}
+```
+*kategori_materi tidak terisi*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "kategori_materi harus valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+
+
+

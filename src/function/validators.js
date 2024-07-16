@@ -132,7 +132,9 @@ const AdminAddQuizValidation = () => {
   return [
     validateStringInput("soal"),
     validatePilihanArray("pilihan"),
-    validateJawabanBenar("jawaban_benar", "pilihan")
+    validateJawabanBenar("jawaban_benar", "pilihan"),
+    validateIntegerInput("phase"),
+    validateUUIDBody("kategori_materi")
   ];
 };
 module.exports = {
