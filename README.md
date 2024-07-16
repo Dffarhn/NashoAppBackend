@@ -1,9 +1,9 @@
-**API DOCUMENTATION**
+# API DOCUMENTATION
 
 
-**USER**
+# USER
 
-**Login**
+### Login
 
 Endpoint : POST /login
 
@@ -74,7 +74,7 @@ Response Body (failed) :
 }
 ```
 
-**REGISTER**
+### REGISTER
 
 Endpoint : POST /register
 
@@ -167,9 +167,9 @@ Response Body (failed) :
 }
 ```
 
-**Materi**
+## Materi
 
-**Get All Materi**
+### Get All Materi
 
 Endpoint : GET /materis
 
@@ -277,7 +277,7 @@ Response Body (failed) :
 ```
 
 
-**Get Spesific Materi**
+###  Get Spesific Materi
 
 Endpoint : GET /materi/:id_materi
 
@@ -332,7 +332,7 @@ Response Body (failed) :
 ```
 
 
-**User Access Materi**
+### User Access Materi
 
 Endpoint : POST /selectMateri/:id_materi
 
@@ -399,9 +399,9 @@ Response Body (failed) :
 
 
 
-**QUIZ**
+## QUIZ
 
-**User Take Quiz**
+### User Take Quiz
 
 Endpoint : POST /quiz/:id_materi
 
@@ -464,7 +464,7 @@ Response Body (failed) :
 ```
 
 
-**Get Quiz From Materi**
+### Get Quiz From Materi
 
 Endpoint : GET /quiz/:id_materi
 
@@ -562,7 +562,7 @@ Response Body (failed) :
 ```
 
 
-**Get Nilai Quiz User**
+### Get Nilai Quiz User
 
 Endpoint : GET /quiz/nilai/:id_mengambil_quiz
 
@@ -616,9 +616,9 @@ Response Body (failed) :
 }
 
 ```
-**Ujian**
+## Ujian
 
-**User Take Ujian**
+### User Take Ujian
 
 Endpoint : POST /ujian/:id_ujian
 
@@ -674,7 +674,7 @@ Response Body (failed) :
 ```
 
 
-**Get Ujian**
+### Get Ujian
 
 Endpoint : GET /ujian/:id_ujian
 
@@ -772,7 +772,7 @@ Response Body (failed) :
 ```
 
 
-**Get Nilai Ujian User**
+### Get Nilai Ujian User
 
 Endpoint : GET /ujian/nilai/:id_mengambil_ujian
 
@@ -827,9 +827,9 @@ Response Body (failed) :
 
 ```
 
-**JAWABAN**
+## JAWABAN
 
-**Jawaban Quiz**
+### Jawaban Quiz
 Endpoint : POST /quiz/cek/:id_mengambil_quiz
 
 Authorization Type Bearer Token : "Access Token"
@@ -945,7 +945,7 @@ Response Body (failed) :
 }
 
 ```
-**Jawaban Ujian**
+### Jawaban Ujian
 Endpoint : POST /ujian/cek/:id_mengambil_ujian
 
 Authorization Type Bearer Token : "Access Token"
@@ -1063,9 +1063,9 @@ Response Body (failed) :
 ```
 
 
-**ADMIN**
-
-**ADD MATERI**
+# ADMIN
+## MATERI
+### ADD MATERI
 
 Endpoint : POST /admin/materi
 
@@ -1117,7 +1117,7 @@ Response Body (succes) :
 
 ```
 
-**UPDATE MATERI**
+### UPDATE MATERI
 
 Endpoint : PATCH /admin/materi/:id_materi
 
@@ -1211,7 +1211,7 @@ Response Body (failed) :
 
 ```
 
-**Delete MATERI**
+### Delete MATERI
 
 Endpoint : DELETE /admin/materi/:id_materi
 
