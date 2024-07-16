@@ -1065,9 +1065,63 @@ Response Body (failed) :
 
 **ADMIN**
 
+**ADD MATERI**
+
+Endpoint : POST /admin/materi
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Body :
+
+```
+{
+    "judul" : "nahwu GES",
+    "isi":"jangan pernah meninggalkan sholat karena sholat tiang agama yang mana tiang agama adalah tiang yang paling tiang",
+    "linkVideo":"linkVideo",
+    "kategori":"3053b811-0544-4cea-b951-1b5f0b9ab36f", // bisa di dapat dari endpoint BASEURL/kategoriMateri
+    "phase": 2, //tergantung apakah phase 1 atau 2
+    "tingkat":3 // tingkat dia di phase itu seperti bab
+}
+```
+
+Response Body (succes) :
+```
+{
+    "msg": "Successfully added materi",
+    "data": {
+        "id": "a9abfdc8-e8b5-4f4c-be00-ee85e5836d9f"
+    }
+}
+```
+
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+*Wrong Authorization Token 2*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Forbidden Access",
+    "data": "You Are Not Admin"
+}
+
+```
+
 **UPDATE MATERI**
 
 Endpoint : PATCH /admin/materi/:id_materi
+
+Authorization Type Bearer Token : "Access Token"
 
 Request Params : id_materi (uuid)
 
@@ -1142,6 +1196,73 @@ Response Body (failed) :
     "statusCode": 403,
     "message": "Access Invalid",
     "data": "Your Token is Expired"
+}
+
+```
+*Wrong Authorization Token 2*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Forbidden Access",
+    "data": "You Are Not Admin"
+}
+
+```
+
+**Delete MATERI**
+
+Endpoint : DELETE /admin/materi/:id_materi
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params : id_materi (uuid)
+
+Response Body (succes) :
+```
+{
+    "message": "Successfully deleted 1 row(s)."
+}
+```
+
+Response Body (failed) : 
+*id_materi Not Found on database*
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "No Data Deleted"
+}
+```
+*id_materi Not Valid*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id harus valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+*Wrong Authorization Token 2*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Forbidden Access",
+    "data": "You Are Not Admin"
 }
 
 ```
