@@ -5,14 +5,8 @@ const CustomError = require("../utils/customError");
 const GetUjianByPhase = async (req, res) => {
   try {
     const { id } = req.params;
-    const { kategori } = req.query;
 
-    const data = {
-      phase: id,
-      kategori_materi: kategori,
-    };
-
-    const GetUjianByPhaseData = await GetUjianByPhaseToDB(data);
+    const GetUjianByPhaseData = await GetUjianByPhaseToDB(id);
 
     if (!GetUjianByPhaseData || GetUjianByPhaseData.length == 0) {
       throw new CustomError(404, "Ujian Not Found", "Check Your Phase or Kategori");

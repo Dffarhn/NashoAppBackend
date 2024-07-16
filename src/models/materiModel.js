@@ -178,7 +178,13 @@ async function GetAllMateriToDB(kategori, UserId) {
 
 async function GetSpesificMateriToDB(id) {
   try {
-    const queryText = `SELECT * FROM materi WHERE id = $1`;
+    const queryText = `
+    SELECT materi.*, kumpulansoalquiz.id_materi AS id_quiz
+    FROM materi
+    JOIN kumpulansoalquiz ON materi.id = kumpulansoalquiz.id_materi 
+    
+    
+    WHERE materi.id = $1`;
     const queryValues = [id];
 
     const { rows } = await pool.query(queryText, queryValues);

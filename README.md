@@ -1,4 +1,6 @@
 **API DOCUMENTATION**
+
+
 **USER**
 
 **Login**
@@ -275,7 +277,7 @@ Response Body (failed) :
 ```
 
 
-**Get All Materi**
+**Get Spesific Materi**
 
 Endpoint : GET /materi/:id_materi
 
@@ -298,7 +300,8 @@ Response Body (succes) :
             "linkvideo": "linkVideo",
             "kategori": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
             "created_at": "2024-07-01T13:21:34.556Z",
-            "tingkat": 1
+            "tingkat": 1,
+            "id_quiz":"d2bf909e-9f05-45bf-a55b-f2b8b6d47e3f"
         }
     ]
 }
@@ -613,9 +616,220 @@ Response Body (failed) :
 }
 
 ```
+**Ujian**
+
+**User Take Ujian**
+
+Endpoint : POST /ujian/:id_ujian
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: (id_ujian) (uuid)
+
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Query Successfully",
+    "data": {
+        "id_mengambil_ujian": [
+            {
+                "id": "db8e5cd9-5b56-4aaf-aeb5-407b4b15b4a7"
+            }
+        ]
+    }
+}
+```
+Response Body (failed) :
+
+*Not Authorize to take this quiz*
+```
+{
+    "status": "error",
+    "statusCode": 401,
+    "message": "You are not authorized to access the exam"
+}
+```
+
+*Not Valid id_ujian*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_ujian harus valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+
+
+**Get Ujian**
+
+Endpoint : GET /ujian/:id_ujian
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: (id_ujian) (uuid)
+
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Query Successfully",
+    "data": [
+        {
+            "soal_id": "0aac1758-2d32-4d65-a1ef-a743a3a0e074",
+            "soal": "apakah ini berhasil3",
+            "pilihan": [
+                {
+                    "id": "d7e0e70d-c008-43b2-8304-1aba05a02b75",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "9e90e256-384e-46ec-84c8-d7ae8c237dba",
+                    "jawaban": "no"
+                }
+            ]
+        },
+        {
+            "soal_id": "bc71d7e8-2425-4940-ae76-dd7c76273ed1",
+            "soal": "apakah ini berhasil",
+            "pilihan": [
+                {
+                    "id": "0a001fa0-76cd-447f-abb7-1bb6b2cd542c",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "ddaa9a64-93dc-444f-b588-f144cab3d14f",
+                    "jawaban": "tidak"
+                }
+            ]
+        },
+        {
+            "soal_id": "ea2e23c8-b430-4541-b960-b40de909e6d7",
+            "soal": "apakah ini berhasil2",
+            "pilihan": [
+                {
+                    "id": "a4129e6e-d19c-4837-a08d-faaeeba45d38",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "73abd396-ba3b-474a-88d4-d13542a9290c",
+                    "jawaban": "tidak"
+                }
+            ]
+        }
+    ]
+}
+```
+
+Response Body (failed) :
+
+*Not Valid UUID*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_ujian harus valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+
+*Wrong id_ujian*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Ujian Not Found",
+    "data": "Check Your Id Ujian"
+}
+
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+
+
+**Get Nilai Ujian User**
+
+Endpoint : GET /ujian/nilai/:id_mengambil_ujian
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: (id_mengambil_ujian) (uuid)
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Query Successfully",
+    "data": {
+        "nilai": 67
+    }
+}
+```
+
+Response Body (failed) :
+
+*Not Valid UUID*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_mengambil_ujian must be a valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+
+*Wrong id_mengambil_ujian*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "History Not Found",
+    "data": "Check Your id_mengambil_ujian"
+}
+
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
 
 **JAWABAN**
 
+**Jawaban Quiz**
 Endpoint : POST /quiz/cek/:id_mengambil_quiz
 
 Authorization Type Bearer Token : "Access Token"
@@ -663,6 +877,122 @@ Response Body (failed) :
         "severity": "ERROR",
         "code": "23503",
         "detail": "Key (quiz_diambil)=(ed93f954-6d40-40a9-b315-121b9bd4e662) is not present in table \"mengambilquiz\".",
+        "schema": "public",
+        "table": "jawabanquizuser",
+        "constraint": "quiz_to_mengambilquiz",
+        "file": "ri_triggers.c",
+        "line": "2619",
+        "routine": "ri_ReportViolation"
+    }
+}
+```
+*Wrong id_soal*
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Soal not found"
+}
+```
+*Not Valid UUID (id_soal)*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_soal must be a valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+
+*Not Valid UUID (id_jawaban)*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_jawaban must be a valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+*Wrong id_jawaban*
+```
+{
+    "status": "error",
+    "statusCode": 500,
+    "message": "Internal Server Error",
+    "data": {
+        "length": 316,
+        "name": "error",
+        "severity": "ERROR",
+        "code": "23503",
+        "detail": "Key (jawaban_user)=(513bd973-3f5f-4730-b8f5-f0c980e9c1b8) is not present in table \"jawabansoal\".",
+        "schema": "public",
+        "table": "jawabanquizuser",
+        "constraint": "jawabanuser_to_jawaban",
+        "file": "ri_triggers.c",
+        "line": "2619",
+        "routine": "ri_ReportViolation"
+    }
+}
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+**Jawaban Ujian**
+Endpoint : POST /ujian/cek/:id_mengambil_ujian
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Body :
+
+```
+{
+    "id_soal":"cad44221-6199-4f05-91d8-e24824f0bb5d",
+    "id_jawaban":"513bd973-3f5f-4730-b8f5-f0c980e9c1b3"
+}
+```
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Jawaban Berhasil DiPeriksa",
+    "data": {
+        "hasil": false
+    }
+}
+```
+
+Response Body (failed) : 
+
+*Not Valid UUID (id_mengambil_ujian)*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_mengambil_ujian must be a valid UUID",
+    "data": "Your Data Not Valid"
+}
+```
+*Wrong id_mengambil_ujian*
+```
+{
+    "status": "error",
+    "statusCode": 500,
+    "message": "Internal Server Error",
+    "data": {
+        "length": 316,
+        "name": "error",
+        "severity": "ERROR",
+        "code": "23503",
+        "detail": "Key (quiz_diambil)=(ed93f954-6d40-40a9-b315-121b9bd4e662) is not present in table \"mengambilujian\".",
         "schema": "public",
         "table": "jawabanquizuser",
         "constraint": "quiz_to_mengambilquiz",

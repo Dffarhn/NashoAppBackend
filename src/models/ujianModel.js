@@ -2,9 +2,8 @@ const pool = require("../../db_connect");
 const { handleCustomErrorModel } = require("../function/ErrorFunction");
 const CustomError = require("../utils/customError");
 
-async function GetUjianByPhaseToDB(data) {
+async function GetUjianByPhaseToDB(id) {
   try {
-    const { phase, kategori_materi } = data;
 
     const queryText = `
             SELECT 
@@ -25,7 +24,7 @@ async function GetUjianByPhaseToDB(data) {
             JOIN 
                 jawabansoal ON pilihansoal.id_jawaban = jawabansoal.id
             WHERE 
-                kumpulansoalujian.phase = $1 AND kumpulansoalujian.kategori_materi = $2
+                kumpulansoalujian.id = $1
             GROUP BY 
                 soal.id, soal.soal
             ORDER BY 
@@ -34,7 +33,7 @@ async function GetUjianByPhaseToDB(data) {
         
         
         `;
-    const queryValues = [phase, kategori_materi];
+    const queryValues = [id];
 
     const { rows } = await pool.query(queryText, queryValues);
 
