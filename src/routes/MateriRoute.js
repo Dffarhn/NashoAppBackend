@@ -111,7 +111,12 @@ const GetSpesificMateri = async (req, res) => {
     const { id } = req.params;
     const userId = req.user.id;
 
-    const GetSpeseificMateriData = await GetSpesificMateriToDB(id);
+    const data = {
+      id:id,
+      user_id : userId
+    }
+
+    const GetSpeseificMateriData = await GetSpesificMateriToDB(data);
     if (!GetSpeseificMateriData || GetSpeseificMateriData.length === 0) {
       throw new CustomError(404, "No materials found");
     }

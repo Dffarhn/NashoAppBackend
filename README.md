@@ -336,7 +336,7 @@ Response Body (failed) :
 
 ### User Access Materi
 
-Endpoint : POST /kategoriMateri/:id_materi
+Endpoint : POST /selectMateri/:id_materi
 
 Authorization Type Bearer Token : "Access Token"
 

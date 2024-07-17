@@ -178,16 +178,35 @@ async function GetAllMateriToDB(kategori, UserId) {
   }
 }
 
-async function GetSpesificMateriToDB(id) {
+async function GetSpesificMateriToDB(data) {
   try {
+
+    const {id , user_id} = data
     const queryText = `
-    SELECT materi.*, kumpulansoalquiz.id_materi AS id_quiz
-    FROM materi
-    JOIN kumpulansoalquiz ON materi.id = kumpulansoalquiz.id_materi 
-    
-    
-    WHERE materi.id = $1`;
-    const queryValues = [id];
+      SELECT materi.*, 
+        kumpulansoalquiz.id_materi AS id_quiz,
+        CASE 
+          WHEN COUNT(selected_quiz.id) = 0 THEN NULL
+          ELSE json_agg(
+            json_build_object(
+              'id_mengambil_quiz', selected_quiz.id,
+              'nilai', selected_quiz.nilai
+            )
+          )
+        END AS history_quiz
+      FROM materi
+      JOIN kumpulansoalquiz ON materi.id = kumpulansoalquiz.id_materi
+      LEFT JOIN LATERAL (
+        SELECT id, nilai, created_at
+        FROM mengambilquiz
+        WHERE kumpulansoalquiz.id = mengambilquiz.quiz AND mengambilquiz.usernasho = $2
+        ORDER BY nilai DESC, created_at DESC
+        LIMIT 1
+      ) selected_quiz ON true
+      WHERE materi.id = $1
+      GROUP BY materi.id, kumpulansoalquiz.id_materi;
+`;
+    const queryValues = [id,user_id];
 
     const { rows } = await pool.query(queryText, queryValues);
     if (!rows) {
