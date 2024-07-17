@@ -24,7 +24,7 @@ async function checkOrInsertKumpulanSoalQuiz(client, id_materi) {
       return newKS[0].id;
     }
   } catch (error) {
-    throw new CustomError(500, "Error checking or inserting kumpulansoal");
+    throw new CustomError(404, "Id Materi Not Found","Wrong id_materi");
   }
 }
 

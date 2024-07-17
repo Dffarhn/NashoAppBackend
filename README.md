@@ -1595,3 +1595,108 @@ Response Body (succes) :
 
 
 
+## Quiz
+
+### Add Soal Quiz per Materi
+
+Endpoint : POST /admin/quiz/soal/:id_materi
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params : id_materi (uuid)
+
+Request Body :
+
+```
+{
+    "soal":"Siapakah Presiden Nomor 3",
+    "pilihan":["Soekarno","Soerharto","BJ Habibie","Megawati"],
+    "jawaban_benar":3
+}
+```
+
+Response Body (succes) :
+```
+{
+    "msg": "Soal Added To Database",
+    "data": "48690445-d0b1-4dc6-bfe7-7ae654e10808"
+}
+
+```
+
+*Wrong Id Materi*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Id Materi Not Found"
+}
+
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+*Wrong Authorization Token 2*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Forbidden Access",
+    "data": "You Are Not Admin"
+}
+
+```
+
+*Jawaban benar tidak ada pilihan out of range*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "jawaban_benar must be within the range of 0 to 3",
+    "data": "Your Data Not Valid"
+}
+
+```
+*Jawaban benar tidak integer*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "jawaban_benar harus lebih atau sama dengan 0",
+    "data": "Your Data Not Valid"
+}
+```
+*Soal tidak terisi*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "soal dibutuhkan",
+    "data": "Your Data Not Valid"
+}
+```
+*pilihan tidak terisi*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "pilihan harus memiliki 2 opsi",
+    "data": "Your Data Not Valid"
+}
+```
+
+

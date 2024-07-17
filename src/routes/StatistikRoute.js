@@ -7,6 +7,7 @@ const GetStatistikUserRoute = async (req,res) =>{
         const userId = req.user.id
 
         const GetStatistikUserData = await GetStatistikUserToDB(userId)
+
         
         
     } catch (error) {
