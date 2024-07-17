@@ -118,6 +118,8 @@ async function GetAllMateriToDB(kategori, UserId) {
             SELECT json_agg(
                 json_build_object(
                     'id', ujian_phase.id,
+                    'phase_ujian', ujian_phase.phase,
+                    'kategori_ujian', ujian_phase.kategori_materi,
                     'riwayat', (
                         SELECT json_agg(
                             json_build_object(

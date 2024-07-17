@@ -7,7 +7,7 @@ const { Auth_Access, Auth_Access_Admin } = require("../middleware/VerifyToken");
 const { AddSoalQuiz, AddSoalUjian } = require("./SoalRoute");
 const { GetAllQuizMateri, AddQuizUserTake, GetNilaiQuiz } = require("./quizRoute");
 const { CekJawabanUser, CekJawabanUserUjian } = require("./JawabanRoute");
-const { GetUjianByPhase, AddUjianUserTake, GetNilaiUjian } = require("./UjianROute");
+const { GetUjianByPhase, AddUjianUserTake, GetNilaiUjian } = require("./UjianRoute");
 const { GetPembahasanUjian, GetPembahasanQuiz } = require("./PembahasanRoute");
 const route = Router();
 

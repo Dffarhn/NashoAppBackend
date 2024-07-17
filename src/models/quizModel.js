@@ -49,13 +49,14 @@ async function CheckTheTakenQuiz(data) {
   try {
     const { id_materi, id_user } = data;
 
+    // Fetch the highest tingkat and phase the user has passed
     const queryTextMQ = `
       SELECT materi.tingkat, materi.phase
       FROM mengambilquiz
       LEFT JOIN kumpulansoalquiz ON kumpulansoalquiz.id = mengambilquiz.quiz
       LEFT JOIN materi ON kumpulansoalquiz.id_materi = materi.id
       WHERE mengambilquiz.usernasho = $1 AND mengambilquiz.status = 'lulus'
-      ORDER BY mengambilquiz.created_at DESC, materi.tingkat ASC
+      ORDER BY materi.phase DESC, materi.tingkat DESC
       LIMIT 1
     `;
 
@@ -63,34 +64,78 @@ async function CheckTheTakenQuiz(data) {
     const usermaxujian = await pool.query(queryTextMQ, queryValuesMQ);
 
     let userMaxTingkat = { phase: 1, tingkat: 1 };
-    console.log(usermaxujian.rows.length)
 
     if (usermaxujian.rows.length > 0) {
-      console.log("masuk")
       userMaxTingkat = usermaxujian.rows[0];
     }
 
-    console.log(userMaxTingkat)
-
+    // Fetch the tingkat and phase of the quiz being taken
     const queryTextQuizDiambil = `
-      SELECT tingkat, phase
+      SELECT tingkat, phase, kategori
       FROM materi
       WHERE id = $1
     `;
     const queryValuesQuizDiambil = [id_materi];
     const QuizDiambil = await pool.query(queryTextQuizDiambil, queryValuesQuizDiambil);
 
-    console.log(QuizDiambil.rows)
-
-    if (userMaxTingkat.phase >= QuizDiambil.rows[0].phase-1) {
-      return userMaxTingkat.tingkat >= QuizDiambil.rows[0].tingkat-1;
-    } else {
-      return false;
+    if (QuizDiambil.rows.length === 0) {
+      throw new CustomError(404, "Materi not found");
     }
+
+    const quizTingkat = QuizDiambil.rows[0].tingkat;
+    const quizPhase = QuizDiambil.rows[0].phase;
+    const quizKategori = QuizDiambil.rows[0].kategori;
+
+    // Check if the user can access the quiz
+    if (userMaxTingkat.phase > quizPhase) {
+      return true; // User has passed a higher phase
+    } else if (userMaxTingkat.phase === quizPhase) {
+      return userMaxTingkat.tingkat >= quizTingkat - 1; // Check tingkat within the same phase
+    } else if (userMaxTingkat.phase + 1 === quizPhase) {
+      const maxTingkatInCurrentPhase = await maxTingkatInPhase(userMaxTingkat.phase, quizKategori);
+
+      if (userMaxTingkat.tingkat === maxTingkatInCurrentPhase) {
+        const queryCekUjianDone = `
+          SELECT 1
+          FROM kumpulansoalujian
+          JOIN mengambilujian ON kumpulansoalujian.id = mengambilujian.ujian
+          WHERE kumpulansoalujian.phase = $1 AND kumpulansoalujian.kategori_materi = $2 
+            AND mengambilujian.usernasho = $3 AND mengambilujian.status = 'lulus'
+          ORDER BY mengambilujian.created_at DESC
+          LIMIT 1
+        `;
+
+        const queryValuesCekUjianDone = [userMaxTingkat.phase, quizKategori, id_user];
+        const CekPreviousUjianPhaseDone = await pool.query(queryCekUjianDone, queryValuesCekUjianDone);
+
+        if (CekPreviousUjianPhaseDone.rows.length > 0) {
+          return quizTingkat === 1; // Check for the first tingkat of the next phase
+        }
+      }
+    }
+
+    return false;
   } catch (error) {
     handleCustomErrorModel(error);
   }
 }
+
+// Function to fetch the maximum tingkat within a phase for a given kategori
+async function maxTingkatInPhase(phase, kategori_materi) {
+  const queryText = `
+    SELECT MAX(tingkat) AS max_tingkat
+    FROM materi
+    WHERE phase = $1 AND kategori = $2
+  `;
+  const queryValues = [phase, kategori_materi];
+  const result = await pool.query(queryText, queryValues);
+
+  if (result.rows.length > 0) {
+    return result.rows[0].max_tingkat;
+  }
+  return 1; // Default to 1 if no data found
+}
+
 
 async function AddTakeQuizUserToDB(data) {
   try {

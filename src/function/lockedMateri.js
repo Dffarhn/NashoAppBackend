@@ -1,5 +1,6 @@
 function LockStatusMateri(data) {
     let previousPhasePassed = true;
+    console.log(data)
 
     return data.map((phase, index) => {
         const isCurrentPhaseLocked = !previousPhasePassed;
@@ -10,6 +11,8 @@ function LockStatusMateri(data) {
                 locked: true
             };
         }
+
+        console.log(phase)
 
         previousPhasePassed = phase.ujian.every(ujianItem => 
             ujianItem.riwayat && ujianItem.riwayat.every(riwayatItem => riwayatItem.lulus)

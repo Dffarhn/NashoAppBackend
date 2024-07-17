@@ -16,14 +16,15 @@ async function GetPembahasanUjianToDB(data) {
                         'jawaban_user', js.jawaban,
                         'jawaban_benar', jb.jawaban
                     )
-                ) AS jawaban_details
+                ) AS jawaban_details,
+                jawabanujianuser.status_jawaban AS Benar
             FROM mengambilujian
             JOIN jawabanujianuser ON mengambilujian.id = jawabanujianuser.ujian_diambil
             JOIN soal ON jawabanujianuser.soal_ujian = soal.id
-            JOIN jawaban js ON jawabanujianuser.jawaban_user = js.id
-            JOIN jawaban jb ON soal.jawaban_benar = jb.id
-            WHERE mengambilujian.user_id = $2 AND mengambilujian.id = $1
-            GROUP BY jawabanujianuser.soal_ujian, soal.soal
+            JOIN jawabansoal js ON jawabanujianuser.jawaban_user = js.id
+            JOIN jawabansoal jb ON soal.jawaban_benar = jb.id
+            WHERE mengambilujian.usernasho = $2 AND mengambilujian.id = $1
+            GROUP BY jawabanujianuser.soal_ujian, soal.soal,jawabanujianuser.status_jawaban
         `;
 
         const queryValues = [id_mengambil_ujian, id_user];
