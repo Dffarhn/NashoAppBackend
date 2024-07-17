@@ -156,10 +156,16 @@ async function GetNilaiUjianToDB(data) {
 
       const AddNilaiToDB = await pool.query(queryTextAddNilai,queryValuesAddNilai)
 
-      const payload = {
-        nilai: Math.ceil(points),
-        status: status
+      let status_kelulusan = false;
+      if (status == "lulus") {
+        status_kelulusan = true;
       }
+  
+
+      const payload = [{
+        nilai: Math.ceil(points),
+        lulus: status_kelulusan
+      }]
   
       return payload;
     } catch (error) {

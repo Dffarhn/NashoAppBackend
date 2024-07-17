@@ -62,7 +62,7 @@ const GetNilaiUjian = async (req, res) => {
     }
 
     const payload = {
-      nilai: GetNilaiUjianData,
+      ujian: GetNilaiUjianData,
     };
     res.status(200).json({ msg: "Query Successfully", data: payload });
   } catch (error) {

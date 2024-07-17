@@ -58,7 +58,7 @@ const GetNilaiQuiz = async (req, res) => {
     }
 
     const payload = {
-      nilai: GetNilaiQuizData,
+      quiz: GetNilaiQuizData,
     };
     res.status(200).json({ msg: "Query Successfully", data: payload });
   } catch (error) {

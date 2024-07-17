@@ -223,10 +223,10 @@ async function GetNilaiQuizToDB(data) {
       status_kelulusan = true;
     }
 
-    const payload = {
+    const payload = [{
       nilai: Math.ceil(points),
       lulus: status_kelulusan,
-    };
+    }];
 
     return payload;
   } catch (error) {

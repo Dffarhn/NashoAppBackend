@@ -63,6 +63,9 @@ route.get("/quiz/pembahasan/:id_mengambil_quiz", Auth_Access,GetPembahasanQuiz)
 // 66% mengerjakan quiz tidak lolos
 // 0% quiz selanjutnya
 
+//User Statistik
+route.get("/statistik",Auth_Access,)
+
 
 
 

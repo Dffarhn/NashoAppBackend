@@ -617,9 +617,15 @@ Response Body (succes) :
 {
     "msg": "Query Successfully",
     "data": {
-        "nilai": 67
+        "quiz": [
+            {
+                "nilai": 34,
+                "lulus": false
+            }
+        ]
     }
 }
+
 ```
 
 Response Body (failed) :
@@ -657,6 +663,87 @@ Response Body (failed) :
 }
 
 ```
+
+### Get Pembahasan Quiz User
+
+
+Endpoint : GET /quiz/pembahasan/:id_mengambil_quiz
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: (id_mengambil_quiz) (uuid)
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Query Successfully",
+    "data": [
+        {
+            "soal_quiz": "ab084fe0-253c-47e7-a2ea-c442fb098bba",
+            "soal": "Siapakah Presiden Nomor 3",
+            "jawaban_details": [
+                {
+                    "jawaban_user_id": "d8fcf2d4-f2c1-4e67-b4a6-8fdbf17bf35b",
+                    "jawaban_user": "BJ Habibie",
+                    "jawaban_benar": "Megawati"
+                }
+            ],
+            "benar": false
+        },
+        {
+            "soal_quiz": "ca8c35c6-b92c-4753-97ab-45efc3bd812f",
+            "soal": "Siapakah Presiden Nomor 1",
+            "jawaban_details": [
+                {
+                    "jawaban_user_id": "aac4b00f-5022-4725-a2fb-9fe3c4923253",
+                    "jawaban_user": "Soekarno",
+                    "jawaban_benar": "Soerharto"
+                }
+            ],
+            "benar": false
+        },
+        {
+            "soal_quiz": "cf10aa25-7c8c-45c0-8534-fe67caa34f7d",
+            "soal": "Siapakah Presiden Nomor 2",
+            "jawaban_details": [
+                {
+                    "jawaban_user_id": "e96d3251-a493-4a89-8348-24e22e7669ce",
+                    "jawaban_user": "BJ Habibie",
+                    "jawaban_benar": "BJ Habibie"
+                }
+            ],
+            "benar": true
+        }
+    ]
+}
+```
+Response Body (Failed):
+
+*Wrong id_mengambil_quiz*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Pembahasan Not Found"
+}
+
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+
+
+
 ## Ujian
 
 ### User Take Ujian
@@ -827,7 +914,12 @@ Response Body (succes) :
 {
     "msg": "Query Successfully",
     "data": {
-        "nilai": 67
+        "ujian": [
+            {
+                "nilai": 34,
+                "lulus": false
+            }
+        ]
     }
 }
 ```
@@ -867,6 +959,86 @@ Response Body (failed) :
 }
 
 ```
+
+
+### Get Pembahasan Ujian User
+
+
+Endpoint : GET /ujian/pembahasan/:id_mengambil_ujian
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: (id_mengambil_ujian) (uuid)
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Query Successfully",
+    "data": [
+        {
+            "soal_ujian": "ab084fe0-253c-47e7-a2ea-c442fb098bba",
+            "soal": "Siapakah Presiden Nomor 3",
+            "jawaban_details": [
+                {
+                    "jawaban_user_id": "d8fcf2d4-f2c1-4e67-b4a6-8fdbf17bf35b",
+                    "jawaban_user": "BJ Habibie",
+                    "jawaban_benar": "Megawati"
+                }
+            ],
+            "benar": false
+        },
+        {
+            "soal_ujian": "ca8c35c6-b92c-4753-97ab-45efc3bd812f",
+            "soal": "Siapakah Presiden Nomor 1",
+            "jawaban_details": [
+                {
+                    "jawaban_user_id": "aac4b00f-5022-4725-a2fb-9fe3c4923253",
+                    "jawaban_user": "Soekarno",
+                    "jawaban_benar": "Soerharto"
+                }
+            ],
+            "benar": false
+        },
+        {
+            "soal_ujian": "cf10aa25-7c8c-45c0-8534-fe67caa34f7d",
+            "soal": "Siapakah Presiden Nomor 2",
+            "jawaban_details": [
+                {
+                    "jawaban_user_id": "e96d3251-a493-4a89-8348-24e22e7669ce",
+                    "jawaban_user": "BJ Habibie",
+                    "jawaban_benar": "BJ Habibie"
+                }
+            ],
+            "benar": true
+        }
+    ]
+}
+```
+Response Body (Failed):
+
+*Wrong id_mengambil_ujian*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Pembahasan Not Found"
+}
+
+```
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+
 
 ## JAWABAN
 
