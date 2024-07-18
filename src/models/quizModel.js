@@ -63,7 +63,7 @@ async function CheckTheTakenQuiz(data) {
     const queryValuesMQ = [id_user];
     const usermaxujian = await pool.query(queryTextMQ, queryValuesMQ);
 
-    let userMaxTingkat = { phase: 1, tingkat: 1 };
+    let userMaxTingkat = { phase: 1, tingkat: 0 };
 
     if (usermaxujian.rows.length > 0) {
       userMaxTingkat = usermaxujian.rows[0];

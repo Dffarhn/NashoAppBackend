@@ -7,12 +7,16 @@ const pool = require("./db_connect");
 const errorHandler = require("./src/middleware/errorHandling");
 dotenv.config()
 
+const helmet = require('helmet')
+
+
 const app = express();
 const PORT = process.env.PORT || 3002
 const corsOptions = {
   origin: '*',
   optionsSuccessStatus: 204,
 };
+app.use(helmet())
 
 
 app.use(cors(corsOptions));

@@ -107,7 +107,7 @@ async function GetAllMateriToDB(kategori, UserId) {
                       SELECT *
                       FROM mengambilquiz
                       JOIN kumpulansoalquiz ON mengambilquiz.quiz = kumpulansoalquiz.id
-                      WHERE kumpulansoalquiz.id_materi = ordered_materi.id
+                      WHERE kumpulansoalquiz.id_materi = ordered_materi.id AND mengambilquiz.usernasho = $1
                       ORDER BY mengambilquiz.created_at DESC
                       LIMIT 1
                     ) AS subqueryquiz

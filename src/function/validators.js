@@ -144,6 +144,18 @@ const AdminAddQuizValidation = () => {
     validateJawabanBenar("jawaban_benar", "pilihan")
   ];
 };
+
+const PembahasanQuizValidation = () => {
+  return [
+    validateUUIDParams("id_mengambil_quiz")
+  ]
+}
+
+const PembahasanUjianValidation = () => {
+  return [
+    validateUUIDParams("id_mengambil_ujian")
+  ]
+}
 module.exports = {
   registerValidation,
   loginValidation,
@@ -160,5 +172,7 @@ module.exports = {
   AdminAddQuizValidation,
   PostAnswerUjianMateriValidation,
   GetNilaiUjianValidation,
-  AdminAddUjianValidation
+  AdminAddUjianValidation,
+  PembahasanQuizValidation,
+  PembahasanUjianValidation
 };

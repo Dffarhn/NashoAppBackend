@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { registerValidation, loginValidation, AddMateriValidation, AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation, GetAllMateriValidation, GetAllQUizMateriValidation, PostAnswerQuizMateriValidation, GetNilaiQuizMateriValidation, UserTakeQuizValidation, AdminAddQuizValidation, UserTakeUjianValidation, PostAnswerUjianMateriValidation, GetNilaiUjianValidation, AdminAddUjianValidation } = require("../function/validators");
+const { registerValidation, loginValidation, AddMateriValidation, AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation, GetAllMateriValidation, GetAllQUizMateriValidation, PostAnswerQuizMateriValidation, GetNilaiQuizMateriValidation, UserTakeQuizValidation, AdminAddQuizValidation, UserTakeUjianValidation, PostAnswerUjianMateriValidation, GetNilaiUjianValidation, AdminAddUjianValidation, PembahasanQuizValidation, PembahasanUjianValidation } = require("../function/validators");
 const { handleValidationErrors } = require("../middleware/validatormid");
 const { RegisterUser, LoginUser, Refresh_Access_Token } = require("./userRoute");
 const { AddMateriAdmin, getKategoriMateri, GetAllMateri, GetSpesificMateri, AddNewMateriAccessUser, UpdateMateriAdmin, DeleteMateriAdmin } = require("./MateriRoute");
@@ -9,6 +9,7 @@ const { GetAllQuizMateri, AddQuizUserTake, GetNilaiQuiz } = require("./quizRoute
 const { CekJawabanUser, CekJawabanUserUjian } = require("./JawabanRoute");
 const { GetUjianByPhase, AddUjianUserTake, GetNilaiUjian } = require("./UjianRoute");
 const { GetPembahasanUjian, GetPembahasanQuiz } = require("./PembahasanRoute");
+const { GetStatistikUserRoute } = require("./StatistikRoute");
 const route = Router();
 
 route.get("/", (req, res) => {
@@ -27,7 +28,7 @@ route.delete("/admin/delete/:id", DeleteMateriValidation(), handleValidationErro
 //Materi User
 route.get("/kategoriMateri", Auth_Access, getKategoriMateri);// get kategori nasho atau sharaf
 route.get("/materis", GetAllMateriValidation(), handleValidationErrors, Auth_Access, GetAllMateri);
-route.get("/materi/:id", Auth_Access, GetSpesificMateri);
+route.get("/materi/:id", Auth_Access, GetSpesificMateri); // Add Validation
 //User Access The Materi
 route.post("/selectMateri/:id_materi", AddAccessMateriUserValidation(), handleValidationErrors, Auth_Access, AddNewMateriAccessUser);
 
@@ -46,7 +47,7 @@ route.get("/quiz/nilai/:id_mengambil_quiz",GetNilaiQuizMateriValidation(),handle
 route.post("/admin/ujian/soal", AdminAddUjianValidation(),handleValidationErrors, Auth_Access_Admin,AddSoalUjian);
 
 //Ujian User
-route.get("/ujian/:id",Auth_Access,GetUjianByPhase)
+route.get("/ujian/:id",Auth_Access,GetUjianByPhase) //AddValidation
 route.post("/ujian/:id",UserTakeUjianValidation(),handleValidationErrors,Auth_Access,AddUjianUserTake)
 route.post("/ujian/cek/:id_mengambil_ujian",PostAnswerUjianMateriValidation(),handleValidationErrors,Auth_Access, CekJawabanUserUjian)
 route.get("/ujian/nilai/:id_mengambil_ujian",GetNilaiUjianValidation(),handleValidationErrors,Auth_Access,GetNilaiUjian)
@@ -54,8 +55,8 @@ route.get("/ujian/nilai/:id_mengambil_ujian",GetNilaiUjianValidation(),handleVal
 
 //Pembahasan Quiz dan Ujian
 
-route.get("/ujian/pembahasan/:id_mengambil_ujian", Auth_Access,GetPembahasanUjian)
-route.get("/quiz/pembahasan/:id_mengambil_quiz", Auth_Access,GetPembahasanQuiz)
+route.get("/ujian/pembahasan/:id_mengambil_ujian", PembahasanUjianValidation(), handleValidationErrors, Auth_Access,GetPembahasanUjian)
+route.get("/quiz/pembahasan/:id_mengambil_quiz", PembahasanUjianValidation(), handleValidationErrors,Auth_Access,GetPembahasanQuiz)
 
 
 //Statistik cuman ada 0% 33% 66%
@@ -64,7 +65,7 @@ route.get("/quiz/pembahasan/:id_mengambil_quiz", Auth_Access,GetPembahasanQuiz)
 // 0% quiz selanjutnya
 
 //User Statistik
-route.get("/statistik",Auth_Access,)
+route.get("/statistik",Auth_Access,GetStatistikUserRoute)
 
 
 
