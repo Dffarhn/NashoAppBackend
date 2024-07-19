@@ -29,11 +29,11 @@ async function GetStatistikUserToDB(userId) {
     const queryValues = [userId];
     const { rows } = await pool.query(queryText, queryValues);
 
-    const progressList = rows.map(row => {
+    const progressList = rows.map((row) => {
       let progress;
-      if (row.quiz_status === 'lulus') {
+      if (row.quiz_status === "lulus") {
         progress = 100;
-      } else if (row.quiz_status === 'tidak lulus') {
+      } else if (row.quiz_status === "tidak lulus") {
         progress = 66;
       } else {
         progress = 33;
@@ -41,12 +41,13 @@ async function GetStatistikUserToDB(userId) {
       return { ...row, progress };
     });
 
-    let targetMateri = progressList.find(row => row.progress < 100);
+    let targetMateri = progressList.find((row) => row.progress < 100);
 
     if (!targetMateri && progressList.length > 0) {
       // If all progress is 100, take the last item
       targetMateri = progressList[progressList.length - 1];
       let nextMateriParams = {
+        userId: userId,
         tingkat: targetMateri.tingkat_materi,
         phase: targetMateri.phase_materi,
         kategori: targetMateri.kategori_materi,
@@ -56,9 +57,9 @@ async function GetStatistikUserToDB(userId) {
     }
 
     const payload = {
-        materi_id : targetMateri.materi_id,
-        progress : targetMateri.progress
-    }
+      materi_id: targetMateri.materi_id,
+      progress: targetMateri.progress,
+    };
 
     return payload;
   } catch (error) {
@@ -68,7 +69,7 @@ async function GetStatistikUserToDB(userId) {
 
 async function SearchNextMateri(data) {
   try {
-    const { tingkat, phase, kategori } = data;
+    const { tingkat, phase, kategori, userId } = data;
 
     const queryText = `
       SELECT id as materi_id
@@ -81,16 +82,49 @@ async function SearchNextMateri(data) {
     const { rows: nextMateriRows } = await pool.query(queryText, queryValues);
 
     if (nextMateriRows.length === 0) {
-      const queryTextUjian = `
-        SELECT  FROM kumpulansoalujian
-        WHERE phase = $1 AND kategori_materi = $2
-      `;
-      const queryValuesUjian = [phase, kategori];
+      const QueryTextCheckUjian = `
+      SELECT mengambilujian.id
+      FROM mengambilujian
+      LEFT JOIN kumpulansoalujian ON mengambilujian.ujian = kumpulansoalujian.id
+      WHERE kumpulansoalujian.phase = $1 AND kumpulansoalujian.kategori_materi = $2 AND mengambilujian.status = 'lulus' AND mengambilujian.usernasho = $3
+      ORDER BY mengambilujian.created_at DESC, mengambilujian.nilai DESC
+      LIMIT 1
 
-      const { rows: searchUjianRows } = await pool.query(queryTextUjian, queryValuesUjian);
-      return searchUjianRows[0];
+      `;
+
+      const QueryValuesCheckUjian = [phase, kategori, userId];
+
+      const { rows: CheckUjian } = await pool.query(QueryTextCheckUjian, QueryValuesCheckUjian);
+
+      console.log(CheckUjian)
+
+      if (CheckUjian.length == 0) {
+        const queryTextUjian = `
+          SELECT  id AS materi_id FROM kumpulansoalujian
+          WHERE phase = $1 AND kategori_materi = $2
+        `;
+        const queryValuesUjian = [phase, kategori];
+
+        const { rows: searchUjianRows } = await pool.query(queryTextUjian, queryValuesUjian);
+        searchUjianRows[0].progress = 0;
+        return searchUjianRows[0];
+      }
+
+      const QueryTextNextMateriIsPhase = `
+        SELECT id as materi_id
+        FROM materi
+        WHERE tingkat = $1 AND phase = $2 AND kategori = $3
+        
+      `
+      const queryValuesNextMateriIsPhase = [1, phase+1, kategori];
+
+      const { rows : NextMateriIsPhase } = await pool.query(QueryTextNextMateriIsPhase,queryValuesNextMateriIsPhase)
+      NextMateriIsPhase[0].progress = 0
+      return NextMateriIsPhase[0];
+
+
     }
-    nextMateriRows[0].progress = 0
+    nextMateriRows[0].progress = 0;
     return nextMateriRows[0];
   } catch (error) {
     handleCustomErrorModel(error);

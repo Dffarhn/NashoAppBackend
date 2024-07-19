@@ -7,9 +7,10 @@ const { Auth_Access, Auth_Access_Admin } = require("../middleware/VerifyToken");
 const { AddSoalQuiz, AddSoalUjian } = require("./SoalRoute");
 const { GetAllQuizMateri, AddQuizUserTake, GetNilaiQuiz } = require("./quizRoute");
 const { CekJawabanUser, CekJawabanUserUjian } = require("./JawabanRoute");
-const { GetUjianByPhase, AddUjianUserTake, GetNilaiUjian } = require("./UjianRoute");
+
 const { GetPembahasanUjian, GetPembahasanQuiz } = require("./PembahasanRoute");
 const { GetStatistikUserRoute } = require("./StatistikRoute");
+const { AddUjianUserTake, GetUjianByPhase, GetNilaiUjian } = require("./UjianROute");
 const route = Router();
 
 route.get("/", (req, res) => {

@@ -295,15 +295,21 @@ Response Body (succes) :
     "msg": "Successfully retrieved materi",
     "data": [
         {
-            "id": "d2bf909e-9f05-45bf-a55b-f2b8b6d47e3f",
+            "id": "68fb6898-5563-466a-ab33-8afbbb47103c",
             "phase": 1,
-            "judul": "tesupdate",
+            "judul": "tes789",
             "isi": "rokok",
-            "linkvideo": "linkVideo",
+            "linkvideo": "https://youtu.be/EdmpLGERRvQ?si=b1bS39boHtgsz8Gd",
             "kategori": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
-            "created_at": "2024-07-01T13:21:34.556Z",
-            "tingkat": 1,
-            "id_quiz":"d2bf909e-9f05-45bf-a55b-f2b8b6d47e3f"
+            "created_at": "2024-07-01T14:52:50.990Z",
+            "tingkat": 3,
+            "id_quiz": "68fb6898-5563-466a-ab33-8afbbb47103c",
+            "history_quiz": [
+                {
+                    "id_mengambil_quiz": "c78f5b58-78d6-4cce-b6c9-dc69319abca1",
+                    "nilai": 80
+                }
+            ]
         }
     ]
 }
@@ -1274,6 +1280,42 @@ Response Body (failed) :
 }
 
 ```
+
+## Statistik
+### Statistik Pembelajaran User
+
+Endpoint : GET /statistik
+
+Authorization Type Bearer Token : "Access Token"
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Query Sukses",
+    "data": [
+        {
+            "materi_id": "697b4576-18b3-45e9-9dc7-ba05f7b20090",
+            "progress": 0
+        }
+    ]
+}
+```
+
+Response Body (failed) :
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+
+
 
 
 # ADMIN
