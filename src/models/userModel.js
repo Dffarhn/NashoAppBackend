@@ -119,44 +119,43 @@ async function UpdatePasswordUserToDB(data, id) {
     const { OldPassword, password } = data;
 
     const queryText = `SELECT password FROM usernasho WHERE id = $1`;
-
     const queryValues = [id];
 
     const { rows } = await pool.query(queryText, queryValues);
 
-    if (rows.length > 0) {
-      const userDBpassword = rows[0].password;
-
-      const checksamepassword = await comparePasswordBcrypt(OldPassword, userDBpassword);
-
-      if (checksamepassword) {
-        const password_hash = await bcrypt_data(password);
-
-        const QueryTextUpdate = `
-              UPDATE usernasho
-              SET password = $2
-              WHERE id = $1
-              RETURNING id
-        `;
-
-        const queryValuesUpdate = [id, password_hash];
-
-        const { rows, rowCount } = await pool.query(QueryTextUpdate, queryValuesUpdate);
-
-        if (rowCount === 0) {
-          return null; // No rows were updated
-        }
-
-        return rows[0]; // Return the updated user profile
-      } else {
-        throw new CustomError(400, "Password Salah");
-      }
-    } else {
+    if (rows.length === 0) {
       throw new CustomError(404, "Tidak ada akun yang ditemukan");
     }
+
+    const userDBpassword = rows[0].password;
+    const checksamepassword = await comparePasswordBcrypt(OldPassword, userDBpassword);
+
+    if (!checksamepassword) {
+      throw new CustomError(400, "Password Salah");
+    }
+
+    const password_hash = await bcrypt_data(password);
+
+    const queryTextUpdate = `
+      UPDATE usernasho
+      SET password = $2
+      WHERE id = $1
+      RETURNING id
+    `;
+
+    const queryValuesUpdate = [id, password_hash];
+    const { rows: updatedRows, rowCount } = await pool.query(queryTextUpdate, queryValuesUpdate);
+
+    if (rowCount === 0) {
+      return null; // No rows were updated
+    }
+
+    return updatedRows[0]; // Return the updated user profile
+
   } catch (error) {
     handleCustomErrorModel(error);
   }
 }
+
 
 module.exports = { AddUserTODB, LoginUserToDB, GetProfileUserToDB, UpdateProfileUserToDB, UpdatePasswordUserToDB };
