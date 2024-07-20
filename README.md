@@ -169,6 +169,177 @@ Response Body (failed) :
 }
 ```
 
+## Profile
+
+### Get User Profile
+
+Endpoint : GET /profile
+
+Authorization Type Bearer Token : "Access Token"
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Query Successfully",
+    "data": [
+        {
+            "email": "nasho@gmail.com",
+            "username": "Nasho Update 2"
+        }
+    ]
+}
+```
+
+Response Body (failed):
+
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+### Update User Profile
+
+Endpoint : patch /profile
+
+Authorization Type Bearer Token : "Access Token"
+
+
+Request Body :
+
+```
+{
+    "username":"Username"
+}
+```
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Profile Updated Successfully",
+    "data": {
+        "email": "nasho@gmail.com",
+        "username": "Username Nasho"
+    }
+}
+```
+
+Response Body (failed):
+
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+*Username Kosong*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "username dibutuhkan",
+    "data": "Your Data Not Valid"
+}
+```
+*Username Kurang Dari 6 dan Lebih Dari 30 Karakter*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Username must be between 6 and 30 characters",
+    "data": "Your Data Not Valid"
+}
+```
+
+### Update Kata Sandi User
+
+Endpoint : patch /profile/newpassword
+
+Authorization Type Bearer Token : "Access Token"
+
+
+Request Body :
+
+```
+{
+    "OldPassword":"nashohebat",
+    "password":"nashohebat123",
+    "retyped-password":"nashohebat123"
+}
+```
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Ganti Kata Sandi Successfully"
+}
+```
+
+Response Body (failed):
+
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+
+
+*Old Password salah*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Password Salah"
+}
+```
+
+*Password Karakter Kurang Dari 6*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Username harus punya 6-30 karakter",
+    "data": "Your Data Not Valid"
+}
+```
+*Password And Re-Typed Password Not Match*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Passwords tidak sama",
+    "data": "Your Data Not Valid"
+}
+```
+*Password Kosong*
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Password dibutuhkan",
+    "data": "Your Data Not Valid"
+}
+```
+
 ## Materi
 
 ### Get All Materi

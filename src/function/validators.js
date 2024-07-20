@@ -7,6 +7,9 @@ const validateEmail = () => {
 const validatePassword = () => {
   return body("password").trim().notEmpty().withMessage("Password dibutuhkan").isLength({ min: 6 }).withMessage("Password harus lebih dari 6 karakter");
 };
+const validateOldPassword = () => {
+  return body("OldPassword").trim().notEmpty().withMessage("OldPassword dibutuhkan").isLength({ min: 6 }).withMessage("OldPassword harus lebih dari 6 karakter");
+};
 
 const validateRetypedPassword = () => {
   return body("retyped-password")
@@ -84,6 +87,12 @@ const AddMateriValidation = () => {
 };
 const registerValidation = () => {
   return [validateEmail(), validatePassword(), validateRetypedPassword(), validateStringInput("username").isLength({ min: 6, max: 30 }).withMessage("Username harus punya 6-30 karakter")];
+};
+const UpdatePasswordValidation = () => {
+  return [validateOldPassword(),validatePassword(), validateRetypedPassword()];
+};
+const UpdateUserValidation = () => {
+  return [validateStringInput("username").isLength({ min: 6, max: 30 }).withMessage("Username harus punya 6-30 karakter")];
 };
 const loginValidation = () => {
   return [validateEmail(), validatePassword()];
@@ -174,5 +183,7 @@ module.exports = {
   GetNilaiUjianValidation,
   AdminAddUjianValidation,
   PembahasanQuizValidation,
-  PembahasanUjianValidation
+  PembahasanUjianValidation,
+  UpdateUserValidation,
+  UpdatePasswordValidation
 };

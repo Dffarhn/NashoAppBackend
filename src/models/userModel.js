@@ -3,7 +3,6 @@ const { handleCustomErrorModel } = require("../function/ErrorFunction");
 const { bcrypt_data, comparePasswordBcrypt } = require("../function/bcrypt_data");
 const CustomError = require("../utils/customError");
 
-
 async function AddUserTODB(data) {
   try {
     const { username, email, password } = data;
@@ -76,4 +75,88 @@ async function LoginUserToDB(data) {
   }
 }
 
-module.exports = { AddUserTODB, LoginUserToDB };
+async function GetProfileUserToDB(id) {
+  try {
+    const queryText = `
+      SELECT email, username FROM usernasho
+      WHERE id = $1
+    `;
+
+    const queryValues = [id];
+
+    const { rows } = await pool.query(queryText, queryValues);
+
+    return rows;
+  } catch (error) {
+    handleCustomErrorModel(error);
+  }
+}
+async function UpdateProfileUserToDB(id, username) {
+  try {
+    const queryText = `
+      UPDATE usernasho
+      SET username = $2
+      WHERE id = $1
+      RETURNING email, username
+    `;
+
+    const queryValues = [id, username];
+
+    const { rows, rowCount } = await pool.query(queryText, queryValues);
+
+    if (rowCount === 0) {
+      return null; // No rows were updated
+    }
+
+    return rows[0]; // Return the updated user profile
+  } catch (error) {
+    handleCustomErrorModel(error);
+  }
+}
+
+async function UpdatePasswordUserToDB(data, id) {
+  try {
+    const { OldPassword, password } = data;
+
+    const queryText = `SELECT password FROM usernasho WHERE id = $1`;
+
+    const queryValues = [id];
+
+    const { rows } = await pool.query(queryText, queryValues);
+
+    if (rows.length > 0) {
+      const userDBpassword = rows[0].password;
+
+      const checksamepassword = await comparePasswordBcrypt(OldPassword, userDBpassword);
+
+      if (checksamepassword) {
+        const password_hash = await bcrypt_data(password);
+
+        const QueryTextUpdate = `
+              UPDATE usernasho
+              SET password = $2
+              WHERE id = $1
+              RETURNING id
+        `;
+
+        const queryValuesUpdate = [id, password_hash];
+
+        const { rows, rowCount } = await pool.query(QueryTextUpdate, queryValuesUpdate);
+
+        if (rowCount === 0) {
+          return null; // No rows were updated
+        }
+
+        return rows[0]; // Return the updated user profile
+      } else {
+        throw new CustomError(400, "Password Salah");
+      }
+    } else {
+      throw new CustomError(404, "Tidak ada akun yang ditemukan");
+    }
+  } catch (error) {
+    handleCustomErrorModel(error);
+  }
+}
+
+module.exports = { AddUserTODB, LoginUserToDB, GetProfileUserToDB, UpdateProfileUserToDB, UpdatePasswordUserToDB };

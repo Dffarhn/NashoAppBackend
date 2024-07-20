@@ -1,7 +1,7 @@
 const { Router } = require("express");
-const { registerValidation, loginValidation, AddMateriValidation, AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation, GetAllMateriValidation, GetAllQUizMateriValidation, PostAnswerQuizMateriValidation, GetNilaiQuizMateriValidation, UserTakeQuizValidation, AdminAddQuizValidation, UserTakeUjianValidation, PostAnswerUjianMateriValidation, GetNilaiUjianValidation, AdminAddUjianValidation, PembahasanQuizValidation, PembahasanUjianValidation } = require("../function/validators");
+const { registerValidation, loginValidation, AddMateriValidation, AddAccessMateriUserValidation, UpdateMateriValidation, DeleteMateriValidation, GetAllMateriValidation, GetAllQUizMateriValidation, PostAnswerQuizMateriValidation, GetNilaiQuizMateriValidation, UserTakeQuizValidation, AdminAddQuizValidation, UserTakeUjianValidation, PostAnswerUjianMateriValidation, GetNilaiUjianValidation, AdminAddUjianValidation, PembahasanQuizValidation, PembahasanUjianValidation, UpdateUserValidation, UpdatePasswordValidation } = require("../function/validators");
 const { handleValidationErrors } = require("../middleware/validatormid");
-const { RegisterUser, LoginUser, Refresh_Access_Token } = require("./userRoute");
+const { RegisterUser, LoginUser, Refresh_Access_Token, GetProfileUser, UpdateProfileUser, UpdatePasswordUser } = require("./userRoute");
 const { AddMateriAdmin, getKategoriMateri, GetAllMateri, GetSpesificMateri, AddNewMateriAccessUser, UpdateMateriAdmin, DeleteMateriAdmin } = require("./MateriRoute");
 const { Auth_Access, Auth_Access_Admin } = require("../middleware/VerifyToken");
 const { AddSoalQuiz, AddSoalUjian } = require("./SoalRoute");
@@ -20,6 +20,12 @@ route.get("/", (req, res) => {
 route.post("/register", registerValidation(), handleValidationErrors, RegisterUser);
 route.post("/login", loginValidation(), handleValidationErrors, LoginUser);
 route.get("/token", Refresh_Access_Token);
+
+//KERJAIN WALAU TAK PENTING DAP
+
+route.get("/profile",Auth_Access,GetProfileUser)
+route.patch("/profile",UpdateUserValidation(),handleValidationErrors,Auth_Access,UpdateProfileUser)
+route.patch("/profile/newpassword",UpdatePasswordValidation(),handleValidationErrors,Auth_Access,UpdatePasswordUser)
 
 //Materi Admin
 route.post("/admin/materi", AddMateriValidation(), handleValidationErrors, Auth_Access_Admin, AddMateriAdmin);

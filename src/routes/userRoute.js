@@ -1,4 +1,4 @@
-const { AddUserTODB, LoginUserToDB } = require("../models/userModel");
+const { AddUserTODB, LoginUserToDB, GetProfileUserToDB, UpdateProfileUserToDB, UpdatePasswordUserToDB } = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const CustomError = require("../utils/customError");
 const { handleCustomErrorRoute } = require("../function/ErrorFunction");
@@ -95,4 +95,77 @@ const Refresh_Access_Token = async (req, res) => {
   }
 };
 
-module.exports = { RegisterUser, LoginUser, Refresh_Access_Token };
+// const NewPasswordUser = async (req,res) =>{
+//   try {
+
+//     const data = req.body
+
+//     const 
+    
+//   } catch (error) {
+//     handleCustomErrorRoute(res,error)
+//   }
+// }
+
+
+const GetProfileUser = async (req,res) => {
+  try {
+    
+    const userId = req.user.id
+
+    const GetProfileUserData = await GetProfileUserToDB(userId)
+
+    if (GetProfileUserData.length == 0) {
+      throw new CustomError(404,"User Not Found")
+      
+    }
+
+    res.status(200).json({msg:"Query Successfully", data: GetProfileUserData})
+    
+    
+  } catch (error) {
+    
+    handleCustomErrorRoute(res,error)
+  }
+}
+const UpdateProfileUser = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { username } = req.body;
+
+    // Call the update function with user ID and username
+    const updatedUserData = await UpdateProfileUserToDB(userId, username);
+
+    if (!updatedUserData) {
+      throw new CustomError(500, "Failed to Update Profile");
+    }
+
+    res.status(200).json({ msg: "Profile Updated Successfully", data: updatedUserData });
+
+  } catch (error) {
+    handleCustomErrorRoute(res, error);
+  }
+};
+
+const UpdatePasswordUser = async (req,res) =>{
+  try {
+
+    const userId = req.user.id
+
+    const data = req.body
+
+    const UpdatePasswordUserData = await UpdatePasswordUserToDB(data,userId)
+
+    if (!UpdatePasswordUserData) {
+      throw new CustomError(500, "Failed to Ganti Kata Sandi");
+    }
+
+    res.status(200).json({ msg: "Ganti Kata Sandi Successfully" });
+    
+  } catch (error) {
+    handleCustomErrorRoute(res,error)
+    
+  }
+}
+
+module.exports = { RegisterUser, LoginUser, Refresh_Access_Token, GetProfileUser,UpdateProfileUser,UpdatePasswordUser };
