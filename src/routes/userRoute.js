@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const CustomError = require("../utils/customError");
 const { handleCustomErrorRoute } = require("../function/ErrorFunction");
 
-
 const RegisterUser = async (req, res) => {
   try {
     const data = req.body;
@@ -22,8 +21,8 @@ const RegisterUser = async (req, res) => {
       // });
 
       const passData = {
-        accessToken : accessToken
-       };
+        accessToken: accessToken,
+      };
       res.status(201).json({ msg: "Registration successful", data: passData });
     } else {
       throw new CustomError(500, "Internal server error", { reason: "Failed to register user" });
@@ -48,12 +47,12 @@ const LoginUser = async (req, res) => {
       //   sameSite: "none",
       //   secure: true,
       //   maxAge: 24 * 60 * 60 * 1000
-        
+
       // });
 
       const passData = {
-        accessToken : accessToken
-       };
+        accessToken: accessToken,
+      };
       res.status(200).json({ msg: "Login successful", data: passData });
     } else {
       throw new CustomError(404, "User tidak ditemukan", { reason: "User not found in the database" });
@@ -63,71 +62,49 @@ const LoginUser = async (req, res) => {
   }
 };
 
-
 const Refresh_Access_Token = async (req, res) => {
   try {
-    const refreshToken = req.cookies.RefreshT
+    const refreshToken = req.cookies.RefreshT;
 
     if (!refreshToken) {
-      throw new CustomError(401,"Refresh token is missing.")
+      throw new CustomError(401, "Refresh token is missing.");
     }
-     // Verify the access token
+    // Verify the access token
     jwt.verify(refreshToken, process.env.SECRET_KEY_REFRESH_TOKEN, (err, decoded) => {
       if (err) {
         throw new CustomError(403, "Invalid Signature", "Direct To Login");
       }
       // Token is valid, attach decoded user information to the request object
       const payload = { id: decoded.id, username: decoded.username, email: decoded.email };
-  
+
       // Generate a new access token
       const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN, {
         expiresIn: "10m",
       });
-  
+
       return res.status(200).send({ msg: "Refresh successful", token: accessToken });
-
     });
-
-    
   } catch (error) {
     console.error("Error in Refresh_Access_Token:", error);
     handleCustomErrorRoute(res, error);
   }
 };
 
-// const NewPasswordUser = async (req,res) =>{
-//   try {
-
-//     const data = req.body
-
-//     const 
-    
-//   } catch (error) {
-//     handleCustomErrorRoute(res,error)
-//   }
-// }
-
-
-const GetProfileUser = async (req,res) => {
+const GetProfileUser = async (req, res) => {
   try {
-    
-    const userId = req.user.id
+    const userId = req.user.id;
 
-    const GetProfileUserData = await GetProfileUserToDB(userId)
+    const GetProfileUserData = await GetProfileUserToDB(userId);
 
     if (GetProfileUserData.length == 0) {
-      throw new CustomError(404,"User Not Found")
-      
+      throw new CustomError(404, "User Not Found");
     }
 
-    res.status(200).json({msg:"Query Successfully", data: GetProfileUserData})
-    
-    
+    res.status(200).json({ msg: "Query Successfully", data: GetProfileUserData });
   } catch (error) {
-    
-    handleCustomErrorRoute(res,error)
+    handleCustomErrorRoute(res, error);
   }
-}
+};
 const UpdateProfileUser = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -141,31 +118,27 @@ const UpdateProfileUser = async (req, res) => {
     }
 
     res.status(200).json({ msg: "Profile Updated Successfully", data: updatedUserData });
-
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
 };
 
-const UpdatePasswordUser = async (req,res) =>{
+const UpdatePasswordUser = async (req, res) => {
   try {
+    const userId = req.user.id;
 
-    const userId = req.user.id
+    const data = req.body;
 
-    const data = req.body
-
-    const UpdatePasswordUserData = await UpdatePasswordUserToDB(data,userId)
+    const UpdatePasswordUserData = await UpdatePasswordUserToDB(data, userId);
 
     if (!UpdatePasswordUserData) {
       throw new CustomError(500, "Failed to Ganti Kata Sandi");
     }
 
     res.status(200).json({ msg: "Ganti Kata Sandi Successfully" });
-    
   } catch (error) {
-    handleCustomErrorRoute(res,error)
-    
+    handleCustomErrorRoute(res, error);
   }
-}
+};
 
-module.exports = { RegisterUser, LoginUser, Refresh_Access_Token, GetProfileUser,UpdateProfileUser,UpdatePasswordUser };
+module.exports = { RegisterUser, LoginUser, Refresh_Access_Token, GetProfileUser, UpdateProfileUser, UpdatePasswordUser };
