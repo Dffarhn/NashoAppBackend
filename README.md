@@ -1224,6 +1224,15 @@ Endpoint : POST /quiz/cek/:id_mengambil_quiz
 
 Authorization Type Bearer Token : "Access Token"
 
+Request Params: (id_mengambil_quiz) (uuid)
+
+```
+{
+    {{BASEURL}}/ujian/cek/db8e5cd9-5b56-4aaf-aeb5-407b4b15b4a7
+}
+
+```
+
 Request Body :
 
 ```
@@ -1339,6 +1348,15 @@ Response Body (failed) :
 Endpoint : POST /ujian/cek/:id_mengambil_ujian
 
 Authorization Type Bearer Token : "Access Token"
+
+Request Params: (id_mengambil_ujian) (uuid)
+
+```
+{
+    {{BASEURL}}/ujian/cek/db8e5cd9-5b56-4aaf-aeb5-407b4b15b4a7
+}
+
+```
 
 Request Body :
 
