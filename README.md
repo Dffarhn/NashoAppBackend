@@ -1226,13 +1226,6 @@ Authorization Type Bearer Token : "Access Token"
 
 Request Params: (id_mengambil_quiz) (uuid)
 
-```
-{
-    {{BASEURL}}/ujian/cek/db8e5cd9-5b56-4aaf-aeb5-407b4b15b4a7
-}
-
-```
-
 Request Body :
 
 ```
