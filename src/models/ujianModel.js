@@ -164,7 +164,10 @@ async function GetNilaiUjianToDB(data) {
 
       const payload = [{
         nilai: Math.ceil(points),
-        lulus: status_kelulusan
+        lulus: status_kelulusan,
+        jumlah_soal : totalQuestions,
+        jumlah_benar : trueCount,
+        jumlah_salah : totalQuestions - trueCount
       }]
   
       return payload;

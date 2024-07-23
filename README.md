@@ -796,8 +796,11 @@ Response Body (succes) :
     "data": {
         "quiz": [
             {
-                "nilai": 34,
-                "lulus": false
+                "nilai": 50,
+                "lulus": false,
+                "jumlah_soal": 2,
+                "jumlah_benar": 1,
+                "jumlah_salah": 1
             }
         ]
     }
@@ -1093,8 +1096,11 @@ Response Body (succes) :
     "data": {
         "ujian": [
             {
-                "nilai": 34,
-                "lulus": false
+                "nilai": 50,
+                "lulus": false,
+                "jumlah_soal": 2,
+                "jumlah_benar": 1,
+                "jumlah_salah": 1
             }
         ]
     }
