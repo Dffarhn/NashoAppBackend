@@ -1,5 +1,5 @@
 const { handleCustomErrorRoute } = require("../function/ErrorFunction");
-const { GetUjianByPhaseToDB, AddTakeUjianUserToDB, GetNilaiUjianToDB } = require("../models/ujianModel");
+const { GetUjianByPhaseToDB, AddTakeUjianUserToDB, GetNilaiUjianToDB, GetUjianByPhaseAdminToDB } = require("../models/ujianModel");
 const CustomError = require("../utils/customError");
 
 const GetUjianByPhase = async (req, res) => {
@@ -7,6 +7,20 @@ const GetUjianByPhase = async (req, res) => {
     const { id } = req.params;
 
     const GetUjianByPhaseData = await GetUjianByPhaseToDB(id);
+
+    if (!GetUjianByPhaseData || GetUjianByPhaseData.length == 0) {
+      throw new CustomError(404, "Ujian Not Found", "Check Your Phase or Kategori");
+    }
+    res.status(200).json({ msg: "Query Successfully", data: GetUjianByPhaseData });
+  } catch (error) {
+    handleCustomErrorRoute(res, error);
+  }
+};
+const GetUjianByPhaseAdmin = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const GetUjianByPhaseData = await GetUjianByPhaseAdminToDB(id);
 
     if (!GetUjianByPhaseData || GetUjianByPhaseData.length == 0) {
       throw new CustomError(404, "Ujian Not Found", "Check Your Phase or Kategori");
@@ -70,4 +84,4 @@ const GetNilaiUjian = async (req, res) => {
   }
 };
 
-module.exports = { GetUjianByPhase, AddUjianUserTake,GetNilaiUjian };
+module.exports = { GetUjianByPhase, AddUjianUserTake,GetNilaiUjian,GetUjianByPhaseAdmin };

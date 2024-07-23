@@ -2,6 +2,47 @@ const pool = require("../../db_connect");
 const { handleCustomErrorModel } = require("../function/ErrorFunction");
 const CustomError = require("../utils/customError");
 
+async function GetUjianByPhaseAdminToDB(id) {
+  try {
+
+    const queryText = `
+            SELECT 
+            soal.id AS soal_id,
+            soal.soal,
+            json_agg(
+                json_build_object(
+                    'id', jawabansoal.id, 
+                    'jawaban', jawabansoal.jawaban
+                )
+            ) AS pilihan,
+            soal.jawaban_benar AS jawaban_benar
+            FROM
+                kumpulansoalujian
+            JOIN 
+                soal ON kumpulansoalujian.id = soal.id_kumpulan_soal
+            JOIN 
+                pilihansoal ON soal.pilihan_jawaban = pilihansoal.id_soal
+            JOIN 
+                jawabansoal ON pilihansoal.id_jawaban = jawabansoal.id
+            WHERE 
+                kumpulansoalujian.id = $1
+            GROUP BY 
+                soal.id, soal.soal
+            ORDER BY 
+				RANDOM()
+            LIMIT 20
+        
+        
+        `;
+    const queryValues = [id];
+
+    const { rows } = await pool.query(queryText, queryValues);
+
+    return rows;
+  } catch (error) {
+    handleCustomErrorModel(error);
+  }
+}
 async function GetUjianByPhaseToDB(id) {
   try {
 
@@ -176,4 +217,4 @@ async function GetNilaiUjianToDB(data) {
     }
   }
 
-module.exports = { GetUjianByPhaseToDB, AddTakeUjianUserToDB,GetNilaiUjianToDB };
+module.exports = { GetUjianByPhaseToDB, AddTakeUjianUserToDB,GetNilaiUjianToDB,GetUjianByPhaseAdminToDB };

@@ -1,7 +1,52 @@
 const pool = require("../../db_connect");
 const { handleCustomErrorModel } = require("../function/ErrorFunction");
 const CustomError = require("../utils/customError");
+//Admin
+async function GetAllQuizMateriAdminToDB(id_materi) {
+  try {
+    const queryValues = [id_materi];
 
+    const queryText = `
+        SELECT 
+            soal.id AS soal_id,
+            soal.soal,
+            json_agg(
+                json_build_object(
+                    'id', jawabansoal.id, 
+                    'jawaban', jawabansoal.jawaban
+                )
+            ) AS pilihan,
+            soal.jawaban_benar AS jawaban_benar
+        FROM 
+            materi
+        JOIN 
+            kumpulansoalquiz ON kumpulansoalquiz.id_materi = materi.id
+        JOIN 
+            soal ON kumpulansoalquiz.id = soal.id_kumpulan_soal
+        JOIN 
+            pilihansoal ON soal.pilihan_jawaban = pilihansoal.id_soal
+        JOIN 
+            jawabansoal ON pilihansoal.id_jawaban = jawabansoal.id
+        WHERE 
+            kumpulansoalquiz.id_materi = $1
+        GROUP BY 
+            soal.id, soal.soal;
+
+        `;
+
+    const { rows } = await pool.query(queryText, queryValues);
+
+    if (!rows) {
+      throw new CustomError(500, "Failed To Call Database");
+    }
+
+    return rows;
+  } catch (error) {
+    handleCustomErrorModel(error);
+  }
+}
+
+//User
 async function GetAllQuizMateriToDB(id_materi) {
   try {
     const queryValues = [id_materi];
@@ -238,4 +283,4 @@ async function GetNilaiQuizToDB(data) {
   }
 }
 
-module.exports = { GetAllQuizMateriToDB, AddTakeQuizUserToDB, GetNilaiQuizToDB };
+module.exports = { GetAllQuizMateriToDB, AddTakeQuizUserToDB, GetNilaiQuizToDB, GetAllQuizMateriAdminToDB };

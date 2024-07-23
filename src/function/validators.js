@@ -165,6 +165,40 @@ const PembahasanUjianValidation = () => {
     validateUUIDParams("id_mengambil_ujian")
   ]
 }
+
+const SoalUpdateValidation = () => {
+  return [
+    // Validasi untuk field 'soal'
+    validateStringInput('soal'),
+
+    // Validasi untuk field 'pilihan'
+    body('pilihan')
+      .isArray({ min: 2 }).withMessage('Pilihan harus berupa array dengan minimal 2 opsi')
+      .custom(value => {
+        if (!value.every(option => 
+          typeof option === 'object' &&
+          option.id && typeof option.id === 'string' &&
+          option.jawaban && typeof option.jawaban === 'string'
+        )) {
+          throw new Error('Setiap opsi dalam pilihan harus memiliki id dan jawaban yang valid');
+        }
+        return true;
+      }),
+
+    // Validasi untuk field 'jawaban_benar'
+    validateUUIDBody('jawaban_benar')
+      .custom((value, { req }) => {
+        const pilihan = req.body.pilihan || [];
+        if (!pilihan.some(option => option.id === value)) {
+          throw new Error('Jawaban benar harus termasuk dalam daftar pilihan');
+        }
+        return true;
+      })
+  ];
+};
+const DeleteSoalValidation = () => {
+  return [validateUUIDParams("id_soal")]
+}
 module.exports = {
   registerValidation,
   loginValidation,
@@ -185,5 +219,7 @@ module.exports = {
   PembahasanQuizValidation,
   PembahasanUjianValidation,
   UpdateUserValidation,
-  UpdatePasswordValidation
+  UpdatePasswordValidation,
+  SoalUpdateValidation,
+  DeleteSoalValidation
 };

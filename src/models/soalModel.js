@@ -24,7 +24,7 @@ async function checkOrInsertKumpulanSoalQuiz(client, id_materi) {
       return newKS[0].id;
     }
   } catch (error) {
-    throw new CustomError(404, "Id Materi Not Found","Wrong id_materi");
+    throw new CustomError(404, "Id Materi Not Found", "Wrong id_materi");
   }
 }
 
@@ -94,8 +94,7 @@ async function checkOrInsertKumpulanSoalUjian(client, kategori_materi, phase) {
     if (existingKS.length > 0) {
       return existingKS[0].id;
     } else {
-
-      console.log(kategori_materi)
+      console.log(kategori_materi);
       const insertQueryText = `
         INSERT INTO kumpulansoalujian (kategori_materi, phase)
         VALUES ($1,$2)
@@ -117,7 +116,6 @@ async function AddSoalUjianToMateriToDB(data) {
     await client.query("BEGIN"); // Start a transaction
 
     const { soal, jawaban_benar, pilihan, kategori_materi, phase } = data;
-
 
     const kumpulan_soal = await checkOrInsertKumpulanSoalUjian(client, kategori_materi, phase);
 
@@ -164,4 +162,116 @@ async function AddSoalUjianToMateriToDB(data) {
   }
 }
 
-module.exports = { AddSoalQuizToMateriToDB,AddSoalUjianToMateriToDB };
+///{
+//   "id_soal": "2c809db1-d071-47c9-b636-af6e47718ff5",
+//   "soal": "apakah ini berhasil122312 ujian lagi 2",
+//   "pilihan": [
+//       {
+//           "id": "a1a527a0-c400-40d0-a5db-bab798d2aab3",
+//           "jawaban": "iya"
+//       },
+//       {
+//           "id": "fdcdd1aa-39dd-4483-ab83-6a07722c0d3f",
+//           "jawaban": "no"
+//       }
+//   ],
+//   "jawaban_benar": "fdcdd1aa-39dd-4483-ab83-6a07722c0d3f"
+//}
+//
+async function UpdateSoalToDB(data) {
+  const client = await pool.connect();
+  try {
+    const { id_soal, soal, pilihan, jawaban_benar } = data;
+    await client.query("BEGIN");
+
+    await UpdatePilihanJawaban(pilihan, client);
+
+    const queryTextUpdateSoal = `
+      UPDATE public.soal
+      SET soal=$2, jawaban_benar=$3
+      WHERE id=$1
+    `;
+    const queryValuesUpdateSoal = [id_soal, soal, jawaban_benar];
+    await client.query(queryTextUpdateSoal, queryValuesUpdateSoal);
+
+    await client.query("COMMIT");
+  } catch (error) {
+    await client.query("ROLLBACK");
+    // Ensure proper error handling
+    handleCustomErrorModel(error);
+  } finally {
+    client.release();
+  }
+}
+
+async function UpdatePilihanJawaban(data, client) {
+  const queries = data.map(async (item) => {
+    try {
+      const QueryTextUpdateJawaban = `
+        UPDATE public.jawabansoal
+        SET jawaban=$2
+        WHERE id=$1
+      `;
+      const QueryValuesUpdateJawaban = [item.id, item.jawaban];
+      await client.query(QueryTextUpdateJawaban, QueryValuesUpdateJawaban);
+    } catch (error) {
+      // console.error(`Error updating jawaban with id ${item.id}:`, error);
+      throw new CustomError(500, "Failed Update Pilihan Jawaban"); // Lempar ulang untuk memastikan kesalahan dipropagasi
+    }
+  });
+
+  await Promise.all(queries);
+}
+
+async function DeletePilihanJawaban(id, client) {
+  try {
+    const queryText = `
+      SELECT jawabansoal.id AS id
+      FROM soal 
+      JOIN pilihansoal ON soal.pilihan_jawaban = pilihansoal.id_soal
+      JOIN jawabansoal ON pilihansoal.id_jawaban = jawabansoal.id
+      WHERE soal.id = $1
+    `;
+    const queryValues = [id];
+    const { rows: KumpulanIdJawaban } = await client.query(queryText, queryValues);
+
+    if (KumpulanIdJawaban.length > 0) {
+      const queries = KumpulanIdJawaban.map(async (item) => {
+        const QueryTextDeleteJawaban = `
+          DELETE FROM public.jawabansoal
+          WHERE id = $1
+        `;
+        const QueryValuesDeleteJawaban = [item.id];
+        await client.query(QueryTextDeleteJawaban, QueryValuesDeleteJawaban);
+      });
+
+      await Promise.all(queries);
+    }
+  } catch (error) {
+    throw new CustomError(500, "Failed to delete pilihan jawaban");
+  }
+}
+
+async function DeleteSoalToDB(id) {
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN');
+    await DeletePilihanJawaban(id, client);
+
+    const queryTextDeleteSoal = `
+      DELETE FROM public.soal
+      WHERE id = $1
+    `;
+    const queryValuesDeleteSoal = [id];
+    await client.query(queryTextDeleteSoal, queryValuesDeleteSoal);
+
+    await client.query('COMMIT');
+  } catch (error) {
+    await client.query('ROLLBACK');
+    handleCustomErrorModel(error);
+  } finally {
+    client.release();
+  }
+}
+
+module.exports = { AddSoalQuizToMateriToDB, AddSoalUjianToMateriToDB, UpdateSoalToDB, DeleteSoalToDB };

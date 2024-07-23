@@ -1,5 +1,5 @@
 const { handleCustomErrorRoute } = require("../function/ErrorFunction");
-const { GetAllQuizMateriToDB, AddTakeQuizUserToDB, GetNilaiQuizToDB } = require("../models/quizModel");
+const { GetAllQuizMateriToDB, AddTakeQuizUserToDB, GetNilaiQuizToDB, GetAllQuizMateriAdminToDB } = require("../models/quizModel");
 const CustomError = require("../utils/customError");
 
 const GetAllQuizMateri = async (req, res) => {
@@ -7,6 +7,20 @@ const GetAllQuizMateri = async (req, res) => {
     const { id_materi } = req.params;
 
     const GetAllQuizMateriData = await GetAllQuizMateriToDB(id_materi);
+
+    if (!GetAllQuizMateriData || GetAllQuizMateriData.length == 0) {
+      throw new CustomError(404, "Quiz Not Found", "Check Your Id Materi");
+    }
+    res.status(200).json({ msg: "Query Successfully", data: GetAllQuizMateriData });
+  } catch (error) {
+    handleCustomErrorRoute(res, error);
+  }
+};
+const GetAllQuizMateriAdmin = async (req, res) => {
+  try {
+    const { id_materi } = req.params;
+
+    const GetAllQuizMateriData = await GetAllQuizMateriAdminToDB(id_materi);
 
     if (!GetAllQuizMateriData || GetAllQuizMateriData.length == 0) {
       throw new CustomError(404, "Quiz Not Found", "Check Your Id Materi");
@@ -66,4 +80,4 @@ const GetNilaiQuiz = async (req, res) => {
   }
 };
 
-module.exports = { GetAllQuizMateri, AddQuizUserTake, GetNilaiQuiz };
+module.exports = { GetAllQuizMateri, AddQuizUserTake, GetNilaiQuiz,GetAllQuizMateriAdmin };

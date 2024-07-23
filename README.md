@@ -1824,6 +1824,126 @@ Response Body (succes) :
 ```
 
 
+### Update Soal Ujian 
+
+Endpoint : Patch /admin/soal/:id_soal
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: id_soal (uuid) WAJIB
+
+Request Body :
+
+```
+{
+  "soal": "berapa kaki ayam 2 ",
+  "pilihan": [
+      {
+          "id": "5a76fc3c-af5d-4ad9-8b72-9000b7639b54",
+          "jawaban": "11"
+      },
+      {
+          "id": "fae76ada-067d-4550-b124-03a8ec01b716",
+          "jawaban": "10"
+      }
+  ],
+  "jawaban_benar": "592bdc91-8652-4539-9d87-3a774265e432"
+}
+```
+
+Response Body (succes) :
+```
+{
+    "message": "Update successful"
+}
+```
+
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+*Wrong Authorization Token 2*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Forbidden Access",
+    "data": "You Are Not Admin"
+}
+
+```
+
+*Jawaban benar tidak ada pilihan*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Jawaban benar harus termasuk dalam daftar pilihan",
+    "data": "Your Data Not Valid"
+}
+
+```
+
+*Soal tidak terisi*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "soal dibutuhkan",
+    "data": "Your Data Not Valid"
+}
+```
+
+### Delete Soal Ujian
+
+Endpoint : Delete /admin/soal/:id_soal
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: id_soal (uuid) WAJIB
+
+Response Body (succes) :
+```
+{
+    "message": "Delete successful"
+}
+```
+
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+*Wrong Authorization Token 2*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Forbidden Access",
+    "data": "You Are Not Admin"
+}
+
+```
+
+
+
 
 ## Quiz
 
@@ -1927,6 +2047,126 @@ Response Body (succes) :
     "message": "pilihan harus memiliki 2 opsi",
     "data": "Your Data Not Valid"
 }
+```
+
+### Update Soal Quiz
+
+Endpoint : Patch /admin/soal/:id_soal
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: id_soal (uuid) WAJIB
+
+Request Body :
+
+```
+{
+  "soal": "berapa kaki ayam 2 ",
+  "pilihan": [
+      {
+          "id": "5a76fc3c-af5d-4ad9-8b72-9000b7639b54",
+          "jawaban": "11"
+      },
+      {
+          "id": "fae76ada-067d-4550-b124-03a8ec01b716",
+          "jawaban": "10"
+      }
+  ],
+  "jawaban_benar": "592bdc91-8652-4539-9d87-3a774265e432"
+}
+```
+
+Response Body (succes) :
+```
+{
+    "message": "Update successful"
+}
+```
+
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+*Wrong Authorization Token 2*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Forbidden Access",
+    "data": "You Are Not Admin"
+}
+
+```
+
+*Jawaban benar tidak ada pilihan*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Jawaban benar harus termasuk dalam daftar pilihan",
+    "data": "Your Data Not Valid"
+}
+
+```
+
+*Soal tidak terisi*
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "soal dibutuhkan",
+    "data": "Your Data Not Valid"
+}
+```
+
+
+
+### Delete Soal Quiz
+
+Endpoint : Delete /admin/soal/:id_soal
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: id_soal (uuid) WAJIB
+
+Response Body (succes) :
+```
+{
+    "message": "Delete successful"
+}
+```
+
+*Wrong Authorization Token*
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Your Token is Expired"
+}
+
+```
+*Wrong Authorization Token 2*
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Forbidden Access",
+    "data": "You Are Not Admin"
+}
+
 ```
 
 
