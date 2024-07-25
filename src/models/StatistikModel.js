@@ -57,9 +57,21 @@ async function GetStatistikUserToDB(userId) {
     }
 
     const payload = {
-      materi_id: targetMateri.materi_id,
       progress: targetMateri.progress,
     };
+
+    // Check if the targetMateri has ujian_id and include it in the payload
+    if (targetMateri.ujian_id) {
+      payload.ujian_id = targetMateri.ujian_id;
+      payload.phase = targetMateri.phase;
+      payload.kategori = targetMateri.kategori;
+      payload.IsUjian = true;
+      payload.IsMateri = false;
+    } else {
+      payload.materi_id = targetMateri.materi_id;
+      payload.IsMateri = true;
+      payload.IsUjian = false;
+    }
 
     return payload;
   } catch (error) {
@@ -100,13 +112,15 @@ async function SearchNextMateri(data) {
 
       if (CheckUjian.length == 0) {
         const queryTextUjian = `
-          SELECT  id AS materi_id FROM kumpulansoalujian
+          SELECT  id AS ujian_id FROM kumpulansoalujian
           WHERE phase = $1 AND kategori_materi = $2
         `;
         const queryValuesUjian = [phase, kategori];
 
         const { rows: searchUjianRows } = await pool.query(queryTextUjian, queryValuesUjian);
         searchUjianRows[0].progress = 0;
+        searchUjianRows[0].phase = phase;
+        searchUjianRows[0].kategori = kategori
         return searchUjianRows[0];
       }
 
