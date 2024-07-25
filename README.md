@@ -1504,12 +1504,47 @@ Response Body (succes) :
     "msg": "Query Sukses",
     "data": [
         {
-            "materi_id": "697b4576-18b3-45e9-9dc7-ba05f7b20090",
-            "progress": 0
+            "progress": 66,
+            "materi_id": "68fb6898-5563-466a-ab33-8afbbb47103c",
+            "IsMateri": false,
+            "IsUjian": false,
+            "IsQuiz": true
         }
     ]
 }
 ```
+```
+{
+    "msg": "Query Sukses",
+    "data": [
+        {
+            "progress": 0,
+            "ujian_id": "697b4576-18b3-45e9-9dc7-ba05f7b20090",
+            "phase": 1,
+            "kategori": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
+            "IsMateri": false,
+            "IsUjian": true,
+            "IsQuiz": false
+        }
+    ]
+}
+```
+```
+{
+    "msg": "Query Sukses",
+    "data": [
+        {
+            "progress": 0,
+            "materi_id": "2fc63e29-be4a-401f-b89a-aa423c4d8a36",
+            "IsMateri": true,
+            "IsUjian": false,
+            "IsQuiz": false
+        }
+    ]
+}
+```
+
+
 
 Response Body (failed) :
 *Wrong Authorization Token*

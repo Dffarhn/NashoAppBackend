@@ -54,6 +54,9 @@ async function GetStatistikUserToDB(userId) {
       };
 
       targetMateri = await SearchNextMateri(nextMateriParams);
+      if (!targetMateri.ujian_id) {
+        targetMateri.IsMateri = true
+      }
     }
 
     const payload = {
@@ -67,10 +70,17 @@ async function GetStatistikUserToDB(userId) {
       payload.kategori = targetMateri.kategori;
       payload.IsUjian = true;
       payload.IsMateri = false;
-    } else {
+      payload.IsQuiz = false;
+    } else if(targetMateri.IsMateri){
       payload.materi_id = targetMateri.materi_id;
       payload.IsMateri = true;
       payload.IsUjian = false;
+      payload.IsQuiz = false;
+    }else{
+      payload.quiz_materi_id = targetMateri.materi_id
+      payload.IsMateri = false;
+      payload.IsUjian = false;
+      payload.IsQuiz = true;
     }
 
     return payload;
@@ -108,7 +118,7 @@ async function SearchNextMateri(data) {
 
       const { rows: CheckUjian } = await pool.query(QueryTextCheckUjian, QueryValuesCheckUjian);
 
-      console.log(CheckUjian)
+      console.log(CheckUjian);
 
       if (CheckUjian.length == 0) {
         const queryTextUjian = `
@@ -120,7 +130,7 @@ async function SearchNextMateri(data) {
         const { rows: searchUjianRows } = await pool.query(queryTextUjian, queryValuesUjian);
         searchUjianRows[0].progress = 0;
         searchUjianRows[0].phase = phase;
-        searchUjianRows[0].kategori = kategori
+        searchUjianRows[0].kategori = kategori;
         return searchUjianRows[0];
       }
 
@@ -129,14 +139,12 @@ async function SearchNextMateri(data) {
         FROM materi
         WHERE tingkat = $1 AND phase = $2 AND kategori = $3
         
-      `
-      const queryValuesNextMateriIsPhase = [1, phase+1, kategori];
+      `;
+      const queryValuesNextMateriIsPhase = [1, phase + 1, kategori];
 
-      const { rows : NextMateriIsPhase } = await pool.query(QueryTextNextMateriIsPhase,queryValuesNextMateriIsPhase)
-      NextMateriIsPhase[0].progress = 0
+      const { rows: NextMateriIsPhase } = await pool.query(QueryTextNextMateriIsPhase, queryValuesNextMateriIsPhase);
+      NextMateriIsPhase[0].progress = 0;
       return NextMateriIsPhase[0];
-
-
     }
     nextMateriRows[0].progress = 0;
     return nextMateriRows[0];
