@@ -17,14 +17,15 @@ async function GetPembahasanUjianToDB(data) {
                         'jawaban_benar', jb.jawaban
                     )
                 ) AS jawaban_details,
-                jawabanujianuser.status_jawaban AS Benar
+                jawabanujianuser.status_jawaban AS Benar,
+                soal.pembahasan
             FROM mengambilujian
             JOIN jawabanujianuser ON mengambilujian.id = jawabanujianuser.ujian_diambil
             JOIN soal ON jawabanujianuser.soal_ujian = soal.id
             JOIN jawabansoal js ON jawabanujianuser.jawaban_user = js.id
             JOIN jawabansoal jb ON soal.jawaban_benar = jb.id
             WHERE mengambilujian.usernasho = $2 AND mengambilujian.id = $1
-            GROUP BY jawabanujianuser.soal_ujian, soal.soal,jawabanujianuser.status_jawaban
+            GROUP BY jawabanujianuser.soal_ujian, soal.soal,jawabanujianuser.status_jawaban,soal.pembahasan;
         `;
 
         const queryValues = [id_mengambil_ujian, id_user];
@@ -56,14 +57,15 @@ async function GetPembahasanQuizToDB(data) {
                     'jawaban_benar', jb.jawaban
                 )
             ) AS jawaban_details,
-            jawabanquizuser.status_jawaban AS Benar 
+            jawabanquizuser.status_jawaban AS Benar,
+            soal.pembahasan
         FROM mengambilquiz
         JOIN jawabanquizuser ON mengambilquiz.id = jawabanquizuser.quiz_diambil
         JOIN soal ON jawabanquizuser.soal_quiz = soal.id
         JOIN jawabansoal js ON jawabanquizuser.jawaban_user = js.id
         JOIN jawabansoal jb ON soal.jawaban_benar = jb.id
         WHERE mengambilquiz.usernasho = $2 AND mengambilquiz.id = $1
-        GROUP BY jawabanquizuser.soal_quiz, soal.soal, jawabanquizuser.status_jawaban;
+        GROUP BY jawabanquizuser.soal_quiz, soal.soal, jawabanquizuser.status_jawaban, soal.pembahasan;
 
 
         `

@@ -16,7 +16,8 @@ async function GetAllQuizMateriAdminToDB(id_materi) {
                     'jawaban', jawabansoal.jawaban
                 )
             ) AS pilihan,
-            soal.jawaban_benar AS jawaban_benar
+            soal.jawaban_benar AS jawaban_benar,
+            soal.pembahasan AS pembahasan
         FROM 
             materi
         JOIN 

@@ -358,68 +358,89 @@ Response Body (succes) :
     "msg": "Successfully retrieved materi",
     "data": [
         {
-            "phase": 1,
+            "id": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
+            "jenis": "Nahwu",
+            "deskripsi": "Nahwu adalah ilmu yang mempelajari struktur kalimat dalam bahasa Arab. Fokus utama nahwu adalah bagaimana kata-kata disusun dalam sebuah kalimat agar sesuai dengan kaidah tata bahasa Arab. Nahwu mencakup aturan tentang posisi dan fungsi kata dalam kalimat, serta perubahan yang terjadi pada akhir kata karena posisi tersebut.",
             "materi": [
                 {
-                    "id": "d2bf909e-9f05-45bf-a55b-f2b8b6d47e3f",
-                    "judul": "tesupdate",
-                    "sudah_mengambil": true,
-                    "tingkat": 1,
-                    "quiz": [
+                    "phase": 1,
+                    "materi": [
                         {
-                            "nilai": 100,
-                            "lulus": true
+                            "id": "d2bf909e-9f05-45bf-a55b-f2b8b6d47e3f",
+                            "judul": "tesupdate",
+                            "sudah_mengambil": true,
+                            "tingkat": 1,
+                            "quiz": [
+                                {
+                                    "nilai": 100,
+                                    "lulus": true
+                                }
+                            ]
+                        },
+                        {
+                            "id": "9a88cc44-8d18-4464-9664-2281c236ace8",
+                            "judul": "tes456",
+                            "sudah_mengambil": true,
+                            "tingkat": 2,
+                            "quiz": [
+                                {
+                                    "nilai": 100,
+                                    "lulus": true
+                                }
+                            ]
+                        },
+                        {
+                            "id": "68fb6898-5563-466a-ab33-8afbbb47103c",
+                            "judul": "tes789",
+                            "sudah_mengambil": true,
+                            "tingkat": 3,
+                            "quiz": [
+                                {
+                                    "nilai": 50,
+                                    "lulus": false
+                                }
+                            ]
                         }
-                    ]
+                    ],
+                    "ujian": [
+                        {
+                            "id": "697b4576-18b3-45e9-9dc7-ba05f7b20090",
+                            "phase_ujian": 1,
+                            "kategori_ujian": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
+                            "riwayat": null
+                        }
+                    ],
+                    "locked": false
                 },
                 {
-                    "id": "9a88cc44-8d18-4464-9664-2281c236ace8",
-                    "judul": "tes456",
-                    "sudah_mengambil": true,
-                    "tingkat": 2,
-                    "quiz": null
-                },
-                {
-                    "id": "68fb6898-5563-466a-ab33-8afbbb47103c",
-                    "judul": "tes789",
-                    "sudah_mengambil": false,
-                    "tingkat": 3,
-                    "quiz": null
+                    "phase": 2,
+                    "materi": [
+                        {
+                            "id": "2fc63e29-be4a-401f-b89a-aa423c4d8a36",
+                            "judul": "ini materi 2\n",
+                            "sudah_mengambil": false,
+                            "tingkat": 1,
+                            "quiz": null
+                        },
+                        {
+                            "id": "9941495a-2536-4144-b566-a95c527abe58",
+                            "judul": "tes789",
+                            "sudah_mengambil": false,
+                            "tingkat": 2,
+                            "quiz": null
+                        }
+                    ],
+                    "ujian": [
+                        {
+                            "id": "c8ce88e1-0432-47fa-b032-8851aeb4608a",
+                            "phase_ujian": 2,
+                            "kategori_ujian": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
+                            "riwayat": null
+                        }
+                    ],
+                    "locked": true
                 }
-            ],
-            "ujian": [
-                {
-                    "id": "697b4576-18b3-45e9-9dc7-ba05f7b20090",
-                    "riwayat": null
-                }
-            ],
-            "locked": false
-        },
-        {
-            "phase": 2,
-            "materi": [
-                {
-                    "id": "2fc63e29-be4a-401f-b89a-aa423c4d8a36",
-                    "judul": "ini materi 2\n",
-                    "sudah_mengambil": false,
-                    "tingkat": 1,
-                    "quiz": null
-                },
-                {
-                    "id": "9941495a-2536-4144-b566-a95c527abe58",
-                    "judul": "tes789",
-                    "sudah_mengambil": false,
-                    "tingkat": 2,
-                    "quiz": null
-                }
-            ],
-            "ujian": [
-                {
-                    "id": "c8ce88e1-0432-47fa-b032-8851aeb4608a",
-                    "riwayat": null
-                }
-            ],
-            "locked": true
+            ]
         }
     ]
 }
@@ -1722,9 +1743,11 @@ Request Body :
 
 ```
 {
-    "soal":"Siapakah Presiden Nomor 1",
-    "pilihan":["Soekarno","Soerharto","BJ Habibie","Megawati"],
-    "jawaban_benar":1,
+
+    "soal":"Siapakah pilpres 2024",
+    "pilihan":["Prabowo","Jokowi","Anies","Ganjar"],
+    "jawaban_benar":3,
+    "pembahasan":"Itu dikarenakan ada nya suatu persepsi yang membentuk suatu kemegahan nasional",
     "phase":1,
     "kategori_materi":"3053b811-0544-4cea-b951-1b5f0b9ab36f"
 }
@@ -1836,18 +1859,29 @@ Request Body :
 
 ```
 {
-  "soal": "berapa kaki ayam 2 ",
+{
+  "soal": "jadi kita melakukan tes update ",
   "pilihan": [
-      {
-          "id": "5a76fc3c-af5d-4ad9-8b72-9000b7639b54",
-          "jawaban": "11"
-      },
-      {
-          "id": "fae76ada-067d-4550-b124-03a8ec01b716",
-          "jawaban": "10"
-      }
-  ],
-  "jawaban_benar": "592bdc91-8652-4539-9d87-3a774265e432"
+                {
+                    "id": "125a642a-7ecc-407c-80f4-567b621a7336",
+                    "jawaban": "Prabowo"
+                },
+                {
+                    "id": "36bfb004-8371-463d-910e-31d3615a419e",
+                    "jawaban": "Anies"
+                },
+                {
+                    "id": "231aa0b2-b446-4926-aa78-542083d83b07",
+                    "jawaban": "Jokowi"
+                },
+                {
+                    "id": "48406ea1-f043-48d0-a6e3-41d7886524ef",
+                    "jawaban": "Ganjar"
+                }
+            ],
+  "jawaban_benar": "125a642a-7ecc-407c-80f4-567b621a7336",
+  "pembahasan" : "pak jokowi dong yang menang gimana sih"
+}
 }
 ```
 
@@ -1959,9 +1993,10 @@ Request Body :
 
 ```
 {
-    "soal":"Siapakah Presiden Nomor 3",
-    "pilihan":["Soekarno","Soerharto","BJ Habibie","Megawati"],
-    "jawaban_benar":3
+    "soal":"Siapakah pilpres 2024",
+    "pilihan":["Prabowo","Jokowi","Anies","Ganjar"],
+    "jawaban_benar":3,
+    "pembahasan":"Itu dikarenakan ada nya suatu persepsi yang membentuk suatu kemegahan nasional"
 }
 ```
 
@@ -2061,18 +2096,27 @@ Request Body :
 
 ```
 {
-  "soal": "berapa kaki ayam 2 ",
+  "soal": "jadi kita melakukan tes update ",
   "pilihan": [
-      {
-          "id": "5a76fc3c-af5d-4ad9-8b72-9000b7639b54",
-          "jawaban": "11"
-      },
-      {
-          "id": "fae76ada-067d-4550-b124-03a8ec01b716",
-          "jawaban": "10"
-      }
-  ],
-  "jawaban_benar": "592bdc91-8652-4539-9d87-3a774265e432"
+                {
+                    "id": "125a642a-7ecc-407c-80f4-567b621a7336",
+                    "jawaban": "Prabowo"
+                },
+                {
+                    "id": "36bfb004-8371-463d-910e-31d3615a419e",
+                    "jawaban": "Anies"
+                },
+                {
+                    "id": "231aa0b2-b446-4926-aa78-542083d83b07",
+                    "jawaban": "Jokowi"
+                },
+                {
+                    "id": "48406ea1-f043-48d0-a6e3-41d7886524ef",
+                    "jawaban": "Ganjar"
+                }
+            ],
+  "jawaban_benar": "125a642a-7ecc-407c-80f4-567b621a7336",
+  "pembahasan" : "pak jokowi dong yang menang gimana sih"
 }
 ```
 

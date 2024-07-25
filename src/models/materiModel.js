@@ -31,20 +31,20 @@ async function addMateriToDB(data) {
 
 async function UpdateMateriToDB(data, id) {
   try {
-    const { judul, isi, linkVideo} = data;
-    
+    const { judul, isi, linkVideo } = data;
+
     const queryText = `
 
       UPDATE public.materi
       SET judul=$2, isi=$3, linkvideo=$4
       WHERE id = $1;
     
-    `
+    `;
 
-    const queryValues = [id,judul,isi,linkVideo];
+    const queryValues = [id, judul, isi, linkVideo];
 
-    const UpdateMateriDB = await pool.query(queryText,queryValues)
-    return UpdateMateriDB
+    const UpdateMateriDB = await pool.query(queryText, queryValues);
+    return UpdateMateriDB;
   } catch (error) {
     handleCustomErrorModel(error);
   }
@@ -165,14 +165,32 @@ async function GetAllMateriToDB(kategori, UserId) {
     ORDER BY
         phase.id ASC;
     `;
-    
+
     const { rows } = await pool.query(queryText, queryValues);
 
     if (!rows) {
       throw new CustomError(404, "No materials found");
     }
 
-    return rows;
+
+    return rows
+  } catch (error) {
+    handleCustomErrorModel(error);
+  }
+}
+
+async function GetSpesificKategoriToDB(kategori) {
+  try {
+    const queryText = `SELECT * FROM kategorimateri WHERE id = $1`;
+
+    const queryValues= [kategori]
+    const result = await pool.query(queryText,queryValues);
+
+    if (!result.rows || result.rows.length === 0) {
+      throw new CustomError(404, "No kategori materi found in the database");
+    }
+
+    return result.rows;
   } catch (error) {
     handleCustomErrorModel(error);
   }
@@ -180,8 +198,7 @@ async function GetAllMateriToDB(kategori, UserId) {
 
 async function GetSpesificMateriToDB(data) {
   try {
-
-    const {id , user_id} = data
+    const { id, user_id } = data;
     const queryText = `
       SELECT materi.*, 
         kumpulansoalquiz.id_materi AS id_quiz,
@@ -206,7 +223,7 @@ async function GetSpesificMateriToDB(data) {
       WHERE materi.id = $1
       GROUP BY materi.id, kumpulansoalquiz.id_materi;
 `;
-    const queryValues = [id,user_id];
+    const queryValues = [id, user_id];
 
     const { rows } = await pool.query(queryText, queryValues);
     if (!rows) {
@@ -240,4 +257,4 @@ async function AddNewMateriAccessToDB(userId, id) {
   }
 }
 
-module.exports = { addMateriToDB, getAllKategoriMateri, GetAllMateriToDB, GetSpesificMateriToDB, AddNewMateriAccessToDB, UpdateMateriToDB, DeleteMateriToDB };
+module.exports = { addMateriToDB, getAllKategoriMateri, GetAllMateriToDB, GetSpesificMateriToDB, AddNewMateriAccessToDB, UpdateMateriToDB, DeleteMateriToDB,GetSpesificKategoriToDB };

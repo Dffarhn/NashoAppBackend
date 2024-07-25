@@ -1,6 +1,6 @@
 const { handleCustomErrorRoute } = require("../function/ErrorFunction");
 const { LockStatusMateri } = require("../function/lockedMateri");
-const { addMateriToDB, getAllKategoriMateri, GetAllMateriToDB, GetSpesificMateriToDB, AddNewMateriAccessToDB, UpdateMateriToDB, DeleteMateriToDB } = require("../models/materiModel");
+const { addMateriToDB, getAllKategoriMateri, GetAllMateriToDB, GetSpesificMateriToDB, AddNewMateriAccessToDB, UpdateMateriToDB, DeleteMateriToDB, GetSpesificKategoriToDB } = require("../models/materiModel");
 const CustomError = require("../utils/customError");
 
 //ADMIN
@@ -100,7 +100,11 @@ const GetAllMateri = async (req, res) => {
       throw new CustomError(404, "No materials found");
     }
 
-    res.status(200).json({ msg: "Successfully retrieved materi", data: GetAllMateriData });
+    let spesifickategori = await GetSpesificKategoriToDB(kategori)
+
+    spesifickategori[0].materi = GetAllMateriData
+
+    res.status(200).json({ msg: "Successfully retrieved materi", data: spesifickategori });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }

@@ -33,7 +33,7 @@ async function AddSoalQuizToMateriToDB(data) {
   try {
     await client.query("BEGIN"); // Start a transaction
 
-    const { soal, jawaban_benar, pilihan, id_materi } = data;
+    const { soal, jawaban_benar, pilihan, id_materi,pembahasan } = data;
 
     console.log(data);
 
@@ -49,10 +49,10 @@ async function AddSoalQuizToMateriToDB(data) {
 
     const jawabanBenarToDB = resultJawaban.rows[jawaban_benar].id;
 
-    const queryValueSoal = [soal, jawabanBenarToDB, kumpulan_soal];
+    const queryValueSoal = [soal, jawabanBenarToDB, kumpulan_soal,pembahasan];
     const queryTextSoal = `
-      INSERT INTO soal (soal, jawaban_benar, id_kumpulan_soal)
-      VALUES ($1, $2, $3)
+      INSERT INTO soal (soal, jawaban_benar, id_kumpulan_soal, pembahasan)
+      VALUES ($1, $2, $3, $4)
       RETURNING pilihan_jawaban;
     `;
     const resultSoal = await client.query(queryTextSoal, queryValueSoal);
@@ -115,7 +115,7 @@ async function AddSoalUjianToMateriToDB(data) {
   try {
     await client.query("BEGIN"); // Start a transaction
 
-    const { soal, jawaban_benar, pilihan, kategori_materi, phase } = data;
+    const { soal, jawaban_benar, pilihan, kategori_materi, phase,pembahasan } = data;
 
     const kumpulan_soal = await checkOrInsertKumpulanSoalUjian(client, kategori_materi, phase);
 
@@ -129,10 +129,10 @@ async function AddSoalUjianToMateriToDB(data) {
 
     const jawabanBenarToDB = resultJawaban.rows[jawaban_benar].id;
 
-    const queryValueSoal = [soal, jawabanBenarToDB, kumpulan_soal];
+    const queryValueSoal = [soal, jawabanBenarToDB, kumpulan_soal,pembahasan];
     const queryTextSoal = `
-      INSERT INTO soal (soal, jawaban_benar, id_kumpulan_soal)
-      VALUES ($1, $2, $3)
+      INSERT INTO soal (soal, jawaban_benar, id_kumpulan_soal,pembahasan)
+      VALUES ($1, $2, $3,$4)
       RETURNING pilihan_jawaban;
     `;
     const resultSoal = await client.query(queryTextSoal, queryValueSoal);
@@ -181,17 +181,17 @@ async function AddSoalUjianToMateriToDB(data) {
 async function UpdateSoalToDB(data) {
   const client = await pool.connect();
   try {
-    const { id_soal, soal, pilihan, jawaban_benar } = data;
+    const { id_soal, soal, pilihan, jawaban_benar,pembahasan } = data;
     await client.query("BEGIN");
 
     await UpdatePilihanJawaban(pilihan, client);
 
     const queryTextUpdateSoal = `
       UPDATE public.soal
-      SET soal=$2, jawaban_benar=$3
+      SET soal=$2, jawaban_benar=$3, pembahasan=$4
       WHERE id=$1
     `;
-    const queryValuesUpdateSoal = [id_soal, soal, jawaban_benar];
+    const queryValuesUpdateSoal = [id_soal, soal, jawaban_benar,pembahasan];
     await client.query(queryTextUpdateSoal, queryValuesUpdateSoal);
 
     await client.query("COMMIT");

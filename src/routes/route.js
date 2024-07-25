@@ -67,7 +67,7 @@ route.get("/ujian/nilai/:id_mengambil_ujian",GetNilaiUjianValidation(),handleVal
 //Pembahasan Quiz dan Ujian
 
 route.get("/ujian/pembahasan/:id_mengambil_ujian", PembahasanUjianValidation(), handleValidationErrors, Auth_Access,GetPembahasanUjian)
-route.get("/quiz/pembahasan/:id_mengambil_quiz", PembahasanUjianValidation(), handleValidationErrors,Auth_Access,GetPembahasanQuiz)
+route.get("/quiz/pembahasan/:id_mengambil_quiz", PembahasanQuizValidation(), handleValidationErrors,Auth_Access,GetPembahasanQuiz)
 
 
 //Statistik cuman ada 0% 33% 66%
