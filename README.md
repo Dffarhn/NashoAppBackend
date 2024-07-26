@@ -407,7 +407,12 @@ Response Body (succes) :
                             "id": "697b4576-18b3-45e9-9dc7-ba05f7b20090",
                             "phase_ujian": 1,
                             "kategori_ujian": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
-                            "riwayat": null
+                            "riwayat": [
+                                {
+                                    "nilai": 100,
+                                    "lulus": true
+                                }
+                            ]
                         }
                     ],
                     "locked": false
