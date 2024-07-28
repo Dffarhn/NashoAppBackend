@@ -20,7 +20,7 @@ async function addMateriToDB(data) {
     const result = await pool.query(queryText, queryValues);
 
     if (!result.rows[0]) {
-      throw new CustomError(500, "Failed to add materi to database");
+      throw new CustomError(500, "Gagal Menambahkan Materi Ke Database");
     }
 
     return result.rows[0].id;
@@ -75,7 +75,7 @@ async function getAllKategoriMateri() {
     const result = await pool.query(queryText);
 
     if (!result.rows || result.rows.length === 0) {
-      throw new CustomError(404, "No kategori materi found in the database");
+      throw new CustomError(404, "Tidak Ada Kategori Materi yang Ditemukan");
     }
 
     return result.rows;
@@ -169,7 +169,7 @@ async function GetAllMateriToDB(kategori, UserId) {
     const { rows } = await pool.query(queryText, queryValues);
 
     if (!rows) {
-      throw new CustomError(404, "No materials found");
+      throw new CustomError(404, "Tidak Ada Materi Yang Ditemukan");
     }
 
 
@@ -187,7 +187,7 @@ async function GetSpesificKategoriToDB(kategori) {
     const result = await pool.query(queryText,queryValues);
 
     if (!result.rows || result.rows.length === 0) {
-      throw new CustomError(404, "No kategori materi found in the database");
+      throw new CustomError(404, "Tidak Ada Kategori Materi yang Ditemukan");
     }
 
     return result.rows;
@@ -227,7 +227,7 @@ async function GetSpesificMateriToDB(data) {
 
     const { rows } = await pool.query(queryText, queryValues);
     if (!rows) {
-      throw new CustomError(404, "No materials found");
+      throw new CustomError(404, "Tidak Ada Materi Yang Ditemukan");
     }
 
     return rows;
@@ -248,7 +248,7 @@ async function AddNewMateriAccessToDB(userId, id) {
 
     const { rows } = await pool.query(queryText, queryValues);
     if (!rows) {
-      throw new CustomError(500, "Failed To Add Access To DB");
+      throw new CustomError(500, "Gagal Menambahkan Akses Materi User");
     }
 
     return rows;

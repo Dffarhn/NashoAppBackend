@@ -38,7 +38,7 @@ async function GetAllQuizMateriAdminToDB(id_materi) {
     const { rows } = await pool.query(queryText, queryValues);
 
     if (!rows) {
-      throw new CustomError(500, "Failed To Call Database");
+      throw new CustomError(500, "Gagal Menghubungi Database");
     }
 
     return rows;
@@ -82,7 +82,7 @@ async function GetAllQuizMateriToDB(id_materi) {
     const { rows } = await pool.query(queryText, queryValues);
 
     if (!rows) {
-      throw new CustomError(500, "Failed To Call Database");
+      throw new CustomError(500, "Gagal Menghubungi Database");
     }
 
     return rows;
@@ -194,13 +194,13 @@ async function AddTakeQuizUserToDB(data) {
     const KumpulanSoalDB = await pool.query(queryTextKS, queryValuesKS);
 
     if (KumpulanSoalDB.rows.length === 0) {
-      throw new CustomError(404, "Quiz not found for the given materi");
+      throw new CustomError(404, "Tidak Ditemukan Quiz Dengan Materi Tersebut");
     }
 
     const isQuizAvailable = await CheckTheTakenQuiz(data);
 
     if (!isQuizAvailable) {
-      throw new CustomError(401, "Get The Previously Quiz First");
+      throw new CustomError(401, "Selesaikan Quiz Sebelumnya Terlebih Dahulu");
     }
 
     const queryText = `

@@ -12,10 +12,10 @@ const AddSoalQuiz = async (req, res) => {
     const AddSoalQuizData = await AddSoalQuizToMateriToDB(data);
 
     if (!AddSoalQuizData) {
-      throw new CustomError(500, "Failed To Call Database", "Ulangi");
+      throw new CustomError(500, "Gagal Koneksi Dengan Database", "Ulangi Penambahan Soal");
     }
 
-    res.status(201).json({ msg: "Soal Added To Database", data: AddSoalQuizData });
+    res.status(201).json({ msg: "Soal Ditambahkan ke Database", data: AddSoalQuizData });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -27,10 +27,10 @@ const AddSoalUjian = async (req, res) => {
     const AddSoalUjianData = await AddSoalUjianToMateriToDB(data);
 
     if (!AddSoalUjianData) {
-      throw new CustomError(500, "Failed To Call Database", "Ulangi");
+      throw new CustomError(500, "Gagal Koneksi Dengan Database", "Ulangi Penambahan Soal");
     }
 
-    res.status(201).json({ msg: "Soal Added To Database", data: AddSoalUjianData });
+    res.status(201).json({ msg: "Soal Ditambahkan ke Database", data: AddSoalUjianData });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -45,7 +45,7 @@ const UpdateSoalRoute = async (req, res) => {
     await UpdateSoalToDB(data);
 
     // Send a successful response
-    res.status(200).json({ message: "Update successful" });
+    res.status(200).json({ message: "Update Sukses" });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -56,8 +56,8 @@ const DeleteSoalRoute = async (req, res) => {
 
     await DeleteSoalToDB(id_soal);
 
-    // Send a successful response
-    res.status(200).json({ message: "Delete successful" });
+    // Send a Sukses response
+    res.status(200).json({ message: "Delete Sukses" });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }

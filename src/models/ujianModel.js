@@ -133,7 +133,7 @@ async function AddTakeUjianUserToDB(data) {
     const check = await CheckTheTakenUjian(data); // Await the promise
 
     if (!check) {
-      throw new CustomError(401, "You are not authorized to access the exam");
+      throw new CustomError(401, "Anda Tidak Diperbolehkan Mengambil Ujian ini");
     }
     const queryText = `
           INSERT INTO public.mengambilujian(

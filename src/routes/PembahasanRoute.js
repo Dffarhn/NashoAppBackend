@@ -14,10 +14,10 @@ const GetPembahasanUjian = async (req, res) => {
     const GetPembahasanUjianData = await GetPembahasanUjianToDB(data);
 
     if (GetPembahasanUjianData.length == 0) {
-      throw new CustomError(404, "Pembahasan Not Found");
+      throw new CustomError(404, "Pembahasan Tidak Ditemukan");
     }
 
-    res.status(200).json({ msg: "Query Successfully", data: GetPembahasanUjianData });
+    res.status(200).json({ msg: "Sukses Mendapatkan Pembahasan", data: GetPembahasanUjianData });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -35,10 +35,10 @@ const GetPembahasanQuiz = async (req, res) => {
     const GetPembahasanQuizData = await GetPembahasanQuizToDB(data);
 
     if (GetPembahasanQuizData.length == 0) {
-      throw new CustomError(404, "Pembahasan Not Found");
+      throw new CustomError(404, "Pembahasan Tidak Ditemukan");
     }
 
-    res.status(200).json({ msg: "Query Successfully", data: GetPembahasanQuizData });
+    res.status(200).json({ msg: "Sukses Mendapatkan Pembahasan", data: GetPembahasanQuizData });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }

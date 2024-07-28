@@ -9,9 +9,9 @@ const GetUjianByPhase = async (req, res) => {
     const GetUjianByPhaseData = await GetUjianByPhaseToDB(id);
 
     if (!GetUjianByPhaseData || GetUjianByPhaseData.length == 0) {
-      throw new CustomError(404, "Ujian Not Found", "Check Your Phase or Kategori");
+      throw new CustomError(404, "Ujian Tidak Ditemukan", "Cek id Ujian Anda");
     }
-    res.status(200).json({ msg: "Query Successfully", data: GetUjianByPhaseData });
+    res.status(200).json({ msg: "Query Sukses", data: GetUjianByPhaseData });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -23,9 +23,9 @@ const GetUjianByPhaseAdmin = async (req, res) => {
     const GetUjianByPhaseData = await GetUjianByPhaseAdminToDB(id);
 
     if (!GetUjianByPhaseData || GetUjianByPhaseData.length == 0) {
-      throw new CustomError(404, "Ujian Not Found", "Check Your Phase or Kategori");
+      throw new CustomError(404, "Ujian Tidak Ditemukan", "Cek id Ujian Anda");
     }
-    res.status(200).json({ msg: "Query Successfully", data: GetUjianByPhaseData });
+    res.status(200).json({ msg: "Query Sukses", data: GetUjianByPhaseData });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -46,13 +46,13 @@ const AddUjianUserTake = async (req, res) => {
 
     const UserTakeQuizData = await AddTakeUjianUserToDB(data);
     if (!UserTakeQuizData || UserTakeQuizData.length == 0) {
-      throw new CustomError(404, "Quiz Not Found", "Check Your Id Materi");
+      throw new CustomError(404, "Ujian Tidak Ditemukan", "Cek id ujian, kategori, dan phase");
     }
 
     const payload = {
       id_mengambil_quiz: UserTakeQuizData,
     };
-    res.status(201).json({ msg: "Query Successfully", data: payload });
+    res.status(201).json({ msg: "Query Sukses", data: payload });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -72,13 +72,13 @@ const GetNilaiUjian = async (req, res) => {
     const GetNilaiUjianData = await GetNilaiUjianToDB(data);
 
     if (!GetNilaiUjianData || GetNilaiUjianData.length == 0) {
-      throw new CustomError(404, "History Not Found", "Check Your id materi");
+      throw new CustomError(404, "History Tidak Ditemukan", "Cek Id Materi Anda");
     }
 
     const payload = {
       ujian: GetNilaiUjianData,
     };
-    res.status(200).json({ msg: "Query Successfully", data: payload });
+    res.status(200).json({ msg: "Query Sukses", data: payload });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }

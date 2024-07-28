@@ -11,21 +11,13 @@ const RegisterUser = async (req, res) => {
     if (newUser) {
       const payload = { id: newUser.id, username: newUser.username, email: newUser.email, role: newUser.role };
       const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN);
-      const refreshToken = jwt.sign(payload, process.env.SECRET_KEY_REFRESH_TOKEN, { expiresIn: "1d" });
-
-      // res.cookie("RefreshT", refreshToken, {
-      //   httpOnly: true,
-      //   // sameSite: "none",
-      //   // secure: true,
-      //   maxAge: 24 * 60 * 60 * 1000,
-      // });
 
       const passData = {
         accessToken: accessToken,
       };
       res.status(201).json({ msg: "Registration successful", data: passData });
     } else {
-      throw new CustomError(500, "Internal server error", { reason: "Failed to register user" });
+      throw new CustomError(500, "Internal server error", { reason: "Gagal Pendaftaran User" });
     }
   } catch (error) {
     handleCustomErrorRoute(res, error);
@@ -40,22 +32,13 @@ const LoginUser = async (req, res) => {
     if (searchingUser) {
       const payload = { id: searchingUser.id, username: searchingUser.username, email: searchingUser.email, role: searchingUser.role };
       const accessToken = jwt.sign(payload, process.env.SECRET_KEY_TOKEN);
-      const refreshToken = jwt.sign(payload, process.env.SECRET_KEY_REFRESH_TOKEN, { expiresIn: "1d" });
-
-      // res.cookie("RefreshT", refreshToken, {
-      //   httpOnly: true,
-      //   sameSite: "none",
-      //   secure: true,
-      //   maxAge: 24 * 60 * 60 * 1000
-
-      // });
 
       const passData = {
         accessToken: accessToken,
       };
       res.status(200).json({ msg: "Login successful", data: passData });
     } else {
-      throw new CustomError(404, "User tidak ditemukan", { reason: "User not found in the database" });
+      throw new CustomError(404, "User tidak ditemukan", { reason: "User Tidak Ditemukan Di Database" });
     }
   } catch (error) {
     handleCustomErrorRoute(res, error);
@@ -97,10 +80,10 @@ const GetProfileUser = async (req, res) => {
     const GetProfileUserData = await GetProfileUserToDB(userId);
 
     if (GetProfileUserData.length == 0) {
-      throw new CustomError(404, "User Not Found");
+      throw new CustomError(404, "User Tidak Ditemukan");
     }
 
-    res.status(200).json({ msg: "Query Successfully", data: GetProfileUserData });
+    res.status(200).json({ msg: "Query Sukses", data: GetProfileUserData });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -114,10 +97,10 @@ const UpdateProfileUser = async (req, res) => {
     const updatedUserData = await UpdateProfileUserToDB(userId, username);
 
     if (!updatedUserData) {
-      throw new CustomError(500, "Failed to Update Profile");
+      throw new CustomError(500, "Gagal Update Profile");
     }
 
-    res.status(200).json({ msg: "Profile Updated Successfully", data: updatedUserData });
+    res.status(200).json({ msg: "Profile Updated Sukses", data: updatedUserData });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -132,10 +115,10 @@ const UpdatePasswordUser = async (req, res) => {
     const UpdatePasswordUserData = await UpdatePasswordUserToDB(data, userId);
 
     if (!UpdatePasswordUserData) {
-      throw new CustomError(500, "Failed to Ganti Kata Sandi");
+      throw new CustomError(500, "Gagal Ganti Kata Sandi");
     }
 
-    res.status(200).json({ msg: "Ganti Kata Sandi Successfully" });
+    res.status(200).json({ msg: "Ganti Kata Sandi Sukses" });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }

@@ -33,7 +33,7 @@ async function GetPembahasanUjianToDB(data) {
         const { rows } = await pool.query(queryText, queryValues);
 
         if (!rows) {
-            throw new CustomError(500, "Failed to call Database");
+            throw new CustomError(500, "Gagal Menghubungi Database");
         }
         return rows;
         
@@ -75,7 +75,7 @@ async function GetPembahasanQuizToDB(data) {
         const {rows} = await pool.query(queryText,queryValues)
 
         if (!rows) {
-            throw new CustomError(500,"Failed to call Database")
+            throw new CustomError(500,"Gagal Menghubungi Database")
         }
         return rows
         

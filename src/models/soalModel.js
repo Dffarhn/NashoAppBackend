@@ -24,7 +24,7 @@ async function checkOrInsertKumpulanSoalQuiz(client, id_materi) {
       return newKS[0].id;
     }
   } catch (error) {
-    throw new CustomError(404, "Id Materi Not Found", "Wrong id_materi");
+    throw new CustomError(404, "Id Materi Tidak Ditemukan", "Salah id_materi");
   }
 }
 
@@ -69,7 +69,7 @@ async function AddSoalQuizToMateriToDB(data) {
     const resultPilihan = await client.query(queryTextPilihan, flatQueryValuesPilihan);
 
     if (!resultPilihan) {
-      throw new CustomError(500, "Failed To Add Soal to Database");
+      throw new CustomError(500, "Gagal Menambahkan Soal Ke Database");
     }
 
     await client.query("COMMIT"); // Commit the transaction
@@ -149,7 +149,7 @@ async function AddSoalUjianToMateriToDB(data) {
     const resultPilihan = await client.query(queryTextPilihan, flatQueryValuesPilihan);
 
     if (!resultPilihan) {
-      throw new CustomError(500, "Failed To Add Soal to Database");
+      throw new CustomError(500, "Gagal Menambahkan Soal ke Database");
     }
 
     await client.query("COMMIT"); // Commit the transaction
@@ -216,7 +216,7 @@ async function UpdatePilihanJawaban(data, client) {
       await client.query(QueryTextUpdateJawaban, QueryValuesUpdateJawaban);
     } catch (error) {
       // console.error(`Error updating jawaban with id ${item.id}:`, error);
-      throw new CustomError(500, "Failed Update Pilihan Jawaban"); // Lempar ulang untuk memastikan kesalahan dipropagasi
+      throw new CustomError(500, "Gagal Update Pilihan Jawaban"); // Lempar ulang untuk memastikan kesalahan dipropagasi
     }
   });
 
@@ -248,7 +248,7 @@ async function DeletePilihanJawaban(id, client) {
       await Promise.all(queries);
     }
   } catch (error) {
-    throw new CustomError(500, "Failed to delete pilihan jawaban");
+    throw new CustomError(500, "Gagal Delete pilihan jawaban");
   }
 }
 

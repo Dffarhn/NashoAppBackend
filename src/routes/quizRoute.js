@@ -9,9 +9,9 @@ const GetAllQuizMateri = async (req, res) => {
     const GetAllQuizMateriData = await GetAllQuizMateriToDB(id_materi);
 
     if (!GetAllQuizMateriData || GetAllQuizMateriData.length == 0) {
-      throw new CustomError(404, "Quiz Not Found", "Check Your Id Materi");
+      throw new CustomError(404, "Quiz Tidak Ditemukan", "Check Id Materi Anda");
     }
-    res.status(200).json({ msg: "Query Successfully", data: GetAllQuizMateriData });
+    res.status(200).json({ msg: "Sukses Menerima Data", data: GetAllQuizMateriData });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -23,9 +23,9 @@ const GetAllQuizMateriAdmin = async (req, res) => {
     const GetAllQuizMateriData = await GetAllQuizMateriAdminToDB(id_materi);
 
     if (!GetAllQuizMateriData || GetAllQuizMateriData.length == 0) {
-      throw new CustomError(404, "Quiz Not Found", "Check Your Id Materi");
+      throw new CustomError(404, "Quiz Tidak Ditemukan", "Check Id Materi Anda");
     }
-    res.status(200).json({ msg: "Query Successfully", data: GetAllQuizMateriData });
+    res.status(200).json({ msg: "Sukses Menerima Data", data: GetAllQuizMateriData });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -43,13 +43,13 @@ const AddQuizUserTake = async (req, res) => {
 
     const UserTakeQuizData = await AddTakeQuizUserToDB(data);
     if (!UserTakeQuizData || UserTakeQuizData.length == 0) {
-      throw new CustomError(404, "Quiz Not Found", "Check Your Id Materi");
+      throw new CustomError(404, "Quiz Tidak Ditemukan", "Check Id Materi Anda");
     }
 
     const payload = {
       id_mengambil_quiz: UserTakeQuizData,
     };
-    res.status(201).json({ msg: "Query Successfully", data: payload });
+    res.status(201).json({ msg: "Sukses Menerima Data", data: payload });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -68,13 +68,13 @@ const GetNilaiQuiz = async (req, res) => {
     const GetNilaiQuizData = await GetNilaiQuizToDB(data);
 
     if (!GetNilaiQuizData || GetNilaiQuizData.length == 0) {
-      throw new CustomError(404, "History Not Found", "Check Your id materi");
+      throw new CustomError(404, "Tidak Ditemukan History", "Check Id Materi Anda");
     }
 
     const payload = {
       quiz: GetNilaiQuizData,
     };
-    res.status(200).json({ msg: "Query Successfully", data: payload });
+    res.status(200).json({ msg: "Sukses Menerima Data", data: payload });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }

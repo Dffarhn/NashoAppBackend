@@ -1,4 +1,5 @@
 # **API Documentation**
+
 **Created By: Dffarhn**
 
 # USER
@@ -19,6 +20,7 @@ Request Body :
 ```
 
 Response Body (succes) :
+
 ```
 {
     "msg": "Login successful",
@@ -28,18 +30,20 @@ Response Body (succes) :
 }
 ```
 
-Response Body (failed) : 
-*Email Not Valid*
+Response Body (failed) :
+_Email Not Valid_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "Email harus valid",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
 
-*Account Not Found*
+_Account Not Found_
+
 ```
 {
     "status": "error",
@@ -48,7 +52,8 @@ Response Body (failed) :
 }
 ```
 
-*Wrong Password*
+_Wrong Password_
+
 ```
 {
     "status": "error",
@@ -57,22 +62,25 @@ Response Body (failed) :
 }
 ```
 
-*Password Kosong*
+_Password Kosong_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "Password dibutuhkan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Password Kurang dari 6 karakter*
+
+_Password Kurang dari 6 karakter_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "Password harus lebih dari 6 karakter",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
 
@@ -102,9 +110,10 @@ Response Body (succes) :
 }
 ```
 
-Response Body (failed) : 
+Response Body (failed) :
 
-*Email Account Already Exist*
+_Email Account Already Exist_
+
 ```
 {
     "status": "error",
@@ -112,60 +121,70 @@ Response Body (failed) :
     "message": "Email ini sudah terdaftar"
 }
 ```
-*Email Not Valid*
+
+_Email Not Valid_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "Email harus valid",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
 
-*Username Kosong*
+_Username Kosong_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "username dibutuhkan",
-    "data": "Your Data Not Valid"
-}
-```
-*Username Kurang Dari 6 dan Lebih Dari 30 Karakter*
-```
-{
-    "status": "error",
-    "statusCode": 400,
-    "message": "Username must be between 6 and 30 characters",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
 
-*Password Karakter Kurang Dari 6*
+_Username Kurang Dari 6 dan Lebih Dari 30 Karakter_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "Username harus punya 6-30 karakter",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Password And Re-Typed Password Not Match*
+
+_Password Karakter Kurang Dari 6_
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "Password harus punya 6-30 karakter",
+    "data": "Data Tidak Valid"
+}
+```
+
+_Password And Re-Typed Password Not Match_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "Passwords tidak sama",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Password Kosong*
+
+_Password Kosong_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "Password dibutuhkan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
 
@@ -193,23 +212,23 @@ Response Body (succes) :
 
 Response Body (failed):
 
-*Wrong Authorization Token*
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
+
 ### Update User Profile
 
 Endpoint : patch /profile
 
 Authorization Type Bearer Token : "Access Token"
-
 
 Request Body :
 
@@ -233,33 +252,37 @@ Response Body (succes) :
 
 Response Body (failed):
 
-*Wrong Authorization Token*
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-*Username Kosong*
+
+_Username Kosong_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "username dibutuhkan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Username Kurang Dari 6 dan Lebih Dari 30 Karakter*
+
+_Username Kurang Dari 6 dan Lebih Dari 30 Karakter_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
-    "message": "Username must be between 6 and 30 characters",
-    "data": "Your Data Not Valid"
+    "message": "Username harus punya 6-30 karakter",
+    "data": "Data Tidak Valid"
 }
 ```
 
@@ -268,7 +291,6 @@ Response Body (failed):
 Endpoint : patch /profile/newpassword
 
 Authorization Type Bearer Token : "Access Token"
-
 
 Request Body :
 
@@ -290,20 +312,20 @@ Response Body (succes) :
 
 Response Body (failed):
 
-*Wrong Authorization Token*
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
 
+_Old Password salah_
 
-*Old Password salah*
 ```
 {
     "status": "error",
@@ -312,31 +334,36 @@ Response Body (failed):
 }
 ```
 
-*Password Karakter Kurang Dari 6*
+_Password Karakter Kurang Dari 6_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "Username harus punya 6-30 karakter",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Password And Re-Typed Password Not Match*
+
+_Password And Re-Typed Password Not Match_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "Passwords tidak sama",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Password Kosong*
+
+_Password Kosong_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "Password dibutuhkan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
 
@@ -349,7 +376,6 @@ Endpoint : GET /materis
 Authorization Type Bearer Token : "Access Token"
 
 Request Query: (kategori) (uuid) WAJIB!
-
 
 Response Body (succes) :
 
@@ -453,37 +479,36 @@ Response Body (succes) :
 
 Response Body (failed) :
 
-*Not Valid Request Query kategori UUID*
+_Not Valid Request Query kategori UUID_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "kategori harus valid UUID",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
 
-
-###  Get Spesific Materi
+### Get Spesific Materi
 
 Endpoint : GET /materi/:id_materi
 
 Authorization Type Bearer Token : "Access Token"
 
 Request params: (id_materi) (uuid) WAJIB!
-
 
 Response Body (succes) :
 
@@ -514,28 +539,28 @@ Response Body (succes) :
 
 Response Body (failed) :
 
-*Not Valid Request Query id_materi UUID*
+_Not Valid Request Query id_materi UUID_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "id_materi harus valid UUID",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-
 
 ### User Access Materi
 
@@ -544,7 +569,6 @@ Endpoint : POST /selectMateri/:id_materi
 Authorization Type Bearer Token : "Access Token"
 
 Request Params: (id_materi) (uuid)
-
 
 Response Body (succes) :
 
@@ -558,9 +582,11 @@ Response Body (succes) :
     ]
 }
 ```
+
 Response Body (failed) :
 
-*Wrong id_materi*
+_Wrong id_materi_
+
 ```
 {
     "status": "error",
@@ -581,28 +607,31 @@ Response Body (failed) :
     }
 }
 ```
-*Not Valid id_materi*
+
+_Not Valid id_materi_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
-    "message": "id_materi must be a valid UUID",
-    "data": "Your Data Not Valid"
+    "message": "id_materi harus valid UUID",
+    "data": "Data Tidak Valid"
 }
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
 
-###  Get Kategori Materi
+### Get Kategori Materi
 
 Endpoint : GET /kategoriMateri
 
@@ -628,20 +657,17 @@ Response Body (succes) :
 
 Response Body (failed) :
 
-*Wrong Authorization Token*
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-
-
-
 
 ## QUIZ
 
@@ -652,7 +678,6 @@ Endpoint : POST /quiz/:id_materi
 Authorization Type Bearer Token : "Access Token"
 
 Request Params: (id_materi) (uuid)
-
 
 Response Body (succes) :
 
@@ -668,45 +693,51 @@ Response Body (succes) :
     }
 }
 ```
+
 Response Body (failed) :
 
-*Not Authorize to take this quiz*
+_Not Authorize to take this quiz_
+
 ```
 {
     "status": "error",
     "statusCode": 401,
-    "message": "Get The Previously Quiz First"
+    "message": "Selesaikan Quiz Sebelumnya Terlebih Dahulu"
 }
 ```
-*Quiz for that materi not make it yet*
+
+_Quiz for that materi not make it yet_
+
 ```
 {
     "status": "error",
     "statusCode": 404,
-    "message": "Quiz not found for the given materi"
+    "message": "Tidak Ditemukan Quiz Dengan Materi Tersebut"
 }
 ```
-*Not Valid id_materi*
+
+_Not Valid id_materi_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
-    "message": "id_materi must be a valid UUID",
-    "data": "Your Data Not Valid"
+    "message": "id_materi harus valid UUID",
+    "data": "Data Tidak Valid"
 }
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-
 
 ### Get Quiz From Materi
 
@@ -715,7 +746,6 @@ Endpoint : GET /quiz/:id_materi
 Authorization Type Bearer Token : "Access Token"
 
 Request Params: (id_materi) (uuid)
-
 
 Response Body (succes) :
 
@@ -771,40 +801,40 @@ Response Body (succes) :
 
 Response Body (failed) :
 
-*Not Valid UUID*
+_Not Valid UUID_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "id_materi harus valid UUID",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
 
-*Wrong id_materi*
+_Wrong id_materi_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
-    "message": "Quiz Not Found",
-    "data": "Check Your Id Materi"
+    "message": "Quiz Tidak Ditemukan",
+    "data": "Cek Id Materi Anda"
 }
 
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-
 
 ### Get Nilai Quiz User
 
@@ -836,42 +866,42 @@ Response Body (succes) :
 
 Response Body (failed) :
 
-*Not Valid UUID*
+_Not Valid UUID_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
-    "message": "id_mengambil_quiz must be a valid UUID",
-    "data": "Your Data Not Valid"
+    "message": "id_mengambil_quiz harus valid UUID",
+    "data": "Data Tidak Valid"
 }
 ```
 
-*Wrong id_mengambil_quiz*
+_Wrong id_mengambil_quiz_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
-    "message": "History Not Found",
-    "data": "Check Your id materi"
+    "message": "History Tidak Ditemukan",
+    "data": "Cek id materi Anda"
 }
 
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
 
 ### Get Pembahasan Quiz User
-
 
 Endpoint : GET /quiz/pembahasan/:id_mengambil_quiz
 
@@ -924,31 +954,31 @@ Response Body (succes) :
     ]
 }
 ```
+
 Response Body (Failed):
 
-*Wrong id_mengambil_quiz*
+_Wrong id_mengambil_quiz_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
-    "message": "Pembahasan Not Found"
+    "message": "Pembahasan Tidak Ditemukan"
 }
 
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-
-
 
 ## Ujian
 
@@ -959,7 +989,6 @@ Endpoint : POST /ujian/:id_ujian
 Authorization Type Bearer Token : "Access Token"
 
 Request Params: (id_ujian) (uuid)
-
 
 Response Body (succes) :
 
@@ -975,38 +1004,41 @@ Response Body (succes) :
     }
 }
 ```
+
 Response Body (failed) :
 
-*Not Authorize to take this quiz*
+_Not Authorize to take this Ujian_
+
 ```
 {
     "status": "error",
     "statusCode": 401,
-    "message": "You are not authorized to access the exam"
+    "message": "Anda Tidak Diperbolehkan Mengambil Ujian ini"
 }
 ```
 
-*Not Valid id_ujian*
+_Not Valid id_ujian_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "id_ujian harus valid UUID",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-
 
 ### Get Ujian
 
@@ -1015,7 +1047,6 @@ Endpoint : GET /ujian/:id_ujian
 Authorization Type Bearer Token : "Access Token"
 
 Request Params: (id_ujian) (uuid)
-
 
 Response Body (succes) :
 
@@ -1071,40 +1102,40 @@ Response Body (succes) :
 
 Response Body (failed) :
 
-*Not Valid UUID*
+_Not Valid UUID_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "id_ujian harus valid UUID",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
 
-*Wrong id_ujian*
+_Wrong id_ujian_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
     "message": "Ujian Not Found",
-    "data": "Check Your Id Ujian"
+    "data": "Cek Id Ujian Anda"
 }
 
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-
 
 ### Get Nilai Ujian User
 
@@ -1135,43 +1166,42 @@ Response Body (succes) :
 
 Response Body (failed) :
 
-*Not Valid UUID*
+_Not Valid UUID_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
-    "message": "id_mengambil_ujian must be a valid UUID",
-    "data": "Your Data Not Valid"
+    "message": "id_mengambil_ujian harus valid UUID",
+    "data": "Data Tidak Valid"
 }
 ```
 
-*Wrong id_mengambil_ujian*
+_Wrong id_mengambil_ujian_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
     "message": "History Not Found",
-    "data": "Check Your id_mengambil_ujian"
+    "data": "Cek id_mengambil_ujian Anda"
 }
 
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
 
-
 ### Get Pembahasan Ujian User
-
 
 Endpoint : GET /ujian/pembahasan/:id_mengambil_ujian
 
@@ -1224,34 +1254,36 @@ Response Body (succes) :
     ]
 }
 ```
+
 Response Body (Failed):
 
-*Wrong id_mengambil_ujian*
+_Wrong id_mengambil_ujian_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
-    "message": "Pembahasan Not Found"
+    "message": "Pembahasan Tidak Ditemukan"
 }
 
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
 
-
 ## JAWABAN
 
 ### Jawaban Quiz
+
 Endpoint : POST /quiz/cek/:id_mengambil_quiz
 
 Authorization Type Bearer Token : "Access Token"
@@ -1278,18 +1310,21 @@ Response Body (succes) :
 }
 ```
 
-Response Body (failed) : 
+Response Body (failed) :
 
-*Not Valid UUID (id_mengambil_quiz)*
+_Not Valid UUID (id_mengambil_quiz)_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
-    "message": "id_mengambil_quiz must be a valid UUID",
-    "data": "Your Data Not Valid"
+    "message": "id_mengambil_quiz harus valid UUID",
+    "data": "Data Tidak Valid"
 }
 ```
-*Wrong id_mengambil_quiz*
+
+_Wrong id_mengambil_quiz_
+
 ```
 {
     "status": "error",
@@ -1310,34 +1345,41 @@ Response Body (failed) :
     }
 }
 ```
-*Wrong id_soal*
+
+_Wrong id_soal_
+
 ```
 {
     "status": "error",
     "statusCode": 404,
-    "message": "Soal not found"
-}
-```
-*Not Valid UUID (id_soal)*
-```
-{
-    "status": "error",
-    "statusCode": 400,
-    "message": "id_soal must be a valid UUID",
-    "data": "Your Data Not Valid"
+    "message": "Soal Tidak Ditemukan"
 }
 ```
 
-*Not Valid UUID (id_jawaban)*
+_Not Valid UUID (id_soal)_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
-    "message": "id_jawaban must be a valid UUID",
-    "data": "Your Data Not Valid"
+    "message": "id_soal harus valid UUID",
+    "data": "Data Tidak Valid"
 }
 ```
-*Wrong id_jawaban*
+
+_Not Valid UUID (id_jawaban)_
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_jawaban harus valid UUID",
+    "data": "Data Tidak Valid"
+}
+```
+
+_Wrong id_jawaban_
+
 ```
 {
     "status": "error",
@@ -1358,18 +1400,21 @@ Response Body (failed) :
     }
 }
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
+
 ### Jawaban Ujian
+
 Endpoint : POST /ujian/cek/:id_mengambil_ujian
 
 Authorization Type Bearer Token : "Access Token"
@@ -1403,18 +1448,21 @@ Response Body (succes) :
 }
 ```
 
-Response Body (failed) : 
+Response Body (failed) :
 
-*Not Valid UUID (id_mengambil_ujian)*
+_Not Valid UUID (id_mengambil_ujian)_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
-    "message": "id_mengambil_ujian must be a valid UUID",
-    "data": "Your Data Not Valid"
+    "message": "id_mengambil_ujian harus valid UUID",
+    "data": "Data Tidak Valid"
 }
 ```
-*Wrong id_mengambil_ujian*
+
+_Wrong id_mengambil_ujian_
+
 ```
 {
     "status": "error",
@@ -1435,34 +1483,41 @@ Response Body (failed) :
     }
 }
 ```
-*Wrong id_soal*
+
+_Wrong id_soal_
+
 ```
 {
     "status": "error",
     "statusCode": 404,
-    "message": "Soal not found"
-}
-```
-*Not Valid UUID (id_soal)*
-```
-{
-    "status": "error",
-    "statusCode": 400,
-    "message": "id_soal must be a valid UUID",
-    "data": "Your Data Not Valid"
+    "message": "Soal Tidak Ditemukan"
 }
 ```
 
-*Not Valid UUID (id_jawaban)*
+_Not Valid UUID (id_soal)_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
-    "message": "id_jawaban must be a valid UUID",
-    "data": "Your Data Not Valid"
+    "message": "id_soal harus valid UUID",
+    "data": "Data Tidak Valid"
 }
 ```
-*Wrong id_jawaban*
+
+_Not Valid UUID (id_jawaban)_
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_jawaban harus valid UUID",
+    "data": "Data Tidak Valid"
+}
+```
+
+_Wrong id_jawaban_
+
 ```
 {
     "status": "error",
@@ -1483,19 +1538,21 @@ Response Body (failed) :
     }
 }
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
 
 ## Statistik
+
 ### Statistik Pembelajaran User
 
 Endpoint : GET /statistik
@@ -1518,6 +1575,7 @@ Response Body (succes) :
     ]
 }
 ```
+
 ```
 {
     "msg": "Query Sukses",
@@ -1534,6 +1592,7 @@ Response Body (succes) :
     ]
 }
 ```
+
 ```
 {
     "msg": "Query Sukses",
@@ -1549,26 +1608,23 @@ Response Body (succes) :
 }
 ```
 
-
-
 Response Body (failed) :
-*Wrong Authorization Token*
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
 
-
-
-
 # ADMIN
+
 ## MATERI
+
 ### ADD MATERI
 
 Endpoint : POST /admin/materi
@@ -1589,6 +1645,7 @@ Request Body :
 ```
 
 Response Body (succes) :
+
 ```
 {
     "msg": "Successfully added materi",
@@ -1598,25 +1655,26 @@ Response Body (succes) :
 }
 ```
 
-*Wrong Authorization Token*
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-*Wrong Authorization Token 2*
+
+_Wrong Authorization Token 2_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
     "message": "Forbidden Access",
-    "data": "You Are Not Admin"
+    "data": "Anda Bukan Admin"
 }
 
 ```
@@ -1640,14 +1698,16 @@ Request Body :
 ```
 
 Response Body (succes) :
+
 ```
 {
     "msg": "Successfully Update materi"
 }
 ```
 
-Response Body (failed) : 
-*id_materi Not Found on database*
+Response Body (failed) :
+_id_materi Not Found on database_
+
 ```
 {
     "status": "error",
@@ -1655,62 +1715,71 @@ Response Body (failed) :
     "message": "Failed to Update materi to database"
 }
 ```
-*id_materi Not Valid*
+
+_id_materi Not Valid_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "id harus valid UUID",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*judul Not Valid*
+
+_judul Not Valid_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "judul dibutuhkan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*isi Not Valid*
+
+_isi Not Valid_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "isi dibutuhkan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
 
-*LinkVideo Not Found*
+_LinkVideo Not Found_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "linkVideo dibutuhkan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-*Wrong Authorization Token 2*
+
+_Wrong Authorization Token 2_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
     "message": "Forbidden Access",
-    "data": "You Are Not Admin"
+    "data": "Anda Bukan Admin"
 }
 
 ```
@@ -1724,14 +1793,16 @@ Authorization Type Bearer Token : "Access Token"
 Request Params : id_materi (uuid)
 
 Response Body (succes) :
+
 ```
 {
     "message": "Successfully deleted 1 row(s)."
 }
 ```
 
-Response Body (failed) : 
-*id_materi Not Found on database*
+Response Body (failed) :
+_id_materi Not Found on database_
+
 ```
 {
     "status": "error",
@@ -1739,34 +1810,38 @@ Response Body (failed) :
     "message": "No Data Deleted"
 }
 ```
-*id_materi Not Valid*
+
+_id_materi Not Valid_
+
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "id harus valid UUID",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-*Wrong Authorization Token 2*
+
+_Wrong Authorization Token 2_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
     "message": "Forbidden Access",
-    "data": "You Are Not Admin"
+    "data": "Anda Bukan Admin"
 }
 
 ```
@@ -1794,6 +1869,7 @@ Request Body :
 ```
 
 Response Body (succes) :
+
 ```
 {
     "msg": "Soal Added To Database",
@@ -1801,93 +1877,98 @@ Response Body (succes) :
 }
 ```
 
-*Wrong Authorization Token*
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-*Wrong Authorization Token 2*
+
+_Wrong Authorization Token 2_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
     "message": "Forbidden Access",
-    "data": "You Are Not Admin"
+    "data": "Anda Bukan Admin"
 }
 
 ```
 
-*Jawaban benar tidak ada pilihan out of range*
+_Jawaban benar tidak ada pilihan out of range_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
-    "message": "jawaban_benar must be within the range of 0 to 3",
-    "data": "Your Data Not Valid"
+    "message": "jawaban_benar harus berada pada range 0 to 3",
+    "data": "Data Tidak Valid"
 }
 
 ```
-*Jawaban benar tidak integer*
+
+_Jawaban benar tidak integer_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "jawaban_benar harus lebih atau sama dengan 0",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Soal tidak terisi*
+
+_Soal tidak terisi_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "soal dibutuhkan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*pilihan tidak terisi*
+
+_pilihan tidak terisi_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "pilihan harus memiliki 2 opsi",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*phase tidak terisi*
+
+_phase tidak terisi_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "phase harus integer",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*kategori_materi tidak terisi*
+
+_kategori_materi tidak terisi_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "kategori_materi harus valid UUID",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
 
-
-### Update Soal Ujian 
+### Update Soal Ujian
 
 Endpoint : Patch /admin/soal/:id_soal
 
@@ -1926,55 +2007,57 @@ Request Body :
 ```
 
 Response Body (succes) :
+
 ```
 {
     "message": "Update successful"
 }
 ```
 
-*Wrong Authorization Token*
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-*Wrong Authorization Token 2*
+
+_Wrong Authorization Token 2_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
     "message": "Forbidden Access",
-    "data": "You Are Not Admin"
+    "data": "Anda Bukan Admin"
 }
 
 ```
 
-*Jawaban benar tidak ada pilihan*
+_Jawaban benar tidak ada pilihan_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "Jawaban benar harus termasuk dalam daftar pilihan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 
 ```
 
-*Soal tidak terisi*
+_Soal tidak terisi_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "soal dibutuhkan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
 
@@ -1987,37 +2070,36 @@ Authorization Type Bearer Token : "Access Token"
 Request Params: id_soal (uuid) WAJIB
 
 Response Body (succes) :
+
 ```
 {
     "message": "Delete successful"
 }
 ```
 
-*Wrong Authorization Token*
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-*Wrong Authorization Token 2*
+
+_Wrong Authorization Token 2_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
     "message": "Forbidden Access",
-    "data": "You Are Not Admin"
+    "data": "Anda Bukan Admin"
 }
 
 ```
-
-
-
 
 ## Quiz
 
@@ -2041,6 +2123,7 @@ Request Body :
 ```
 
 Response Body (succes) :
+
 ```
 {
     "msg": "Soal Added To Database",
@@ -2049,7 +2132,7 @@ Response Body (succes) :
 
 ```
 
-*Wrong Id Materi*
+_Wrong Id Materi_
 
 ```
 {
@@ -2059,68 +2142,73 @@ Response Body (succes) :
 }
 
 ```
-*Wrong Authorization Token*
+
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-*Wrong Authorization Token 2*
+
+_Wrong Authorization Token 2_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
     "message": "Forbidden Access",
-    "data": "You Are Not Admin"
+    "data": "Anda Bukan Admin"
 }
 
 ```
 
-*Jawaban benar tidak ada pilihan out of range*
+_Jawaban benar tidak ada pilihan out of range_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "jawaban_benar must be within the range of 0 to 3",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 
 ```
-*Jawaban benar tidak integer*
+
+_Jawaban benar tidak integer_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "jawaban_benar harus lebih atau sama dengan 0",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*Soal tidak terisi*
+
+_Soal tidak terisi_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "soal dibutuhkan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-*pilihan tidak terisi*
+
+_pilihan tidak terisi_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "pilihan harus memiliki 2 opsi",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
 
@@ -2161,59 +2249,59 @@ Request Body :
 ```
 
 Response Body (succes) :
+
 ```
 {
     "message": "Update successful"
 }
 ```
 
-*Wrong Authorization Token*
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-*Wrong Authorization Token 2*
+
+_Wrong Authorization Token 2_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
     "message": "Forbidden Access",
-    "data": "You Are Not Admin"
+    "data": "Anda Bukan Admin"
 }
 
 ```
 
-*Jawaban benar tidak ada pilihan*
+_Jawaban benar tidak ada pilihan_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "Jawaban benar harus termasuk dalam daftar pilihan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 
 ```
 
-*Soal tidak terisi*
+_Soal tidak terisi_
 
 ```
 {
     "status": "error",
     "statusCode": 400,
     "message": "soal dibutuhkan",
-    "data": "Your Data Not Valid"
+    "data": "Data Tidak Valid"
 }
 ```
-
-
 
 ### Delete Soal Quiz
 
@@ -2224,33 +2312,33 @@ Authorization Type Bearer Token : "Access Token"
 Request Params: id_soal (uuid) WAJIB
 
 Response Body (succes) :
+
 ```
 {
     "message": "Delete successful"
 }
 ```
 
-*Wrong Authorization Token*
+_Wrong Authorization Token_
 
 ```
 {
     "status": "error",
     "statusCode": 403,
     "message": "Access Invalid",
-    "data": "Your Token is Expired"
+    "data": "Token Telah Expired"
 }
 
 ```
-*Wrong Authorization Token 2*
+
+_Wrong Authorization Token 2_
 
 ```
 {
     "status": "error",
     "statusCode": 404,
     "message": "Forbidden Access",
-    "data": "You Are Not Admin"
+    "data": "Anda Bukan Admin"
 }
 
 ```
-
-

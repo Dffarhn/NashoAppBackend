@@ -9,13 +9,13 @@ const Auth_Access = (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1]; // Extract the token part
 
   if (!token) {
-    throw new CustomError(404, "Forbidden Access", "You Dont Have Token");
+    throw new CustomError(404, "Forbidden Access", "Tidak Mempunyai Token");
   }
 
   // Verify the access token
   jwt.verify(token, process.env.SECRET_KEY_TOKEN, (err, decoded) => {
     if (err) {
-      throw new CustomError(403, "Access Invalid", "Your Token is Expired");
+      throw new CustomError(403, "Access Invalid", "Token Telah Expired");
     }
     // Token is valid, attach decoded user information to the request object
     req.user = decoded;
@@ -29,19 +29,19 @@ const Auth_Access_Admin = (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1]; // Extract the token part
 
   if (!token) {
-    throw new CustomError(404, "Forbidden Access", "You Dont Have Token");
+    throw new CustomError(404, "Forbidden Access", "Tidak Mempunyai Token");
   }
 
   // Verify the access token
   jwt.verify(token, process.env.SECRET_KEY_TOKEN, (err, decoded) => {
     if (err) {
-      throw new CustomError(403, "Access Invalid", "Your Token is Expired");
+      throw new CustomError(403, "Access Invalid", "Token Telah Expired");
     }
     // Token is valid, attach decoded user information to the request object
     req.user = decoded;
     // console.log(req.user.role);
     if (req.user.role != "ac87fd21-2f94-4c1d-a582-ffe691fef450") {
-      throw new CustomError(404, "Forbidden Access", "You Are Not Admin");
+      throw new CustomError(404, "Forbidden Access", "Anda Bukan Admin");
     }
 
     next(); // Proceed to the next middleware or route handler

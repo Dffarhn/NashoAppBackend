@@ -77,7 +77,7 @@ const validateJawabanBenar = (field, pilihanField) => {
     .custom((value, { req }) => {
       const pilihan = req.body[pilihanField] || [];
       if (value < 0 || value >= pilihan.length) {
-        throw new Error(`${field} must be within the range of 0 to ${pilihan.length - 1}`);
+        throw new Error(`${field} harus berada pada range 0 to ${pilihan.length - 1}`);
       }
       return true;
     });

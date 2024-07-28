@@ -10,10 +10,10 @@ const AddMateriAdmin = async (req, res) => {
     const newMateriId = await addMateriToDB(data);
 
     if (!newMateriId) {
-      throw new CustomError(500, "Failed to add materi to database");
+      throw new CustomError(500, "Gagal Menambahkan Materi ke Database");
     }
 
-    res.status(201).json({ msg: "Successfully added materi", data: { id: newMateriId } });
+    res.status(201).json({ msg: "Sukses Menambahkan Materi", data: { id: newMateriId } });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -27,10 +27,10 @@ const UpdateMateriAdmin = async (req, res) => {
     const UpdateMateriData = await UpdateMateriToDB(data, id);
 
     if (UpdateMateriData.rowCount == 0) {
-      throw new CustomError(500, "Failed to Update materi to database");
+      throw new CustomError(500, "Gagal Update materi ke database");
     }
 
-    res.status(200).json({ msg: "Successfully Update materi" });
+    res.status(200).json({ msg: "Sukses Update materi" });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -43,9 +43,9 @@ const DeleteMateriAdmin = async (req, res) => {
     const deletedRows = await DeleteMateriToDB(id);
 
     if (deletedRows > 0) {
-      res.status(200).json({ message: `Successfully deleted ${deletedRows} row(s).` });
+      res.status(200).json({ message: `Sukses delete ${deletedRows} row(s).` });
     } else {
-      throw new CustomError(404, "No Data Deleted");
+      throw new CustomError(404, "Tidak ada Data Di hapus");
     }
   } catch (error) {
     handleCustomErrorRoute(res, error);
@@ -57,7 +57,7 @@ const getKategoriMateri = async (req, res) => {
   try {
     const userId = req.user.id;
     const kategoriMateri = await getAllKategoriMateri();
-    res.status(200).json({ msg: "Successfully retrieved kategori materi", data: kategoriMateri });
+    res.status(200).json({ msg: "Sukses Menerima kategori materi", data: kategoriMateri });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -97,14 +97,14 @@ const GetAllMateri = async (req, res) => {
 
     GetAllMateriData = LockStatusMateri(GetAllMateriData)
     if (!GetAllMateriData || GetAllMateriData.length === 0) {
-      throw new CustomError(404, "No materials found");
+      throw new CustomError(404, "Tidak Ada Materi Ditemukan");
     }
 
     let spesifickategori = await GetSpesificKategoriToDB(kategori)
 
     spesifickategori[0].materi = GetAllMateriData
 
-    res.status(200).json({ msg: "Successfully retrieved materi", data: spesifickategori });
+    res.status(200).json({ msg: "Sukses Menerima Materi", data: spesifickategori });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -122,9 +122,9 @@ const GetSpesificMateri = async (req, res) => {
 
     const GetSpeseificMateriData = await GetSpesificMateriToDB(data);
     if (!GetSpeseificMateriData || GetSpeseificMateriData.length === 0) {
-      throw new CustomError(404, "No materials found");
+      throw new CustomError(404, "Tidak Ditemukan Materi");
     }
-    res.status(200).json({ msg: "Successfully retrieved materi", data: GetSpeseificMateriData });
+    res.status(200).json({ msg: "Sukses Menerima Materi", data: GetSpeseificMateriData });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
@@ -137,9 +137,9 @@ const AddNewMateriAccessUser = async (req, res) => {
 
     const AddNewMateriAccessUserData = await AddNewMateriAccessToDB(userId, id_materi);
     if (!AddNewMateriAccessUserData || AddNewMateriAccessUserData.length === 0) {
-      throw new CustomError(500, "Failed To Add New User Access");
+      throw new CustomError(500, "Gagal Menambahkan User Access");
     }
-    res.status(200).json({ msg: "Successfully Add User Access", data: AddNewMateriAccessUserData });
+    res.status(200).json({ msg: "Sukses Menambahkan User Access", data: AddNewMateriAccessUserData });
   } catch (error) {
     handleCustomErrorRoute(res, error);
   }
