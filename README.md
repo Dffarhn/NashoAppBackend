@@ -23,7 +23,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Login successful",
+    "msg": "Login Sukses",
     "data": {
         "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY0ZjhjY2ViLWEyNjQtNDU0Ny1iODk0LWM4M2E3ZGQ1NWJhNyIsInVzZXJuYW1lIjoiZGFwYXBwcHBwcCIsImVtYWlsIjoiZC5yYWloYW4yMDA0QGdtYWlsLmNvbSIsInJvbGUiOiIzMTUxZTdkMC00YTgxLTQwNDItYmU4Ny03NzBhNmU1ODY1Y2IiLCJpYXQiOjE3MTk4ODk5MzQsImV4cCI6MTcxOTg5MDUzNH0.75MVcrEf7GDzm98qCcpzAxoKi07UAaGzHaOMIRDIHIY"
 }
@@ -103,7 +103,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Registration successful",
+    "msg": "Registration Sukses",
     "data": {
         "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMzMzRkNmIwLTZmN2ItNDAzMi1hZDY5LWRkMzE4MWJmMzNjMSIsInVzZXJuYW1lIjoiZHJhZGFwZGFwIiwiZW1haWwiOiJkLnJhaWhhbjIwMDNAZ21haWwuY29tIiwicm9sZSI6IjMxNTFlN2QwLTRhODEtNDA0Mi1iZTg3LTc3MGE2ZTU4NjVjYiIsImlhdCI6MTcxOTg5MTQwMCwiZXhwIjoxNzE5ODkyMDAwfQ.GEH5penoTlUhC64AuR6RVCysRG7KNqi62N4GNJz0Eek"
     }
@@ -200,7 +200,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Successfully",
+    "msg": "Query Sukses",
     "data": [
         {
             "email": "nasho@gmail.com",
@@ -242,7 +242,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Profile Updated Successfully",
+    "msg": "Profile Updated Sukses",
     "data": {
         "email": "nasho@gmail.com",
         "username": "Username Nasho"
@@ -306,7 +306,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Ganti Kata Sandi Successfully"
+    "msg": "Ganti Kata Sandi Sukses"
 }
 ```
 
@@ -381,7 +381,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Successfully retrieved materi",
+    "msg": "Sukses Menerima Materi",
     "data": [
         {
             "id": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
@@ -514,7 +514,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Successfully retrieved materi",
+    "msg": "Sukses Menerima Materi",
     "data": [
         {
             "id": "68fb6898-5563-466a-ab33-8afbbb47103c",
@@ -574,7 +574,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Successfully Add User Access",
+    "msg": "Sukses Menambahkan User Access",
     "data": [
         {
             "id": "bafec599-8581-4eda-8118-534a2b2de81c"
@@ -641,15 +641,17 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Successfully retrieved kategori materi",
+    "msg": "Sukses Menerima kategori materi",
     "data": [
         {
             "id": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
-            "jenis": "Nahwu"
+            "jenis": "Nahwu",
+            "deskripsi": "Nahwu adalah ilmu yang mempelajari struktur kalimat dalam bahasa Arab. Fokus utama nahwu adalah bagaimana kata-kata disusun dalam sebuah kalimat agar sesuai dengan kaidah tata bahasa Arab. Nahwu mencakup aturan tentang posisi dan fungsi kata dalam kalimat, serta perubahan yang terjadi pada akhir kata karena posisi tersebut."
         },
         {
             "id": "630fc24e-6efb-43a9-a997-b32d19a04606",
-            "jenis": "Sharaf"
+            "jenis": "Sharaf",
+            "deskripsi": "Sharaf adalah ilmu yang mempelajari struktur kalimat dalam bahasa Arab. Fokus utama nahwu adalah bagaimana kata-kata disusun dalam sebuah kalimat agar sesuai dengan kaidah tata bahasa Arab. Nahwu mencakup aturan tentang posisi dan fungsi kata dalam kalimat, serta perubahan yang terjadi pada akhir kata karena posisi tersebut."
         }
     ]
 }
@@ -683,7 +685,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Successfully",
+    "msg": "Query Sukses",
     "data": {
         "id_mengambil_quiz": [
             {
@@ -751,7 +753,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Successfully",
+    "msg": "Query Sukses",
     "data": [
         {
             "soal_id": "0aac1758-2d32-4d65-a1ef-a743a3a0e074",
@@ -848,7 +850,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Successfully",
+    "msg": "Query Sukses",
     "data": {
         "quiz": [
             {
@@ -913,7 +915,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Successfully",
+    "msg": "Query Sukses",
     "data": [
         {
             "soal_quiz": "ab084fe0-253c-47e7-a2ea-c442fb098bba",
@@ -994,7 +996,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Successfully",
+    "msg": "Query Sukses",
     "data": {
         "id_mengambil_ujian": [
             {
@@ -1052,7 +1054,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Successfully",
+    "msg": "Query Sukses",
     "data": [
         {
             "soal_id": "0aac1758-2d32-4d65-a1ef-a743a3a0e074",
@@ -1149,7 +1151,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Successfully",
+    "msg": "Query Sukses",
     "data": {
         "ujian": [
             {
@@ -1213,7 +1215,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Successfully",
+    "msg": "Query Sukses",
     "data": [
         {
             "soal_ujian": "ab084fe0-253c-47e7-a2ea-c442fb098bba",
@@ -1648,7 +1650,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Successfully added materi",
+    "msg": "Sukses Menambahkan Materi",
     "data": {
         "id": "a9abfdc8-e8b5-4f4c-be00-ee85e5836d9f"
     }
@@ -1701,7 +1703,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Successfully Update materi"
+    "msg": "Sukses Update Materi"
 }
 ```
 
@@ -1796,7 +1798,7 @@ Response Body (succes) :
 
 ```
 {
-    "message": "Successfully deleted 1 row(s)."
+    "message": "Sukses delete"
 }
 ```
 
@@ -1872,7 +1874,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Soal Added To Database",
+    "msg": "Soal Ditambahkan ke Database",
     "data": "697b4576-18b3-45e9-9dc7-ba05f7b20090"
 }
 ```
@@ -2010,7 +2012,7 @@ Response Body (succes) :
 
 ```
 {
-    "message": "Update successful"
+    "message": "Update Sukses"
 }
 ```
 
@@ -2073,7 +2075,7 @@ Response Body (succes) :
 
 ```
 {
-    "message": "Delete successful"
+    "message": "Delete Sukses"
 }
 ```
 
@@ -2126,7 +2128,7 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Soal Added To Database",
+    "msg": "Soal Ditambahkan ke Database",
     "data": "48690445-d0b1-4dc6-bfe7-7ae654e10808"
 }
 
@@ -2252,7 +2254,7 @@ Response Body (succes) :
 
 ```
 {
-    "message": "Update successful"
+    "message": "Update Sukses"
 }
 ```
 
@@ -2315,7 +2317,7 @@ Response Body (succes) :
 
 ```
 {
-    "message": "Delete successful"
+    "message": "Delete Sukses"
 }
 ```
 

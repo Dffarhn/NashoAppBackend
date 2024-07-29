@@ -43,7 +43,7 @@ const DeleteMateriAdmin = async (req, res) => {
     const deletedRows = await DeleteMateriToDB(id);
 
     if (deletedRows > 0) {
-      res.status(200).json({ message: `Sukses delete ${deletedRows} row(s).` });
+      res.status(200).json({ message: `Sukses delete` });
     } else {
       throw new CustomError(404, "Tidak ada Data Di hapus");
     }

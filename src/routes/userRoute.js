@@ -15,7 +15,7 @@ const RegisterUser = async (req, res) => {
       const passData = {
         accessToken: accessToken,
       };
-      res.status(201).json({ msg: "Registration successful", data: passData });
+      res.status(201).json({ msg: "Registration Sukses", data: passData });
     } else {
       throw new CustomError(500, "Internal server error", { reason: "Gagal Pendaftaran User" });
     }
@@ -36,7 +36,7 @@ const LoginUser = async (req, res) => {
       const passData = {
         accessToken: accessToken,
       };
-      res.status(200).json({ msg: "Login successful", data: passData });
+      res.status(200).json({ msg: "Login Sukses", data: passData });
     } else {
       throw new CustomError(404, "User tidak ditemukan", { reason: "User Tidak Ditemukan Di Database" });
     }
