@@ -753,47 +753,66 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Sukses",
+    "msg": "Sukses Menerima Data",
     "data": [
         {
-            "soal_id": "0aac1758-2d32-4d65-a1ef-a743a3a0e074",
-            "soal": "apakah ini berhasil3",
+            "nama_quiz": "tesupdate",
+            "soal_id": "4780edf0-c793-4d12-b009-86c529e032bc",
+            "soal": "Siapakah Presiden Nomor 3",
             "pilihan": [
                 {
-                    "id": "d7e0e70d-c008-43b2-8304-1aba05a02b75",
+                    "id": "ad6262bb-f97e-4152-a8ec-4babdc8ed1d2",
+                    "jawaban": "Soerharto"
+                },
+                {
+                    "id": "7c842fcd-caf3-4923-ba8e-c67855a7fecd",
+                    "jawaban": "Soekarno"
+                },
+                {
+                    "id": "af9cf4b7-a82d-441a-9b02-4f0092271c6e",
+                    "jawaban": "Megawati"
+                },
+                {
+                    "id": "9f5f7305-7f6a-4185-8b81-cadba03bf3e1",
+                    "jawaban": "BJ Habibie"
+                }
+            ]
+        },
+        {
+            "nama_quiz": "tesupdate",
+            "soal_id": "afd7390d-0875-4347-b2c2-84de2823eb52",
+            "soal": "jadi kita melakukan tes update",
+            "pilihan": [
+                {
+                    "id": "125a642a-7ecc-407c-80f4-567b621a7336",
+                    "jawaban": "Prabowo"
+                },
+                {
+                    "id": "36bfb004-8371-463d-910e-31d3615a419e",
+                    "jawaban": "Anies"
+                },
+                {
+                    "id": "231aa0b2-b446-4926-aa78-542083d83b07",
+                    "jawaban": "Jokowi"
+                },
+                {
+                    "id": "48406ea1-f043-48d0-a6e3-41d7886524ef",
+                    "jawaban": "Ganjar"
+                }
+            ]
+        },
+        {
+            "nama_quiz": "tesupdate",
+            "soal_id": "d22f726a-3a35-4e40-8c5b-4415f6d83e40",
+            "soal": "apakah ini berhasi quiz",
+            "pilihan": [
+                {
+                    "id": "b17f3883-4ca8-46ed-ae46-5379d3498801",
                     "jawaban": "iya"
                 },
                 {
-                    "id": "9e90e256-384e-46ec-84c8-d7ae8c237dba",
+                    "id": "2fd85abd-a6be-461c-882d-514ea2e51d0a",
                     "jawaban": "no"
-                }
-            ]
-        },
-        {
-            "soal_id": "bc71d7e8-2425-4940-ae76-dd7c76273ed1",
-            "soal": "apakah ini berhasil",
-            "pilihan": [
-                {
-                    "id": "0a001fa0-76cd-447f-abb7-1bb6b2cd542c",
-                    "jawaban": "iya"
-                },
-                {
-                    "id": "ddaa9a64-93dc-444f-b588-f144cab3d14f",
-                    "jawaban": "tidak"
-                }
-            ]
-        },
-        {
-            "soal_id": "ea2e23c8-b430-4541-b960-b40de909e6d7",
-            "soal": "apakah ini berhasil2",
-            "pilihan": [
-                {
-                    "id": "a4129e6e-d19c-4837-a08d-faaeeba45d38",
-                    "jawaban": "iya"
-                },
-                {
-                    "id": "73abd396-ba3b-474a-88d4-d13542a9290c",
-                    "jawaban": "tidak"
                 }
             ]
         }
