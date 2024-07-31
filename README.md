@@ -869,15 +869,16 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Sukses",
+    "msg": "Sukses Menerima Data",
     "data": {
         "quiz": [
             {
-                "nilai": 50,
-                "lulus": false,
-                "jumlah_soal": 2,
+                "nama_quiz": "tesupdate",
+                "nilai": 100,
+                "lulus": true,
+                "jumlah_soal": 1,
                 "jumlah_benar": 1,
-                "jumlah_salah": 1
+                "jumlah_salah": 0
             }
         ]
     }

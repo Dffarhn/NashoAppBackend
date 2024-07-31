@@ -222,15 +222,20 @@ async function GetNilaiQuizToDB(data) {
   try {
     const { id_mengambil_quiz, id_user } = data;
 
-    console.log(id_mengambil_quiz, id_user);
+    // console.log(id_mengambil_quiz, id_user);
 
     const queryText = `
         SELECT  
-            jawabanquizuser.status_jawaban
+            jawabanquizuser.status_jawaban,
+            materi.judul AS nama_quiz
         FROM 
             mengambilquiz
         JOIN 
             jawabanquizuser ON jawabanquizuser.quiz_diambil = mengambilquiz.id
+        JOIN
+            kumpulansoalquiz ON mengambilquiz.quiz = kumpulansoalquiz.id
+        JOIN 
+            materi ON kumpulansoalquiz.id_materi = materi.id
         WHERE
             mengambilquiz.usernasho = $1
             AND jawabanquizuser.quiz_diambil = $2;
@@ -241,6 +246,8 @@ async function GetNilaiQuizToDB(data) {
     const queryValues = [id_user, id_mengambil_quiz];
 
     const { rows } = await pool.query(queryText, queryValues);
+
+    console.log(rows)
 
     // Count the number of true answers
     const trueCount = rows.filter((item) => item.status_jawaban === true).length;
@@ -271,6 +278,7 @@ async function GetNilaiQuizToDB(data) {
     }
 
     const payload = [{
+      nama_quiz: rows[0].nama_quiz,
       nilai: Math.ceil(points),
       lulus: status_kelulusan,
       jumlah_soal : totalQuestions,
