@@ -422,8 +422,20 @@ Response Body (succes) :
                             "tingkat": 3,
                             "quiz": [
                                 {
-                                    "nilai": 50,
-                                    "lulus": false
+                                    "nilai": 100,
+                                    "lulus": true
+                                }
+                            ]
+                        },
+                        {
+                            "id": "68fb6898-5563-466a-ab33-8afbbb47103c",
+                            "judul": "tes789",
+                            "sudah_mengambil": true,
+                            "tingkat": 3,
+                            "quiz": [
+                                {
+                                    "nilai": 100,
+                                    "lulus": true
                                 }
                             ]
                         }
@@ -431,6 +443,7 @@ Response Body (succes) :
                     "ujian": [
                         {
                             "id": "697b4576-18b3-45e9-9dc7-ba05f7b20090",
+                            "nama_ujian": "Ujian Tengah",
                             "phase_ujian": 1,
                             "kategori_ujian": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
                             "riwayat": [
@@ -464,12 +477,13 @@ Response Body (succes) :
                     "ujian": [
                         {
                             "id": "c8ce88e1-0432-47fa-b032-8851aeb4608a",
+                            "nama_ujian": "Ujian Akhir",
                             "phase_ujian": 2,
                             "kategori_ujian": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
                             "riwayat": null
                         }
                     ],
-                    "locked": true
+                    "locked": false
                 }
             ]
         }
