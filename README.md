@@ -1869,6 +1869,222 @@ _Wrong Authorization Token 2_
 
 ## Ujian
 
+
+### Get Ujian
+
+Endpoint : GET /admin/ujian/:id_ujian
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: (id_ujian) (uuid)
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Query Sukses",
+    "data": [
+        {
+            "soal_id": "e97fbf4b-22ff-4d0e-9f85-4d5b5d70bbb5",
+            "soal": "apakah ini berhasil122312 ujian lagi",
+            "pilihan": [
+                {
+                    "id": "8b12392b-3763-48b2-9bee-8c0594d3d7d7",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "044f29cb-0f7c-466c-ab77-fb5a509b0a53",
+                    "jawaban": "no"
+                }
+            ],
+            "jawaban_benar": "044f29cb-0f7c-466c-ab77-fb5a509b0a53",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi.\n"
+        },
+        {
+            "soal_id": "436e2418-8e3b-40dd-9c58-bb2e4ccd4e30",
+            "soal": "Siapakah pilpres 2024 jilid 2",
+            "pilihan": [
+                {
+                    "id": "aa755c1d-480c-4d88-9441-5af081a6a2e2",
+                    "jawaban": "Prabowo"
+                },
+                {
+                    "id": "d70b59ae-7905-45eb-a52e-6b725e23aca9",
+                    "jawaban": "Ganjar"
+                },
+                {
+                    "id": "6c372d10-6f47-42f7-b2b9-48fbbc916647",
+                    "jawaban": "Anies"
+                },
+                {
+                    "id": "f8a55abf-3981-4646-9324-66037cdc576e",
+                    "jawaban": "Jokowi"
+                }
+            ],
+            "jawaban_benar": "d70b59ae-7905-45eb-a52e-6b725e23aca9",
+            "pembahasan": "Itu dikarenakan ada nya suatu persepsi yang membentuk suatu kemegahan nasional"
+        },
+        {
+            "soal_id": "67ba5eb9-a52f-42e3-a214-d401331ce697",
+            "soal": "apakah ini berhasil122312 ujian lagi 2",
+            "pilihan": [
+                {
+                    "id": "154d1abe-f6f3-4029-aeff-85424bbd016a",
+                    "jawaban": "no"
+                },
+                {
+                    "id": "146e85d4-d681-4b89-a0b6-fc5926d6a305",
+                    "jawaban": "iya"
+                }
+            ],
+            "jawaban_benar": "154d1abe-f6f3-4029-aeff-85424bbd016a",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "soal_id": "40c4e315-2165-43ea-a625-df1a7a9b0fac",
+            "soal": "apakah ini berhasil122312 ujian lagi 2",
+            "pilihan": [
+                {
+                    "id": "125d1018-4d59-482f-9944-0c472e93baba",
+                    "jawaban": "no"
+                },
+                {
+                    "id": "809f1dd2-886e-4533-a931-014129f35908",
+                    "jawaban": "iya"
+                }
+            ],
+            "jawaban_benar": "125d1018-4d59-482f-9944-0c472e93baba",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "soal_id": "2c53af39-5ebb-4113-8856-8aa6c4df4af8",
+            "soal": "apakah ini berhasil122312 ujian lagi 2",
+            "pilihan": [
+                {
+                    "id": "17dbd863-e207-46a4-a3ef-51c539ed7c26",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "abeaecdf-beed-4a96-860e-e96a4bb3c897",
+                    "jawaban": "no"
+                }
+            ],
+            "jawaban_benar": "abeaecdf-beed-4a96-860e-e96a4bb3c897",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "soal_id": "d6dbb716-e1dd-42b4-8b39-95528af3fdd3",
+            "soal": "apakah ini berhasil122312 ujian lagi",
+            "pilihan": [
+                {
+                    "id": "d56ba4b9-fb8d-4fec-871e-2db806868a57",
+                    "jawaban": "no"
+                },
+                {
+                    "id": "72b36983-25ad-4ee3-90c4-7c945bb1dd9c",
+                    "jawaban": "iya"
+                }
+            ],
+            "jawaban_benar": "d56ba4b9-fb8d-4fec-871e-2db806868a57",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "soal_id": "0ac16561-8885-45e2-af01-eb27592f754c",
+            "soal": "apakah ini berhasil122312 ujian lagi 2",
+            "pilihan": [
+                {
+                    "id": "38e560f4-638c-4e5d-940b-df33c8e1e6b7",
+                    "jawaban": "no"
+                },
+                {
+                    "id": "afaf6cab-48a2-4d09-b59b-0e8c6b5d3047",
+                    "jawaban": "iya"
+                }
+            ],
+            "jawaban_benar": "38e560f4-638c-4e5d-940b-df33c8e1e6b7",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "soal_id": "2c809db1-d071-47c9-b636-af6e47718ff5",
+            "soal": "apakah ini berhasil122312 update sebuah soal plis pls",
+            "pilihan": [
+                {
+                    "id": "fdcdd1aa-39dd-4483-ab83-6a07722c0d3f",
+                    "jawaban": "no sir"
+                },
+                {
+                    "id": "a1a527a0-c400-40d0-a5db-bab798d2aab3",
+                    "jawaban": "iya sir"
+                }
+            ],
+            "jawaban_benar": "a1a527a0-c400-40d0-a5db-bab798d2aab3",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "soal_id": "eb2ae113-343b-47ae-9d9a-ea8f28bb2c55",
+            "soal": "Siapakah Presiden Nomor 1",
+            "pilihan": [
+                {
+                    "id": "ebca2bb0-1287-4f27-9ac2-d6867d5ab603",
+                    "jawaban": "BJ Habibie"
+                },
+                {
+                    "id": "7c27319e-4f02-4aee-b8f2-f5a10eef9d33",
+                    "jawaban": "Soekarno"
+                },
+                {
+                    "id": "ef259445-1120-4532-9369-2eaee69a5044",
+                    "jawaban": "Soerharto"
+                },
+                {
+                    "id": "c84c6a69-2344-4b7a-aedc-a87b4abfc724",
+                    "jawaban": "Megawati"
+                }
+            ],
+            "jawaban_benar": "ef259445-1120-4532-9369-2eaee69a5044",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        }
+    ]
+}
+```
+
+Response Body (failed) :
+
+_Not Valid UUID_
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_ujian harus valid UUID",
+    "data": "Data Tidak Valid"
+}
+```
+
+_Wrong id_ujian_
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Ujian Not Found",
+    "data": "Cek Id Ujian Anda"
+}
+
+```
+
+_Wrong Authorization Token_
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Token Telah Expired"
+}
+
+```
+
 ### Add Soal Ujian untuk phase
 
 Endpoint : POST /admin/ujian/soal
@@ -2123,6 +2339,126 @@ _Wrong Authorization Token 2_
 ```
 
 ## Quiz
+
+
+### Get Quiz From Materi
+
+Endpoint : GET /admin/quiz/:id_materi
+
+Authorization Type Bearer Token : "Access Token"
+
+Request Params: (id_materi) (uuid)
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Sukses Menerima Data",
+    "data": [
+        {
+            "soal_id": "4780edf0-c793-4d12-b009-86c529e032bc",
+            "soal": "Siapakah Presiden Nomor 3",
+            "pilihan": [
+                {
+                    "id": "ad6262bb-f97e-4152-a8ec-4babdc8ed1d2",
+                    "jawaban": "Soerharto"
+                },
+                {
+                    "id": "7c842fcd-caf3-4923-ba8e-c67855a7fecd",
+                    "jawaban": "Soekarno"
+                },
+                {
+                    "id": "af9cf4b7-a82d-441a-9b02-4f0092271c6e",
+                    "jawaban": "Megawati"
+                },
+                {
+                    "id": "9f5f7305-7f6a-4185-8b81-cadba03bf3e1",
+                    "jawaban": "BJ Habibie"
+                }
+            ],
+            "jawaban_benar": "af9cf4b7-a82d-441a-9b02-4f0092271c6e",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "soal_id": "afd7390d-0875-4347-b2c2-84de2823eb52",
+            "soal": "jadi kita melakukan tes update",
+            "pilihan": [
+                {
+                    "id": "125a642a-7ecc-407c-80f4-567b621a7336",
+                    "jawaban": "Prabowo"
+                },
+                {
+                    "id": "36bfb004-8371-463d-910e-31d3615a419e",
+                    "jawaban": "Anies"
+                },
+                {
+                    "id": "231aa0b2-b446-4926-aa78-542083d83b07",
+                    "jawaban": "Jokowi"
+                },
+                {
+                    "id": "48406ea1-f043-48d0-a6e3-41d7886524ef",
+                    "jawaban": "Ganjar"
+                }
+            ],
+            "jawaban_benar": "125a642a-7ecc-407c-80f4-567b621a7336",
+            "pembahasan": "pak jokowi dong yang menang gimana sih"
+        },
+        {
+            "soal_id": "d22f726a-3a35-4e40-8c5b-4415f6d83e40",
+            "soal": "apakah ini berhasi quiz",
+            "pilihan": [
+                {
+                    "id": "b17f3883-4ca8-46ed-ae46-5379d3498801",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "2fd85abd-a6be-461c-882d-514ea2e51d0a",
+                    "jawaban": "no"
+                }
+            ],
+            "jawaban_benar": "2fd85abd-a6be-461c-882d-514ea2e51d0a",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        }
+    ]
+}
+```
+
+Response Body (failed) :
+
+_Not Valid UUID_
+
+```
+{
+    "status": "error",
+    "statusCode": 400,
+    "message": "id_materi harus valid UUID",
+    "data": "Data Tidak Valid"
+}
+```
+
+_Wrong id_materi_
+
+```
+{
+    "status": "error",
+    "statusCode": 404,
+    "message": "Quiz Tidak Ditemukan",
+    "data": "Cek Id Materi Anda"
+}
+
+```
+
+_Wrong Authorization Token_
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Token Telah Expired"
+}
+
+```
 
 ### Add Soal Quiz per Materi
 

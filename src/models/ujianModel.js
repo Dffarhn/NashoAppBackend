@@ -15,7 +15,8 @@ async function GetUjianByPhaseAdminToDB(id) {
                     'jawaban', jawabansoal.jawaban
                 )
             ) AS pilihan,
-            soal.jawaban_benar AS jawaban_benar
+            soal.jawaban_benar AS jawaban_benar,
+            soal.pembahasan AS pembahasan
             FROM
                 kumpulansoalujian
             JOIN 
