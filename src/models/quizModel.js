@@ -8,6 +8,7 @@ async function GetAllQuizMateriAdminToDB(id_materi) {
 
     const queryText = `
         SELECT 
+            materi.judul AS nama_quiz,
             soal.id AS soal_id,
             soal.soal,
             json_agg(
@@ -31,7 +32,7 @@ async function GetAllQuizMateriAdminToDB(id_materi) {
         WHERE 
             kumpulansoalquiz.id_materi = $1
         GROUP BY 
-            soal.id, soal.soal;
+            materi.judul,soal.id, soal.soal;
 
         `;
 

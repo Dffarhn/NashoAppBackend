@@ -7,6 +7,10 @@ async function GetUjianByPhaseAdminToDB(id) {
 
     const queryText = `
             SELECT 
+            CASE 
+                    WHEN kumpulansoalujian.phase = 1 THEN 'Ujian Tengah'
+                    WHEN kumpulansoalujian.phase = 2 THEN 'Ujian Akhir'
+            END AS nama_ujian,
             soal.id AS soal_id,
             soal.soal,
             json_agg(
@@ -28,7 +32,7 @@ async function GetUjianByPhaseAdminToDB(id) {
             WHERE 
                 kumpulansoalujian.id = $1
             GROUP BY 
-                soal.id, soal.soal
+                kumpulansoalujian.phase,soal.id, soal.soal
             ORDER BY 
 				RANDOM()
             LIMIT 20
@@ -49,6 +53,10 @@ async function GetUjianByPhaseToDB(id) {
 
     const queryText = `
             SELECT 
+            CASE 
+                    WHEN kumpulansoalujian.phase = 1 THEN 'Ujian Tengah'
+                    WHEN kumpulansoalujian.phase = 2 THEN 'Ujian Akhir'
+            END AS nama_ujian,
             soal.id AS soal_id,
             soal.soal,
             json_agg(
@@ -68,7 +76,7 @@ async function GetUjianByPhaseToDB(id) {
             WHERE 
                 kumpulansoalujian.id = $1
             GROUP BY 
-                soal.id, soal.soal
+               kumpulansoalujian.phase,soal.id, soal.soal
             ORDER BY 
 				RANDOM()
             LIMIT 20

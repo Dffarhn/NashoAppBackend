@@ -949,43 +949,46 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Sukses",
+    "msg": "Sukses Mendapatkan Pembahasan",
     "data": [
         {
-            "soal_quiz": "ab084fe0-253c-47e7-a2ea-c442fb098bba",
+            "soal_quiz": "afd7390d-0875-4347-b2c2-84de2823eb52",
+            "soal": "jadi kita melakukan tes update",
+            "jawaban_details": [
+                {
+                    "jawaban_user_id": "125a642a-7ecc-407c-80f4-567b621a7336",
+                    "jawaban_user": "Prabowo",
+                    "jawaban_benar": "Prabowo"
+                }
+            ],
+            "benar": true,
+            "pembahasan": "pak jokowi dong yang menang gimana sih"
+        },
+        {
+            "soal_quiz": "4780edf0-c793-4d12-b009-86c529e032bc",
             "soal": "Siapakah Presiden Nomor 3",
             "jawaban_details": [
                 {
-                    "jawaban_user_id": "d8fcf2d4-f2c1-4e67-b4a6-8fdbf17bf35b",
-                    "jawaban_user": "BJ Habibie",
+                    "jawaban_user_id": "af9cf4b7-a82d-441a-9b02-4f0092271c6e",
+                    "jawaban_user": "Megawati",
                     "jawaban_benar": "Megawati"
                 }
             ],
-            "benar": false
+            "benar": true,
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
         },
         {
-            "soal_quiz": "ca8c35c6-b92c-4753-97ab-45efc3bd812f",
-            "soal": "Siapakah Presiden Nomor 1",
+            "soal_quiz": "d22f726a-3a35-4e40-8c5b-4415f6d83e40",
+            "soal": "apakah ini berhasi quiz",
             "jawaban_details": [
                 {
-                    "jawaban_user_id": "aac4b00f-5022-4725-a2fb-9fe3c4923253",
-                    "jawaban_user": "Soekarno",
-                    "jawaban_benar": "Soerharto"
+                    "jawaban_user_id": "2fd85abd-a6be-461c-882d-514ea2e51d0a",
+                    "jawaban_user": "no",
+                    "jawaban_benar": "no"
                 }
             ],
-            "benar": false
-        },
-        {
-            "soal_quiz": "cf10aa25-7c8c-45c0-8534-fe67caa34f7d",
-            "soal": "Siapakah Presiden Nomor 2",
-            "jawaban_details": [
-                {
-                    "jawaban_user_id": "e96d3251-a493-4a89-8348-24e22e7669ce",
-                    "jawaban_user": "BJ Habibie",
-                    "jawaban_benar": "BJ Habibie"
-                }
-            ],
-            "benar": true
+            "benar": true,
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
         }
     ]
 }
@@ -1091,46 +1094,173 @@ Response Body (succes) :
     "msg": "Query Sukses",
     "data": [
         {
-            "soal_id": "0aac1758-2d32-4d65-a1ef-a743a3a0e074",
-            "soal": "apakah ini berhasil3",
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "436e2418-8e3b-40dd-9c58-bb2e4ccd4e30",
+            "soal": "Siapakah pilpres 2024 jilid 2",
             "pilihan": [
                 {
-                    "id": "d7e0e70d-c008-43b2-8304-1aba05a02b75",
+                    "id": "d70b59ae-7905-45eb-a52e-6b725e23aca9",
+                    "jawaban": "Ganjar"
+                },
+                {
+                    "id": "aa755c1d-480c-4d88-9441-5af081a6a2e2",
+                    "jawaban": "Prabowo"
+                },
+                {
+                    "id": "f8a55abf-3981-4646-9324-66037cdc576e",
+                    "jawaban": "Jokowi"
+                },
+                {
+                    "id": "6c372d10-6f47-42f7-b2b9-48fbbc916647",
+                    "jawaban": "Anies"
+                }
+            ],
+            "jawaban_benar": "d70b59ae-7905-45eb-a52e-6b725e23aca9",
+            "pembahasan": "Itu dikarenakan ada nya suatu persepsi yang membentuk suatu kemegahan nasional"
+        },
+        {
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "d6dbb716-e1dd-42b4-8b39-95528af3fdd3",
+            "soal": "apakah ini berhasil122312 ujian lagi",
+            "pilihan": [
+                {
+                    "id": "72b36983-25ad-4ee3-90c4-7c945bb1dd9c",
                     "jawaban": "iya"
                 },
                 {
-                    "id": "9e90e256-384e-46ec-84c8-d7ae8c237dba",
+                    "id": "d56ba4b9-fb8d-4fec-871e-2db806868a57",
                     "jawaban": "no"
                 }
-            ]
+            ],
+            "jawaban_benar": "d56ba4b9-fb8d-4fec-871e-2db806868a57",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
         },
         {
-            "soal_id": "bc71d7e8-2425-4940-ae76-dd7c76273ed1",
-            "soal": "apakah ini berhasil",
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "67ba5eb9-a52f-42e3-a214-d401331ce697",
+            "soal": "apakah ini berhasil122312 ujian lagi 2",
             "pilihan": [
                 {
-                    "id": "0a001fa0-76cd-447f-abb7-1bb6b2cd542c",
+                    "id": "154d1abe-f6f3-4029-aeff-85424bbd016a",
+                    "jawaban": "no"
+                },
+                {
+                    "id": "146e85d4-d681-4b89-a0b6-fc5926d6a305",
+                    "jawaban": "iya"
+                }
+            ],
+            "jawaban_benar": "154d1abe-f6f3-4029-aeff-85424bbd016a",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "2c53af39-5ebb-4113-8856-8aa6c4df4af8",
+            "soal": "apakah ini berhasil122312 ujian lagi 2",
+            "pilihan": [
+                {
+                    "id": "abeaecdf-beed-4a96-860e-e96a4bb3c897",
+                    "jawaban": "no"
+                },
+                {
+                    "id": "17dbd863-e207-46a4-a3ef-51c539ed7c26",
+                    "jawaban": "iya"
+                }
+            ],
+            "jawaban_benar": "abeaecdf-beed-4a96-860e-e96a4bb3c897",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "0ac16561-8885-45e2-af01-eb27592f754c",
+            "soal": "apakah ini berhasil122312 ujian lagi 2",
+            "pilihan": [
+                {
+                    "id": "afaf6cab-48a2-4d09-b59b-0e8c6b5d3047",
                     "jawaban": "iya"
                 },
                 {
-                    "id": "ddaa9a64-93dc-444f-b588-f144cab3d14f",
-                    "jawaban": "tidak"
+                    "id": "38e560f4-638c-4e5d-940b-df33c8e1e6b7",
+                    "jawaban": "no"
                 }
-            ]
+            ],
+            "jawaban_benar": "38e560f4-638c-4e5d-940b-df33c8e1e6b7",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
         },
         {
-            "soal_id": "ea2e23c8-b430-4541-b960-b40de909e6d7",
-            "soal": "apakah ini berhasil2",
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "eb2ae113-343b-47ae-9d9a-ea8f28bb2c55",
+            "soal": "Siapakah Presiden Nomor 1",
             "pilihan": [
                 {
-                    "id": "a4129e6e-d19c-4837-a08d-faaeeba45d38",
+                    "id": "ebca2bb0-1287-4f27-9ac2-d6867d5ab603",
+                    "jawaban": "BJ Habibie"
+                },
+                {
+                    "id": "c84c6a69-2344-4b7a-aedc-a87b4abfc724",
+                    "jawaban": "Megawati"
+                },
+                {
+                    "id": "7c27319e-4f02-4aee-b8f2-f5a10eef9d33",
+                    "jawaban": "Soekarno"
+                },
+                {
+                    "id": "ef259445-1120-4532-9369-2eaee69a5044",
+                    "jawaban": "Soerharto"
+                }
+            ],
+            "jawaban_benar": "ef259445-1120-4532-9369-2eaee69a5044",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "e97fbf4b-22ff-4d0e-9f85-4d5b5d70bbb5",
+            "soal": "apakah ini berhasil122312 ujian lagi",
+            "pilihan": [
+                {
+                    "id": "8b12392b-3763-48b2-9bee-8c0594d3d7d7",
                     "jawaban": "iya"
                 },
                 {
-                    "id": "73abd396-ba3b-474a-88d4-d13542a9290c",
-                    "jawaban": "tidak"
+                    "id": "044f29cb-0f7c-466c-ab77-fb5a509b0a53",
+                    "jawaban": "no"
                 }
-            ]
+            ],
+            "jawaban_benar": "044f29cb-0f7c-466c-ab77-fb5a509b0a53",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi.\n"
+        },
+        {
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "40c4e315-2165-43ea-a625-df1a7a9b0fac",
+            "soal": "apakah ini berhasil122312 ujian lagi 2",
+            "pilihan": [
+                {
+                    "id": "809f1dd2-886e-4533-a931-014129f35908",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "125d1018-4d59-482f-9944-0c472e93baba",
+                    "jawaban": "no"
+                }
+            ],
+            "jawaban_benar": "125d1018-4d59-482f-9944-0c472e93baba",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "2c809db1-d071-47c9-b636-af6e47718ff5",
+            "soal": "apakah ini berhasil122312 update sebuah soal plis pls",
+            "pilihan": [
+                {
+                    "id": "a1a527a0-c400-40d0-a5db-bab798d2aab3",
+                    "jawaban": "iya sir"
+                },
+                {
+                    "id": "fdcdd1aa-39dd-4483-ab83-6a07722c0d3f",
+                    "jawaban": "no sir"
+                }
+            ],
+            "jawaban_benar": "a1a527a0-c400-40d0-a5db-bab798d2aab3",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
         }
     ]
 }
@@ -1249,43 +1379,46 @@ Response Body (succes) :
 
 ```
 {
-    "msg": "Query Sukses",
+    "msg": "Sukses Mendapatkan Pembahasan",
     "data": [
         {
-            "soal_ujian": "ab084fe0-253c-47e7-a2ea-c442fb098bba",
+            "soal_ujian": "afd7390d-0875-4347-b2c2-84de2823eb52",
+            "soal": "jadi kita melakukan tes update",
+            "jawaban_details": [
+                {
+                    "jawaban_user_id": "125a642a-7ecc-407c-80f4-567b621a7336",
+                    "jawaban_user": "Prabowo",
+                    "jawaban_benar": "Prabowo"
+                }
+            ],
+            "benar": true,
+            "pembahasan": "pak jokowi dong yang menang gimana sih"
+        },
+        {
+            "soal_ujian": "4780edf0-c793-4d12-b009-86c529e032bc",
             "soal": "Siapakah Presiden Nomor 3",
             "jawaban_details": [
                 {
-                    "jawaban_user_id": "d8fcf2d4-f2c1-4e67-b4a6-8fdbf17bf35b",
-                    "jawaban_user": "BJ Habibie",
+                    "jawaban_user_id": "af9cf4b7-a82d-441a-9b02-4f0092271c6e",
+                    "jawaban_user": "Megawati",
                     "jawaban_benar": "Megawati"
                 }
             ],
-            "benar": false
+            "benar": true,
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
         },
         {
-            "soal_ujian": "ca8c35c6-b92c-4753-97ab-45efc3bd812f",
-            "soal": "Siapakah Presiden Nomor 1",
+            "soal_ujian": "d22f726a-3a35-4e40-8c5b-4415f6d83e40",
+            "soal": "apakah ini berhasi quiz",
             "jawaban_details": [
                 {
-                    "jawaban_user_id": "aac4b00f-5022-4725-a2fb-9fe3c4923253",
-                    "jawaban_user": "Soekarno",
-                    "jawaban_benar": "Soerharto"
+                    "jawaban_user_id": "2fd85abd-a6be-461c-882d-514ea2e51d0a",
+                    "jawaban_user": "no",
+                    "jawaban_benar": "no"
                 }
             ],
-            "benar": false
-        },
-        {
-            "soal_ujian": "cf10aa25-7c8c-45c0-8534-fe67caa34f7d",
-            "soal": "Siapakah Presiden Nomor 2",
-            "jawaban_details": [
-                {
-                    "jawaban_user_id": "e96d3251-a493-4a89-8348-24e22e7669ce",
-                    "jawaban_user": "BJ Habibie",
-                    "jawaban_benar": "BJ Habibie"
-                }
-            ],
-            "benar": true
+            "benar": true,
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
         }
     ]
 }
@@ -1900,46 +2033,49 @@ Response Body (succes) :
     "msg": "Query Sukses",
     "data": [
         {
-            "soal_id": "e97fbf4b-22ff-4d0e-9f85-4d5b5d70bbb5",
-            "soal": "apakah ini berhasil122312 ujian lagi",
-            "pilihan": [
-                {
-                    "id": "8b12392b-3763-48b2-9bee-8c0594d3d7d7",
-                    "jawaban": "iya"
-                },
-                {
-                    "id": "044f29cb-0f7c-466c-ab77-fb5a509b0a53",
-                    "jawaban": "no"
-                }
-            ],
-            "jawaban_benar": "044f29cb-0f7c-466c-ab77-fb5a509b0a53",
-            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi.\n"
-        },
-        {
+            "nama_ujian": "Ujian Tengah",
             "soal_id": "436e2418-8e3b-40dd-9c58-bb2e4ccd4e30",
             "soal": "Siapakah pilpres 2024 jilid 2",
             "pilihan": [
-                {
-                    "id": "aa755c1d-480c-4d88-9441-5af081a6a2e2",
-                    "jawaban": "Prabowo"
-                },
                 {
                     "id": "d70b59ae-7905-45eb-a52e-6b725e23aca9",
                     "jawaban": "Ganjar"
                 },
                 {
-                    "id": "6c372d10-6f47-42f7-b2b9-48fbbc916647",
-                    "jawaban": "Anies"
+                    "id": "aa755c1d-480c-4d88-9441-5af081a6a2e2",
+                    "jawaban": "Prabowo"
                 },
                 {
                     "id": "f8a55abf-3981-4646-9324-66037cdc576e",
                     "jawaban": "Jokowi"
+                },
+                {
+                    "id": "6c372d10-6f47-42f7-b2b9-48fbbc916647",
+                    "jawaban": "Anies"
                 }
             ],
             "jawaban_benar": "d70b59ae-7905-45eb-a52e-6b725e23aca9",
             "pembahasan": "Itu dikarenakan ada nya suatu persepsi yang membentuk suatu kemegahan nasional"
         },
         {
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "d6dbb716-e1dd-42b4-8b39-95528af3fdd3",
+            "soal": "apakah ini berhasil122312 ujian lagi",
+            "pilihan": [
+                {
+                    "id": "72b36983-25ad-4ee3-90c4-7c945bb1dd9c",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "d56ba4b9-fb8d-4fec-871e-2db806868a57",
+                    "jawaban": "no"
+                }
+            ],
+            "jawaban_benar": "d56ba4b9-fb8d-4fec-871e-2db806868a57",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "nama_ujian": "Ujian Tengah",
             "soal_id": "67ba5eb9-a52f-42e3-a214-d401331ce697",
             "soal": "apakah ini berhasil122312 ujian lagi 2",
             "pilihan": [
@@ -1956,86 +2092,41 @@ Response Body (succes) :
             "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
         },
         {
-            "soal_id": "40c4e315-2165-43ea-a625-df1a7a9b0fac",
-            "soal": "apakah ini berhasil122312 ujian lagi 2",
-            "pilihan": [
-                {
-                    "id": "125d1018-4d59-482f-9944-0c472e93baba",
-                    "jawaban": "no"
-                },
-                {
-                    "id": "809f1dd2-886e-4533-a931-014129f35908",
-                    "jawaban": "iya"
-                }
-            ],
-            "jawaban_benar": "125d1018-4d59-482f-9944-0c472e93baba",
-            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
-        },
-        {
+            "nama_ujian": "Ujian Tengah",
             "soal_id": "2c53af39-5ebb-4113-8856-8aa6c4df4af8",
             "soal": "apakah ini berhasil122312 ujian lagi 2",
             "pilihan": [
                 {
-                    "id": "17dbd863-e207-46a4-a3ef-51c539ed7c26",
-                    "jawaban": "iya"
-                },
-                {
                     "id": "abeaecdf-beed-4a96-860e-e96a4bb3c897",
                     "jawaban": "no"
+                },
+                {
+                    "id": "17dbd863-e207-46a4-a3ef-51c539ed7c26",
+                    "jawaban": "iya"
                 }
             ],
             "jawaban_benar": "abeaecdf-beed-4a96-860e-e96a4bb3c897",
             "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
         },
         {
-            "soal_id": "d6dbb716-e1dd-42b4-8b39-95528af3fdd3",
-            "soal": "apakah ini berhasil122312 ujian lagi",
-            "pilihan": [
-                {
-                    "id": "d56ba4b9-fb8d-4fec-871e-2db806868a57",
-                    "jawaban": "no"
-                },
-                {
-                    "id": "72b36983-25ad-4ee3-90c4-7c945bb1dd9c",
-                    "jawaban": "iya"
-                }
-            ],
-            "jawaban_benar": "d56ba4b9-fb8d-4fec-871e-2db806868a57",
-            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
-        },
-        {
+            "nama_ujian": "Ujian Tengah",
             "soal_id": "0ac16561-8885-45e2-af01-eb27592f754c",
             "soal": "apakah ini berhasil122312 ujian lagi 2",
             "pilihan": [
                 {
-                    "id": "38e560f4-638c-4e5d-940b-df33c8e1e6b7",
-                    "jawaban": "no"
-                },
-                {
                     "id": "afaf6cab-48a2-4d09-b59b-0e8c6b5d3047",
                     "jawaban": "iya"
+                },
+                {
+                    "id": "38e560f4-638c-4e5d-940b-df33c8e1e6b7",
+                    "jawaban": "no"
                 }
             ],
             "jawaban_benar": "38e560f4-638c-4e5d-940b-df33c8e1e6b7",
             "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
         },
         {
-            "soal_id": "2c809db1-d071-47c9-b636-af6e47718ff5",
-            "soal": "apakah ini berhasil122312 update sebuah soal plis pls",
-            "pilihan": [
-                {
-                    "id": "fdcdd1aa-39dd-4483-ab83-6a07722c0d3f",
-                    "jawaban": "no sir"
-                },
-                {
-                    "id": "a1a527a0-c400-40d0-a5db-bab798d2aab3",
-                    "jawaban": "iya sir"
-                }
-            ],
-            "jawaban_benar": "a1a527a0-c400-40d0-a5db-bab798d2aab3",
-            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
-        },
-        {
+            "nama_ujian": "Ujian Tengah",
             "soal_id": "eb2ae113-343b-47ae-9d9a-ea8f28bb2c55",
             "soal": "Siapakah Presiden Nomor 1",
             "pilihan": [
@@ -2044,19 +2135,70 @@ Response Body (succes) :
                     "jawaban": "BJ Habibie"
                 },
                 {
+                    "id": "c84c6a69-2344-4b7a-aedc-a87b4abfc724",
+                    "jawaban": "Megawati"
+                },
+                {
                     "id": "7c27319e-4f02-4aee-b8f2-f5a10eef9d33",
                     "jawaban": "Soekarno"
                 },
                 {
                     "id": "ef259445-1120-4532-9369-2eaee69a5044",
                     "jawaban": "Soerharto"
-                },
-                {
-                    "id": "c84c6a69-2344-4b7a-aedc-a87b4abfc724",
-                    "jawaban": "Megawati"
                 }
             ],
             "jawaban_benar": "ef259445-1120-4532-9369-2eaee69a5044",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "e97fbf4b-22ff-4d0e-9f85-4d5b5d70bbb5",
+            "soal": "apakah ini berhasil122312 ujian lagi",
+            "pilihan": [
+                {
+                    "id": "8b12392b-3763-48b2-9bee-8c0594d3d7d7",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "044f29cb-0f7c-466c-ab77-fb5a509b0a53",
+                    "jawaban": "no"
+                }
+            ],
+            "jawaban_benar": "044f29cb-0f7c-466c-ab77-fb5a509b0a53",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi.\n"
+        },
+        {
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "40c4e315-2165-43ea-a625-df1a7a9b0fac",
+            "soal": "apakah ini berhasil122312 ujian lagi 2",
+            "pilihan": [
+                {
+                    "id": "809f1dd2-886e-4533-a931-014129f35908",
+                    "jawaban": "iya"
+                },
+                {
+                    "id": "125d1018-4d59-482f-9944-0c472e93baba",
+                    "jawaban": "no"
+                }
+            ],
+            "jawaban_benar": "125d1018-4d59-482f-9944-0c472e93baba",
+            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+        },
+        {
+            "nama_ujian": "Ujian Tengah",
+            "soal_id": "2c809db1-d071-47c9-b636-af6e47718ff5",
+            "soal": "apakah ini berhasil122312 update sebuah soal plis pls",
+            "pilihan": [
+                {
+                    "id": "a1a527a0-c400-40d0-a5db-bab798d2aab3",
+                    "jawaban": "iya sir"
+                },
+                {
+                    "id": "fdcdd1aa-39dd-4483-ab83-6a07722c0d3f",
+                    "jawaban": "no sir"
+                }
+            ],
+            "jawaban_benar": "a1a527a0-c400-40d0-a5db-bab798d2aab3",
             "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
         }
     ]
@@ -2231,7 +2373,7 @@ Request Params: id_soal (uuid) WAJIB
 Request Body :
 
 ```
-{
+
 {
   "soal": "jadi kita melakukan tes update ",
   "pilihan": [
@@ -2255,7 +2397,7 @@ Request Body :
   "jawaban_benar": "125a642a-7ecc-407c-80f4-567b621a7336",
   "pembahasan" : "pak jokowi dong yang menang gimana sih"
 }
-}
+
 ```
 
 Response Body (succes) :
@@ -2371,6 +2513,7 @@ Response Body (succes) :
     "msg": "Sukses Menerima Data",
     "data": [
         {
+            "nama_quiz": "tesupdate",
             "soal_id": "4780edf0-c793-4d12-b009-86c529e032bc",
             "soal": "Siapakah Presiden Nomor 3",
             "pilihan": [
@@ -2390,11 +2533,10 @@ Response Body (succes) :
                     "id": "9f5f7305-7f6a-4185-8b81-cadba03bf3e1",
                     "jawaban": "BJ Habibie"
                 }
-            ],
-            "jawaban_benar": "af9cf4b7-a82d-441a-9b02-4f0092271c6e",
-            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+            ]
         },
         {
+            "nama_quiz": "tesupdate",
             "soal_id": "afd7390d-0875-4347-b2c2-84de2823eb52",
             "soal": "jadi kita melakukan tes update",
             "pilihan": [
@@ -2414,11 +2556,10 @@ Response Body (succes) :
                     "id": "48406ea1-f043-48d0-a6e3-41d7886524ef",
                     "jawaban": "Ganjar"
                 }
-            ],
-            "jawaban_benar": "125a642a-7ecc-407c-80f4-567b621a7336",
-            "pembahasan": "pak jokowi dong yang menang gimana sih"
+            ]
         },
         {
+            "nama_quiz": "tesupdate",
             "soal_id": "d22f726a-3a35-4e40-8c5b-4415f6d83e40",
             "soal": "apakah ini berhasi quiz",
             "pilihan": [
@@ -2430,9 +2571,7 @@ Response Body (succes) :
                     "id": "2fd85abd-a6be-461c-882d-514ea2e51d0a",
                     "jawaban": "no"
                 }
-            ],
-            "jawaban_benar": "2fd85abd-a6be-461c-882d-514ea2e51d0a",
-            "pembahasan": "Lorem ipsum dolor sit amet consectetur. Sagittis netus enim elit at in auctor. Pellentesque faucibus lacus in mi."
+            ]
         }
     ]
 }
