@@ -1,14 +1,14 @@
 function LockStatusMateri(data) {
     let previousPhasePassed = true;
 
-
     return data.map((phase, index) => {
         const isCurrentPhaseLocked = !previousPhasePassed;
 
         if (isCurrentPhaseLocked) {
             return {
                 ...phase,
-                locked: true
+                materi: phase.materi.map(materi => ({ ...materi, locked: true })),
+                ujian: phase.ujian.map(ujian => ({ ...ujian, locked: true }))
             };
         }
 
@@ -18,9 +18,10 @@ function LockStatusMateri(data) {
 
         return {
             ...phase,
-            locked: false
+            materi: phase.materi.map(materi => ({ ...materi, locked: false })),
+            ujian: phase.ujian.map(ujian => ({ ...ujian, locked: false }))
         };
     });
 }
 
-module.exports = {LockStatusMateri}
+module.exports = { LockStatusMateri };

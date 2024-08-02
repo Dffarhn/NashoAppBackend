@@ -401,7 +401,8 @@ Response Body (succes) :
                                     "nilai": 100,
                                     "lulus": true
                                 }
-                            ]
+                            ],
+                            "locked": false
                         },
                         {
                             "id": "9a88cc44-8d18-4464-9664-2281c236ace8",
@@ -413,7 +414,8 @@ Response Body (succes) :
                                     "nilai": 100,
                                     "lulus": true
                                 }
-                            ]
+                            ],
+                            "locked": false
                         },
                         {
                             "id": "68fb6898-5563-466a-ab33-8afbbb47103c",
@@ -425,7 +427,8 @@ Response Body (succes) :
                                     "nilai": 100,
                                     "lulus": true
                                 }
-                            ]
+                            ],
+                            "locked": false
                         },
                         {
                             "id": "68fb6898-5563-466a-ab33-8afbbb47103c",
@@ -437,7 +440,8 @@ Response Body (succes) :
                                     "nilai": 100,
                                     "lulus": true
                                 }
-                            ]
+                            ],
+                            "locked": false
                         }
                     ],
                     "ujian": [
@@ -446,15 +450,10 @@ Response Body (succes) :
                             "nama_ujian": "Ujian Tengah",
                             "phase_ujian": 1,
                             "kategori_ujian": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
-                            "riwayat": [
-                                {
-                                    "nilai": 100,
-                                    "lulus": true
-                                }
-                            ]
+                            "riwayat": null,
+                            "locked": false
                         }
-                    ],
-                    "locked": false
+                    ]
                 },
                 {
                     "phase": 2,
@@ -464,14 +463,16 @@ Response Body (succes) :
                             "judul": "ini materi 2\n",
                             "sudah_mengambil": false,
                             "tingkat": 1,
-                            "quiz": null
+                            "quiz": null,
+                            "locked": true
                         },
                         {
                             "id": "9941495a-2536-4144-b566-a95c527abe58",
                             "judul": "tes789",
                             "sudah_mengambil": false,
                             "tingkat": 2,
-                            "quiz": null
+                            "quiz": null,
+                            "locked": true
                         }
                     ],
                     "ujian": [
@@ -480,10 +481,10 @@ Response Body (succes) :
                             "nama_ujian": "Ujian Akhir",
                             "phase_ujian": 2,
                             "kategori_ujian": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
-                            "riwayat": null
+                            "riwayat": null,
+                            "locked": true
                         }
-                    ],
-                    "locked": false
+                    ]
                 }
             ]
         }

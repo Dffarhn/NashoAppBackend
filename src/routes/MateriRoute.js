@@ -94,7 +94,7 @@ const GetAllMateri = async (req, res) => {
           : null,
       })),
     }));
-
+    console.log(GetAllMateriData)
     GetAllMateriData = LockStatusMateri(GetAllMateriData)
     if (!GetAllMateriData || GetAllMateriData.length === 0) {
       throw new CustomError(404, "Tidak Ada Materi Ditemukan");
