@@ -70,6 +70,8 @@ const GetAllMateri = async (req, res) => {
     console.log(userId);
     let GetAllMateriData = await GetAllMateriToDB(kategori, userId);
 
+    let spesifickategori = await GetSpesificKategoriToDB(kategori)
+
     //Set Access For User
     GetAllMateriData = GetAllMateriData.map((phase) => ({
       ...phase,
@@ -86,6 +88,7 @@ const GetAllMateri = async (req, res) => {
       })),
       ujian: phase.ujian.map((ujian) => ({
         ...ujian,
+        nama_ujian: "Teori Dasar " + spesifickategori[0].jenis,
         riwayat: ujian.riwayat
           ? ujian.riwayat.map((r) => ({
               ...r,
@@ -94,13 +97,13 @@ const GetAllMateri = async (req, res) => {
           : null,
       })),
     }));
-    console.log(GetAllMateriData)
+
+    
     GetAllMateriData = LockStatusMateri(GetAllMateriData)
     if (!GetAllMateriData || GetAllMateriData.length === 0) {
       throw new CustomError(404, "Tidak Ada Materi Ditemukan");
     }
 
-    let spesifickategori = await GetSpesificKategoriToDB(kategori)
 
     spesifickategori[0].materi = GetAllMateriData
 

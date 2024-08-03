@@ -447,10 +447,10 @@ Response Body (succes) :
                     "ujian": [
                         {
                             "id": "697b4576-18b3-45e9-9dc7-ba05f7b20090",
-                            "nama_ujian": "Ujian Tengah",
                             "phase_ujian": 1,
                             "kategori_ujian": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
                             "riwayat": null,
+                            "nama_ujian": "Teori Dasar Nahwu",
                             "locked": false
                         }
                     ]
@@ -478,10 +478,10 @@ Response Body (succes) :
                     "ujian": [
                         {
                             "id": "c8ce88e1-0432-47fa-b032-8851aeb4608a",
-                            "nama_ujian": "Ujian Akhir",
                             "phase_ujian": 2,
                             "kategori_ujian": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
                             "riwayat": null,
+                            "nama_ujian": "Teori Dasar Nahwu",
                             "locked": true
                         }
                     ]
