@@ -11,6 +11,9 @@ async function GetUjianByPhaseAdminToDB(id) {
                     WHEN kumpulansoalujian.phase = 1 THEN 'Ujian Tengah'
                     WHEN kumpulansoalujian.phase = 2 THEN 'Ujian Akhir'
             END AS nama_ujian,
+
+            kumpulansoalujian.phase AS phase,
+            kumpulansoalujian.kategori_materi AS kategori_materi,
             soal.id AS soal_id,
             soal.soal,
             json_agg(
@@ -32,7 +35,7 @@ async function GetUjianByPhaseAdminToDB(id) {
             WHERE 
                 kumpulansoalujian.id = $1
             GROUP BY 
-                kumpulansoalujian.phase,soal.id, soal.soal
+                kumpulansoalujian.phase,  kumpulansoalujian.kategori_materi,soal.id, soal.soal
             ORDER BY 
 				RANDOM()
             LIMIT 20

@@ -69,9 +69,12 @@ const GetAllMateri = async (req, res) => {
     const userId = req.user.id;
     console.log(userId);
     let GetAllMateriData = await GetAllMateriToDB(kategori, userId);
-
+    
+    if (!GetAllMateriData || GetAllMateriData.length === 0) {
+      throw new CustomError(404, "Tidak Ada Materi Ditemukan");
+    }
     let spesifickategori = await GetSpesificKategoriToDB(kategori)
-
+    
     //Set Access For User
     GetAllMateriData = GetAllMateriData.map((phase) => ({
       ...phase,
@@ -100,9 +103,6 @@ const GetAllMateri = async (req, res) => {
 
     
     GetAllMateriData = LockStatusMateri(GetAllMateriData)
-    if (!GetAllMateriData || GetAllMateriData.length === 0) {
-      throw new CustomError(404, "Tidak Ada Materi Ditemukan");
-    }
 
 
     spesifickategori[0].materi = GetAllMateriData
