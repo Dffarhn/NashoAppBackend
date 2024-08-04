@@ -95,6 +95,7 @@ async function GetAllMateriToDB(kategori, UserId) {
                 'id', ordered_materi.id,
                 'judul', ordered_materi.judul,
                 'sudah_mengambil', ordered_materi.sudah_mengambil,
+                'phase', ordered_materi.phase,
                 'tingkat', ordered_materi.tingkat,
                 'quiz', (
                     SELECT json_agg(
@@ -167,6 +168,8 @@ async function GetAllMateriToDB(kategori, UserId) {
     `;
 
     const { rows } = await pool.query(queryText, queryValues);
+
+    console.log(rows)
 
     if (!rows) {
       throw new CustomError(404, "Tidak Ada Materi Yang Ditemukan");
