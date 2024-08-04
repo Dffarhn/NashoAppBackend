@@ -36,9 +36,6 @@ async function GetUjianByPhaseAdminToDB(id) {
                 kumpulansoalujian.id = $1
             GROUP BY 
                 kumpulansoalujian.phase,  kumpulansoalujian.kategori_materi,soal.id, soal.soal
-            ORDER BY 
-				RANDOM()
-            LIMIT 20
         
         
         `;

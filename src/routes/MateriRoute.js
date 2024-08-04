@@ -75,10 +75,43 @@ const GetAllMateri = async (req, res) => {
     }
     let spesifickategori = await GetSpesificKategoriToDB(kategori)
     
-    //Set Access For User
+    // Set Access For User
+    // GetAllMateriData = GetAllMateriData.map((phase) => ({
+    //   ...phase,
+    //   materi: phase.materi.map((materi) => ({
+    //     ...materi,
+    //     sudah_mengambil: materi.sudah_mengambil !== null,
+    //     quiz:
+    //       materi.quiz === null
+    //         ? null
+    //         : materi.quiz.map((q) => ({
+    //             ...q,
+    //             lulus: q.lulus === "tidak lulus" ? false : true,
+    //           })),
+    //   })),
+    //   ujian: phase.ujian.map((ujian) => ({
+    //     ...ujian,
+    //     nama_ujian: "Teori Dasar " + spesifickategori[0].jenis,
+    //     riwayat: ujian.riwayat
+    //       ? ujian.riwayat.map((r) => ({
+    //           ...r,
+    //           lulus: r.lulus === "tidak lulus" ? false : true,
+    //         }))
+    //       : null,
+    //   })),
+    // }));
+  
+    
     GetAllMateriData = GetAllMateriData.map((phase) => ({
       ...phase,
-      materi: phase.materi.map((materi) => ({
+      materi: (phase.materi || []).filter(materi => 
+        materi.id !== null || 
+        materi.judul !== null ||
+        materi.sudah_mengambil !== null ||
+        materi.phase !== null ||
+        materi.tingkat !== null ||
+        (materi.quiz && materi.quiz.length > 0)
+      ).map((materi) => ({
         ...materi,
         sudah_mengambil: materi.sudah_mengambil !== null,
         quiz:
@@ -89,7 +122,7 @@ const GetAllMateri = async (req, res) => {
                 lulus: q.lulus === "tidak lulus" ? false : true,
               })),
       })),
-      ujian: phase.ujian.map((ujian) => ({
+      ujian: (phase.ujian || []).map((ujian) => ({
         ...ujian,
         nama_ujian: "Teori Dasar " + spesifickategori[0].jenis,
         riwayat: ujian.riwayat
@@ -100,10 +133,16 @@ const GetAllMateri = async (req, res) => {
           : null,
       })),
     }));
-  
+
+    // Set materi to empty array if filtered out all items
+    GetAllMateriData = GetAllMateriData.map((phase) => ({
+      ...phase,
+      materi: phase.materi.length === 0 ? [] : phase.materi,
+      ujian: phase.ujian.length === 0 ? [] : phase.ujian,
+    }));
+
     GetAllMateriData = LockStatusMateri(GetAllMateriData)
-
-
+    
     spesifickategori[0].materi = GetAllMateriData
 
     res.status(200).json({ msg: "Sukses Menerima Materi", data: spesifickategori });

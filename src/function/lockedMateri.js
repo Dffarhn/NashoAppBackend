@@ -16,6 +16,8 @@ function LockStatusMateri(data) {
             ujianItem.riwayat && ujianItem.riwayat.every(riwayatItem => riwayatItem.lulus)
         );
 
+        console.log(previousPhasePassed)
+
         return {
             ...phase,
             materi: phase.materi.map(materi => ({ ...materi, locked: false })),

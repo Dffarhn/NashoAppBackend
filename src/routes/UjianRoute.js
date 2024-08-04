@@ -50,7 +50,7 @@ const AddUjianUserTake = async (req, res) => {
     }
 
     const payload = {
-      id_mengambil_quiz: UserTakeQuizData,
+      id_mengambil_ujian: UserTakeQuizData,
     };
     res.status(201).json({ msg: "Query Sukses", data: payload });
   } catch (error) {

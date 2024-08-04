@@ -34,6 +34,7 @@ async function GetAllQuizMateriAdminToDB(id_materi) {
         GROUP BY 
             materi.judul,soal.id, soal.soal;
 
+
         `;
 
     const { rows } = await pool.query(queryText, queryValues);
@@ -77,7 +78,11 @@ async function GetAllQuizMateriToDB(id_materi) {
         WHERE 
             kumpulansoalquiz.id_materi = $1
         GROUP BY 
-            materi.id,soal.id, soal.soal;
+            materi.id,soal.id, soal.soal
+
+        ORDER BY 
+			RANDOM()
+          LIMIT 20
 
         `;
 

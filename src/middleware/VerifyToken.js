@@ -29,7 +29,7 @@ const Auth_Access_Admin = (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1]; // Extract the token part
 
   if (!token) {
-    throw new CustomError(404, "Forbidden Access", "Tidak Mempunyai Token");
+    throw new CustomError(403, "Forbidden Access", "Tidak Mempunyai Token");
   }
 
   // Verify the access token
