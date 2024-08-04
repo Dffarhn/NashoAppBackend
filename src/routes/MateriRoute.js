@@ -100,8 +100,7 @@ const GetAllMateri = async (req, res) => {
           : null,
       })),
     }));
-
-    
+  
     GetAllMateriData = LockStatusMateri(GetAllMateriData)
 
 

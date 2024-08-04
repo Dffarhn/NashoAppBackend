@@ -395,6 +395,7 @@ Response Body (succes) :
                             "id": "d2bf909e-9f05-45bf-a55b-f2b8b6d47e3f",
                             "judul": "tesupdate",
                             "sudah_mengambil": true,
+                            "phase": 1,
                             "tingkat": 1,
                             "quiz": [
                                 {
@@ -408,6 +409,7 @@ Response Body (succes) :
                             "id": "9a88cc44-8d18-4464-9664-2281c236ace8",
                             "judul": "tes456",
                             "sudah_mengambil": true,
+                            "phase": 1,
                             "tingkat": 2,
                             "quiz": [
                                 {
@@ -421,6 +423,7 @@ Response Body (succes) :
                             "id": "68fb6898-5563-466a-ab33-8afbbb47103c",
                             "judul": "tes789",
                             "sudah_mengambil": true,
+                            "phase": 1,
                             "tingkat": 3,
                             "quiz": [
                                 {
@@ -434,6 +437,7 @@ Response Body (succes) :
                             "id": "68fb6898-5563-466a-ab33-8afbbb47103c",
                             "judul": "tes789",
                             "sudah_mengambil": true,
+                            "phase": 1,
                             "tingkat": 3,
                             "quiz": [
                                 {
@@ -462,6 +466,7 @@ Response Body (succes) :
                             "id": "2fc63e29-be4a-401f-b89a-aa423c4d8a36",
                             "judul": "ini materi 2\n",
                             "sudah_mengambil": false,
+                            "phase": 2,
                             "tingkat": 1,
                             "quiz": null,
                             "locked": true
@@ -470,6 +475,7 @@ Response Body (succes) :
                             "id": "9941495a-2536-4144-b566-a95c527abe58",
                             "judul": "tes789",
                             "sudah_mengambil": false,
+                            "phase": 2,
                             "tingkat": 2,
                             "quiz": null,
                             "locked": true
