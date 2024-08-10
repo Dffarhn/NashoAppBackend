@@ -49,10 +49,12 @@ async function AddSoalQuizToMateriToDB(data) {
 
     const jawabanBenarToDB = resultJawaban.rows[jawaban_benar].id;
 
-    const queryValueSoal = [soal, jawabanBenarToDB, kumpulan_soal,pembahasan];
+    const created_at = new Date()
+
+    const queryValueSoal = [soal, jawabanBenarToDB, kumpulan_soal,pembahasan,created_at];
     const queryTextSoal = `
-      INSERT INTO soal (soal, jawaban_benar, id_kumpulan_soal, pembahasan)
-      VALUES ($1, $2, $3, $4)
+      INSERT INTO soal (soal, jawaban_benar, id_kumpulan_soal, pembahasan,created_at)
+      VALUES ($1, $2, $3, $4,$5)
       RETURNING pilihan_jawaban;
     `;
     const resultSoal = await client.query(queryTextSoal, queryValueSoal);
@@ -129,10 +131,12 @@ async function AddSoalUjianToMateriToDB(data) {
 
     const jawabanBenarToDB = resultJawaban.rows[jawaban_benar].id;
 
-    const queryValueSoal = [soal, jawabanBenarToDB, kumpulan_soal,pembahasan];
+    const created_at = new Date()
+
+    const queryValueSoal = [soal, jawabanBenarToDB, kumpulan_soal,pembahasan,created_at];
     const queryTextSoal = `
-      INSERT INTO soal (soal, jawaban_benar, id_kumpulan_soal,pembahasan)
-      VALUES ($1, $2, $3,$4)
+      INSERT INTO soal (soal, jawaban_benar, id_kumpulan_soal,pembahasan,created_at)
+      VALUES ($1, $2, $3,$4,$5)
       RETURNING pilihan_jawaban;
     `;
     const resultSoal = await client.query(queryTextSoal, queryValueSoal);

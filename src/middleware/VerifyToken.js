@@ -9,7 +9,7 @@ const Auth_Access = (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1]; // Extract the token part
 
   if (!token) {
-    throw new CustomError(404, "Forbidden Access", "Tidak Mempunyai Token");
+    throw new CustomError(403, "Forbidden Access", "Tidak Mempunyai Token");
   }
 
   // Verify the access token
@@ -41,7 +41,7 @@ const Auth_Access_Admin = (req, res, next) => {
     req.user = decoded;
     // console.log(req.user.role);
     if (req.user.role != "ac87fd21-2f94-4c1d-a582-ffe691fef450") {
-      throw new CustomError(404, "Forbidden Access", "Anda Bukan Admin");
+      throw new CustomError(403, "Forbidden Access", "Anda Bukan Admin");
     }
 
     next(); // Proceed to the next middleware or route handler

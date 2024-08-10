@@ -1796,6 +1796,51 @@ _Wrong Authorization Token_
 }
 
 ```
+### Statistik Home User
+
+Endpoint : GET /statistik/home
+
+Authorization Type Bearer Token : "Access Token"
+
+Response Body (succes) :
+
+```
+{
+    "msg": "Query Sukses",
+    "data": [
+        {
+            "usernasho": "9653ccaa-5bb9-4d8c-ba52-6247aef1b583",
+            "kategori": [
+                {
+                    "id": "3053b811-0544-4cea-b951-1b5f0b9ab36f",
+                    "nama": "Nahwu",
+                    "jumlah_akses_user": "4",
+                    "jumlah_materi": "5"
+                },
+                {
+                    "id": "630fc24e-6efb-43a9-a997-b32d19a04606",
+                    "nama": "Sharaf",
+                    "jumlah_akses_user": 0,
+                    "jumlah_materi": "3"
+                }
+            ]
+        }
+    ]
+}
+```
+
+Response Body (failed) :
+_Wrong Authorization Token_
+
+```
+{
+    "status": "error",
+    "statusCode": 403,
+    "message": "Access Invalid",
+    "data": "Token Telah Expired"
+}
+
+```
 
 # ADMIN
 

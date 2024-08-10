@@ -9,7 +9,7 @@ const { GetAllQuizMateri, AddQuizUserTake, GetNilaiQuiz, GetAllQuizMateriAdmin }
 const { CekJawabanUser, CekJawabanUserUjian } = require("./JawabanRoute");
 
 const { GetPembahasanUjian, GetPembahasanQuiz } = require("./PembahasanRoute");
-const { GetStatistikUserRoute } = require("./StatistikRoute");
+const { GetStatistikUserRoute, GetStatistikHomeUserRoute } = require("./StatistikRoute");
 const { AddUjianUserTake, GetUjianByPhase, GetNilaiUjian, GetUjianByPhaseAdmin } = require("./UjianROute");
 const route = Router();
 
@@ -77,6 +77,9 @@ route.get("/quiz/pembahasan/:id_mengambil_quiz", PembahasanQuizValidation(), han
 
 //User Statistik
 route.get("/statistik",Auth_Access,GetStatistikUserRoute)
+
+
+route.get("/statistik/home",Auth_Access,GetStatistikHomeUserRoute)
 
 
 

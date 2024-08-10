@@ -153,4 +153,62 @@ async function SearchNextMateri(data) {
   }
 }
 
-module.exports = { GetStatistikUserToDB };
+
+async function GetStatistikHomeUserRouteToDB(id) {
+  try {
+    const queryText = `
+      SELECT mm.Usernasho, m.kategori, COUNT(*) as jumlah_akses, km.jenis as kategori_nama
+      FROM Mengambil_Materi mm
+      JOIN Materi m ON mm.Materi = m.id
+      JOIN kategorimateri km ON m.kategori = km.id
+      WHERE mm.Usernasho = $1
+      GROUP BY mm.Usernasho, m.kategori, km.jenis;
+    `;
+
+    const queryValues = [id];
+
+    const { rows: userStats } = await pool.query(queryText, queryValues);
+
+    const queryTextGetMateri = `
+      SELECT kategori, COUNT(*) as jumlah_materi, km.jenis as kategori_nama
+      FROM Materi
+      JOIN kategorimateri km ON Materi.kategori = km.id
+      GROUP BY kategori, km.jenis;
+    `;
+
+    const { rows: materiStats } = await pool.query(queryTextGetMateri);
+
+    // Initialize a map to store user stats by category
+    const userStatsMap = new Map();
+    userStats.forEach(userStat => {
+      userStatsMap.set(userStat.kategori, {
+        usernasho: userStat.usernasho,
+        jumlah_akses_user: userStat.jumlah_akses,
+        kategori_nama: userStat.kategori_nama
+      });
+    });
+
+    // Transform data to include all materiStats
+    const userStatsTransformed = materiStats.map(materiStat => {
+      const userStat = userStatsMap.get(materiStat.kategori);
+
+      return {
+        id: materiStat.kategori,
+        nama: materiStat.kategori_nama,
+        jumlah_akses_user: userStat ? userStat.jumlah_akses_user : 0,
+        jumlah_materi: materiStat.jumlah_materi
+      };
+    });
+
+    return {
+      usernasho: id,
+      kategori: userStatsTransformed
+    };
+
+  } catch (error) {
+    handleCustomErrorModel(error);
+  }
+}
+
+
+module.exports = { GetStatistikUserToDB,GetStatistikHomeUserRouteToDB };

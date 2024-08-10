@@ -32,9 +32,9 @@ async function GetAllQuizMateriAdminToDB(id_materi) {
         WHERE 
             kumpulansoalquiz.id_materi = $1
         GROUP BY 
-            materi.judul,soal.id, soal.soal;
-
-
+            materi.judul,soal.id, soal.soal
+        ORDER BY
+            soal.created_at ASC
         `;
 
     const { rows } = await pool.query(queryText, queryValues);
