@@ -547,6 +547,7 @@ Response Body (succes) :
             "created_at": "2024-07-01T14:52:50.990Z",
             "tingkat": 3,
             "id_quiz": "68fb6898-5563-466a-ab33-8afbbb47103c",
+            "subjudul": "Nahwu",
             "history_quiz": [
                 {
                     "id_mengambil_quiz": "c78f5b58-78d6-4cce-b6c9-dc69319abca1",

@@ -204,7 +204,7 @@ async function GetSpesificMateriToDB(data) {
   try {
     const { id, user_id } = data;
     const queryText = `
-      SELECT materi.*, 
+      SELECT materi.*, kategorimateri.jenis as subjudul,
         kumpulansoalquiz.id_materi AS id_quiz,
         CASE 
           WHEN COUNT(selected_quiz.id) = 0 THEN NULL
@@ -216,7 +216,7 @@ async function GetSpesificMateriToDB(data) {
           )
         END AS history_quiz
       FROM materi
-      JOIN kumpulansoalquiz ON materi.id = kumpulansoalquiz.id_materi
+      LEFT JOIN kumpulansoalquiz ON materi.id = kumpulansoalquiz.id_materi
       LEFT JOIN LATERAL (
         SELECT id, nilai, created_at
         FROM mengambilquiz
@@ -224,12 +224,17 @@ async function GetSpesificMateriToDB(data) {
         ORDER BY nilai DESC, created_at DESC
         LIMIT 1
       ) selected_quiz ON true
+      JOIN kategorimateri ON materi.kategori = kategorimateri.id
       WHERE materi.id = $1
-      GROUP BY materi.id, kumpulansoalquiz.id_materi;
+      GROUP BY materi.id, kumpulansoalquiz.id_materi,kategorimateri.id;
 `;
     const queryValues = [id, user_id];
 
+    
+
     const { rows } = await pool.query(queryText, queryValues);
+
+
     if (!rows) {
       throw new CustomError(404, "Tidak Ada Materi Yang Ditemukan");
     }
