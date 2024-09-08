@@ -81,7 +81,7 @@ async function GetUjianByPhaseToDB(id) {
                kumpulansoalujian.phase,soal.id, soal.soal
             ORDER BY 
 				RANDOM()
-            LIMIT 20
+            LIMIT 10
         
         
         `;

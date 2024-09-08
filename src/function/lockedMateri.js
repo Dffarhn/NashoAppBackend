@@ -4,6 +4,7 @@ function LockStatusMateri(data) {
     return data.map((phase, index) => {
         const isCurrentPhaseLocked = !previousPhasePassed;
 
+
         if (isCurrentPhaseLocked) {
             return {
                 ...phase,
@@ -12,11 +13,9 @@ function LockStatusMateri(data) {
             };
         }
 
-        previousPhasePassed = phase.ujian.every(ujianItem => 
+        previousPhasePassed = phase.ujian.length > 0 && phase.ujian.every(ujianItem => 
             ujianItem.riwayat && ujianItem.riwayat.every(riwayatItem => riwayatItem.lulus)
         );
-
-        console.log(previousPhasePassed)
 
         return {
             ...phase,

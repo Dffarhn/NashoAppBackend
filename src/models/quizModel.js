@@ -82,7 +82,7 @@ async function GetAllQuizMateriToDB(id_materi) {
 
         ORDER BY 
 			RANDOM()
-          LIMIT 20
+          LIMIT 10
 
         `;
 

@@ -170,7 +170,7 @@ async function GetAllMateriToDB(kategori, UserId) {
 
     const { rows } = await pool.query(queryText, queryValues);
 
-    console.log(rows)
+    // console.log(rows)
 
     if (!rows) {
       throw new CustomError(404, "Tidak Ada Materi Yang Ditemukan");
