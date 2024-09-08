@@ -61,7 +61,6 @@ async function DeleteMateriToDB(id) {
     const result = await pool.query(queryText, queryValues);
 
     // Optionally log the result or return a value
-    // console.log(`Deleted rows: ${result.rowCount}`);
     return result.rowCount; // Return the number of deleted rows
   } catch (error) {
     handleCustomErrorModel(error);
@@ -170,7 +169,6 @@ async function GetAllMateriToDB(kategori, UserId) {
 
     const { rows } = await pool.query(queryText, queryValues);
 
-    // console.log(rows)
 
     if (!rows) {
       throw new CustomError(404, "Tidak Ada Materi Yang Ditemukan");

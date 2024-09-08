@@ -39,7 +39,6 @@ const Auth_Access_Admin = (req, res, next) => {
     }
     // Token is valid, attach decoded user information to the request object
     req.user = decoded;
-    // console.log(req.user.role);
     if (req.user.role != "ac87fd21-2f94-4c1d-a582-ffe691fef450") {
       throw new CustomError(403, "Forbidden Access", "Anda Bukan Admin");
     }

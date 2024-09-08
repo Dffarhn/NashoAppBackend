@@ -67,7 +67,7 @@ const GetAllMateri = async (req, res) => {
   try {
     const { kategori } = req.query;
     const userId = req.user.id;
-    console.log(userId);
+    
     let GetAllMateriData = await GetAllMateriToDB(kategori, userId);
     
     if (!GetAllMateriData || GetAllMateriData.length === 0) {

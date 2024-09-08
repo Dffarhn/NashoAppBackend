@@ -118,7 +118,6 @@ async function SearchNextMateri(data) {
 
       const { rows: CheckUjian } = await pool.query(QueryTextCheckUjian, QueryValuesCheckUjian);
 
-      console.log(CheckUjian);
 
       if (CheckUjian.length == 0) {
         const queryTextUjian = `

@@ -18,7 +18,7 @@ const hashSecretKey = async (secretKey) => {
 };
 
 // Predefined secret key
-const secretKey = '@nashoAPPhighsecret';
+const secretKey = '@';
 
 // Hash and log the secret key
 hashSecretKey(secretKey).then(hashedSecretKey => {

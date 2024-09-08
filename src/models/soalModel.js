@@ -35,7 +35,6 @@ async function AddSoalQuizToMateriToDB(data) {
 
     const { soal, jawaban_benar, pilihan, id_materi,pembahasan } = data;
 
-    console.log(data);
 
     const kumpulan_soal = await checkOrInsertKumpulanSoalQuiz(client, id_materi);
 
@@ -96,7 +95,6 @@ async function checkOrInsertKumpulanSoalUjian(client, kategori_materi, phase) {
     if (existingKS.length > 0) {
       return existingKS[0].id;
     } else {
-      console.log(kategori_materi);
       const insertQueryText = `
         INSERT INTO kumpulansoalujian (kategori_materi, phase)
         VALUES ($1,$2)

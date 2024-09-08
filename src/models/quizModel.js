@@ -228,7 +228,6 @@ async function GetNilaiQuizToDB(data) {
   try {
     const { id_mengambil_quiz, id_user } = data;
 
-    // console.log(id_mengambil_quiz, id_user);
 
     const queryText = `
         SELECT  
@@ -253,7 +252,6 @@ async function GetNilaiQuizToDB(data) {
 
     const { rows } = await pool.query(queryText, queryValues);
 
-    console.log(rows)
 
     // Count the number of true answers
     const trueCount = rows.filter((item) => item.status_jawaban === true).length;
