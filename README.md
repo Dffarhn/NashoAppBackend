@@ -1336,7 +1336,7 @@ Response Body (succes) :
     "data": {
         "ujian": [
             {
-                "nama_ujian": "ujian Nahwu 1",
+                "nama_ujian": "ujian Nahwu1",
                 "nilai": 50,
                 "lulus": false,
                 "jumlah_soal": 2,
