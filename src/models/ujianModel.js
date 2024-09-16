@@ -141,11 +141,11 @@ async function CheckTheTakenUjian(data) {
 async function AddTakeUjianUserToDB(data) {
   try {
     const { id, id_user } = data;
-    // const check = await CheckTheTakenUjian(data); // Await the promise
+    const check = await CheckTheTakenUjian(data); // Await the promise
 
-    // if (!check) {
-    //   throw new CustomError(401, "Anda Tidak Diperbolehkan Mengambil Ujian ini");
-    // }
+    if (!check) {
+      throw new CustomError(401, "Anda Tidak Diperbolehkan Mengambil Ujian ini");
+    }
     const queryText = `
           INSERT INTO public.mengambilujian(
               usernasho, ujian)
