@@ -1037,6 +1037,15 @@ Authorization Type Bearer Token : "Access Token"
 
 Request Params: (id_ujian) (uuid)
 
+Request Body :
+
+```
+{
+    "kategori_materi":"3053b811-0544-4cea-b951-1b5f0b9ab36f",
+    "phase":1
+}
+```
+
 Response Body (succes) :
 
 ```
