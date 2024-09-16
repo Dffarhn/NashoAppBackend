@@ -169,11 +169,18 @@ async function GetNilaiUjianToDB(data) {
   
       const queryText = `
           SELECT  
-              jawabanujianuser.status_jawaban
+              jawabanujianuser.status_jawaban,
+              kumpulansoalujian.phase AS phase,
+              kategorimateri.jenis AS nama
+
           FROM 
               mengambilujian
           JOIN 
               jawabanujianuser ON jawabanujianuser.ujian_diambil = mengambilujian.id
+          JOIN 
+              kumpulansoalujian ON kumpulansoalujian.id = mengambilujian.ujian
+          JOIN
+              kategorimateri ON kategorimateri.id = kumpulansoalujian.kategori_materi
           WHERE
               mengambilujian.usernasho = $1
               AND jawabanujianuser.ujian_diambil = $2;
@@ -215,6 +222,7 @@ async function GetNilaiUjianToDB(data) {
   
 
       const payload = [{
+        nama_ujian: `ujian ${rows[0].nama} ${rows[0].phase}`,
         nilai: Math.ceil(points),
         lulus: status_kelulusan,
         jumlah_soal : totalQuestions,
