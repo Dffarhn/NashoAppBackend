@@ -10,7 +10,7 @@ const { CekJawabanUser, CekJawabanUserUjian } = require("./JawabanRoute");
 
 const { GetPembahasanUjian, GetPembahasanQuiz } = require("./PembahasanRoute");
 const { GetStatistikUserRoute, GetStatistikHomeUserRoute } = require("./StatistikRoute");
-const { AddUjianUserTake, GetUjianByPhase, GetNilaiUjian, GetUjianByPhaseAdmin } = require("./UjianROute");
+const { AddUjianUserTake, GetUjianByPhase, GetNilaiUjian, GetUjianByPhaseAdmin } = require("./UjianRoute");
 const route = Router();
 
 route.get("/", (req, res) => {
